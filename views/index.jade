@@ -1,0 +1,75 @@
+extends layout
+
+block content
+	.ui.grid
+		.six.wide.centered.column
+			h3.ui.horizontal.divider.header
+					i.bar.chart.icon 
+					| Match Prediction
+	.ui.grid
+		.three.wide.column
+		.six.wide.centered.column
+			table.ui.definition.table
+				thead
+					tr
+						th Team
+						th Market Probability
+						th ThinkQuant Model
+						th Predicted Score
+				tbody
+					tr
+						td India
+						td 68%
+						td 80%
+						td 336.25
+					tr
+						td Pakistan
+						td 32%
+						td 20%
+						td 304.2
+		.three.wide.column
+		h3.ui.horizontal.divider.header
+			i.tag.icon 
+			| Plans
+		.ui.stackable.grid
+			.ui.centered.row
+				.four.wide.column.centered
+					.ui.cards
+						.card
+							.content
+								.header Per ball prediction
+								.description
+									| $pricing per ball
+							.ui.bottom.attached.button
+								i.money.icon
+								|       View Plan
+				.four.wide.column.centered
+					.ui.cards
+						.card
+							.content
+								.header Per over prediction
+								.description
+									| $pricing per over
+							.ui.bottom.attached.button
+								i.money.icon
+								|       View Plan
+				.four.wide.column.centered
+					.ui.cards
+						.card
+							.content
+								.header Every 10 overs prediction
+								.description
+									| $pricing per ball
+							.ui.bottom.attached.button
+								i.money.icon
+								|       View Plan
+				.four.wide.column.centered
+					.ui.cards
+						.card
+							.content
+								.header Free prediction
+								.description
+									| For Free
+							.ui.bottom.attached.button
+								i.add.icon
+								|       Login

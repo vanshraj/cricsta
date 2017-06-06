@@ -1,0 +1,38 @@
+body {
+  padding: 0px;
+}
+
+a {
+  color: white;
+}
+a: hover {
+  color: white;
+}
+
+footer{
+	margin-top: 6%;
+	margin-bottom: 0;
+	text-align: center;
+}
+ul.success li, ul.info li, ul.error li{
+	margin:20px 0 20px 0;
+	padding: 15px;
+	border: 1px solid transparent;
+	border-radius: 5px;
+	list-style: none;
+}
+ul.success li{
+	color:#3c763d;
+	/*background-color:#dff0d8;*/
+	border-color:#d6e9c6;
+}
+ul.info li{
+	color:#31708f;
+	/*background-color:#d9edf7;*/
+	border-color:#bce8f1;
+}
+ul.error li{
+	color:#ff3333;
+/*    background-color: #FFBABA;*/
+	border-color:#ff3333;
+}

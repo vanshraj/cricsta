@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	.ui.grid.login-div
+		.six.wide.centered.column
+			h3.ui.block.header Please Login 
+			form.ui.form(method='post', action='/users/login')
+				.ui.error.message
+				.field
+					label Username or Email
+					input(name='username', type='text', placeholder='Username')
+				.field
+					label Password
+					input(name='password', type='password', placeholder='Password')
+				button.ui.button(type='submit') Log In

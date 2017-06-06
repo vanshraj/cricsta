@@ -1,0 +1,38 @@
+doctype html
+html
+	head
+		meta(http-equiv='Cache-control', content='max-age=0')
+		meta(http-equiv='Cache-control', content='no-cache')
+		meta(http-equiv='Expires', content='0')
+		meta(http-equiv='Expires', content='Tue, 01 Jan 1980 1:00:00 GMT')
+		meta(http-equiv='Pragma', content='no-cache')
+		title= title
+		link(rel="stylesheet", type="text/css", href="/semantic/dist/semantic.min.css")
+		link(rel="stylesheet", href='/stylesheets/style.css')
+	body(onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="")
+		.ui.small.menu
+			a(class=(title==='ThinkQuant'? 'active item':'item'),href='/')
+				| Home
+			a(class=(title==='Pricing'? 'active item':'item'),href='/pricing')
+				| Pricing
+			.right.menu
+				if !user
+					a(class=(title==='signup'? 'active item':'item'),href='/users/register')
+						.ui.primary.button Register
+					a(class=(title==='login'? 'active item':'item'),href='/users/login')
+						.ui.primary.button Sign In
+				if user
+					a.item(href='/users/logout')
+						.ui.primary.button Sign Out
+		.ui.container
+			!= messages()
+			block content
+	.ui.container
+		footer
+			.ui.inverted.segment
+				.ui.inverted.secondary.pointing.menu
+					.item
+						| &copy; 2017, All Rights Reserved
+	script( src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" )
+	script( src="/semantic/dist/semantic.min.js" )
+	script( src="/javascripts/scripts.js" )
