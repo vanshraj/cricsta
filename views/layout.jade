@@ -1,11 +1,7 @@
 doctype html
 html
 	head
-		meta(http-equiv='Cache-control', content='max-age=0')
-		meta(http-equiv='Cache-control', content='no-cache')
-		meta(http-equiv='Expires', content='0')
-		meta(http-equiv='Expires', content='Tue, 01 Jan 1980 1:00:00 GMT')
-		meta(http-equiv='Pragma', content='no-cache')
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		title= title
 		link(rel="stylesheet", type="text/css", href="/semantic/dist/semantic.min.css")
 		link(rel="stylesheet", href='/stylesheets/style.css')
@@ -18,12 +14,27 @@ html
 			.right.menu
 				if !user
 					a(class=(title==='signup'? 'active item':'item'),href='/users/register')
-						.ui.primary.button Register
+						.ui.animated.primary.button(tabindex='0')
+							.visible.content Register
+							.hidden.content
+								i.add.user.icon
 					a(class=(title==='login'? 'active item':'item'),href='/users/login')
-						.ui.primary.button Sign In
+						.ui.animated.primary.button(tabindex='0')
+							.visible.content Sign In
+							.hidden.content
+								i.sign.in.icon
 				if user
+					a.item(href='/users/account')
+						.ui.animated.primary.button(tabindex='0')
+							.visible.content #{user.name}
+							.hidden.content
+								i.user.icon
 					a.item(href='/users/logout')
-						.ui.primary.button Sign Out
+						.ui.animated.primary.button(tabindex='0')
+							.visible.content Sign Out
+							.hidden.content
+								i.sign.out.icon
+
 		.ui.container
 			!= messages()
 			block content

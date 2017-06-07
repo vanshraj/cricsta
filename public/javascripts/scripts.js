@@ -28,15 +28,6 @@ $('.ui.form')
           }
         ]
       },
-      username: {
-        identifier: 'username',
-        rules: [
-          {
-            type   : 'empty',
-            prompt : 'Please enter a username'
-          }
-        ]
-      },
       email: {
         identifier: 'email',
         rules: [

@@ -36,3 +36,7 @@ ul.error li{
 /*    background-color: #FFBABA;*/
 	border-color:#ff3333;
 }
+.divider-column {
+  position: relative;
+  padding: 0 !important;
+}
