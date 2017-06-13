@@ -3,7 +3,7 @@ $(document).ready(function(){
 	    // run your ajax call here
 	    $.ajax({
 		type: 'GET',
-		url: process.env.MATCH_DATA_URL,
+		url: "/matchData",
 		dataType: 'json'
 		})
 			.done(function(data) {
