@@ -1,0 +1,56 @@
+extends ../layout
+
+block content
+	.ui.grid
+		.six.wide.centered.column
+			h3.ui.horizontal.divider.header
+					i.bar.chart.icon 
+					| Match Prediction
+	.ui.container.centered
+		.ui.two.column.middle.aligned.very.relaxed.stackable.centered.grid(style='position: relative')
+			.row
+				.column.ten.wide
+					table.ui.table.segment.raised
+						thead
+							tr
+								th Team
+								th Actual Score
+								th Odds
+								th Win Probability
+								th Predicted Score
+						tbody
+							tr
+								td.team1name  ..
+								td.team1actual  ..
+								td.team1odds  ..
+								td.team1winprob  ..
+								td.team1pred  ..
+							tr
+								td.team2name ..
+								td.team2actual ..
+								td.team2odds ..
+								td.team2winprob ..
+								td.team2pred ..
+			.row
+				.column.twelve.wide
+					table.ui.table.segment.raised
+						thead
+							tr
+								th First Innings Score
+								th.prob1value ..
+								th.prob2value ..
+								th.prob3value ..
+								th.prob4value ..
+								th.prob5value ..
+								th.prob6value ..
+								th.prob7value ..
+						tbody
+							tr
+								td Probability
+								td.prob1percent 0
+								td.prob2percent 0
+								td.prob3percent 0
+								td.prob4percent 0
+								td.prob5percent 0
+								td.prob6percent 0
+								td.prob7percent 0

@@ -40,3 +40,15 @@ ul.error li{
   position: relative;
   padding: 0 !important;
 }
+.ui.vertical.masthead.inverted.center.aligned.segment{
+	background:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url("http://www.abc.net.au/news/image/5514196-3x2-940x627.jpg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	width: 100%;
+	padding: 60px;
+}
+.ui.vertical.masthead.inverted.center.aligned.segment h3.ui.center.aligned.header{
+	color: #fff;
+}

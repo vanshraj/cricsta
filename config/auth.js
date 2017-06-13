@@ -1,8 +1,14 @@
 module.exports = {
 	
 	'googleAuth': {
-    clientID: '880107050607-th5jcfo56nr5144n7fsk654ln1pbri6t.apps.googleusercontent.com',
-    clientSecret: '3CVixsfULt-NimnuoUBYhfAa',
-    callbackURL: "http://localhost:3000/users/auth/google/callback",
+    clientID: process.env.G_CLIENT_ID ,
+    clientSecret: process.env.G_CLIENT_SECRET,
+    callbackURL: process.env.G_CALLBACK_URL,
+	},
+
+	'facebookAuth': {
+    clientID: process.env.F_CLIENT_ID,
+    clientSecret: process.env.F_CLIENT_SECRET,
+    callbackURL: process.env.F_CALLABACK_URL,
 	}
 }

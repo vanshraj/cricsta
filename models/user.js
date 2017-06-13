@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
-mongoose.connect('mongodb://vanshaj:vanshaj@ds163721.mlab.com:63721/thinkquant');
+mongoose.connect(process.env.DATABASEURL);
 var db = mongoose.connection;
 
 // User Schema
@@ -35,25 +35,30 @@ module.exports.getUserById = function( id, callback){
 }
 
 module.exports.comparePassword = function( candidatePassword, hash, callback){
-	bcrypt.compare(candidatePassword, hash, function(err, res) {
-		if(err) throw err;
-		callback(null, res);
-	});
+	if(hash){
+		bcrypt.compare(candidatePassword, hash, function(err, res) {
+			if(err) throw err;
+			callback(null, res);
+		});	
+	}else{
+		callback(null, false);
+	}
+	
 }
 
-module.exports.findOrCreate = function( googleUser, callback){
-	var query = { email: googleUser.email};
+module.exports.findOrCreate = function( socialUser, callback){
+	var query = { email: socialUser.email};
 	User.findOne(query, function(err,user){
 		if(err) throw err;
 			if(!user){
 				//create a user
-				console.log("google user was not in database so one was created");
-				googleUser.save(callback);
+				console.log("social user was not in database so one was created");
+				socialUser.save(callback);
 			}else{
 				//found a user
 				console.log(user);
-				console.log("google user was already in database");
-				callback(err,user);
+				console.log("social user was already in database");
+				callback(null,user);
 			}
 	});
 }

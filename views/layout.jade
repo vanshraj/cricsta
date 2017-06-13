@@ -9,8 +9,16 @@ html
 		.ui.small.menu
 			a(class=(title==='ThinkQuant'? 'active item':'item'),href='/')
 				| Home
+			a(class=(title==='Blog'? 'active item':'item'),href='/blog')
+				| Blog
 			a(class=(title==='Pricing'? 'active item':'item'),href='/pricing')
 				| Pricing
+			a(class=(title==='About'? 'active item':'item'),href='/about')
+				| About Us
+			if user
+				if user.type == 'admin'
+					a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')
+						| Add Blog
 			.right.menu
 				if !user
 					a(class=(title==='signup'? 'active item':'item'),href='/users/register')
@@ -24,7 +32,7 @@ html
 							.hidden.content
 								i.sign.in.icon
 				if user
-					a.item(href='/users/account')
+					a(class=(title==='Account'? 'active item':'item'),href='/users/account')
 						.ui.animated.primary.button(tabindex='0')
 							.visible.content #{user.name}
 							.hidden.content
@@ -34,7 +42,7 @@ html
 							.visible.content Sign Out
 							.hidden.content
 								i.sign.out.icon
-
+		.ui.hidden.divider
 		.ui.container
 			!= messages()
 			block content
@@ -44,6 +52,7 @@ html
 				.ui.inverted.secondary.pointing.menu
 					.item
 						| &copy; 2017, All Rights Reserved
-	script( src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" )
+	script( src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" )
 	script( src="/semantic/dist/semantic.min.js" )
 	script( src="/javascripts/scripts.js" )
+	script( src="/javascripts/index_ajax.js" )

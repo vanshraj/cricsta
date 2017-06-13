@@ -16,7 +16,7 @@ $('.message .close')
 ;
 
 //form validations
-$('.ui.form')
+$('.ui.form.register')
   .form({
     fields: {
       name: {
@@ -32,10 +32,6 @@ $('.ui.form')
         identifier: 'email',
         rules: [
           {
-            type   : 'empty',
-            prompt : 'Please enter a username'
-          },
-          {
             type   : 'email',
             prompt : 'Please enter a valid email.'
           }
@@ -44,10 +40,6 @@ $('.ui.form')
       password: {
         identifier: 'password',
         rules: [
-          {
-            type   : 'empty',
-            prompt : 'Please enter a password'
-          },
           {
             type   : 'minLength[6]',
             prompt : 'Your password must be at least {ruleValue} characters'
@@ -63,6 +55,56 @@ $('.ui.form')
           }
         ]
       },
+    }
+  })
+;
+$('.ui.form.login')
+  .form({
+    fields: {
+      email: {
+        identifier: 'email',
+        rules: [
+          {
+            type   : 'email',
+            prompt : 'Please enter a valid email.'
+          }
+        ]
+      },
+      password: {
+        identifier: 'password',
+        rules: [
+          {
+            type   : 'minLength[6]',
+            prompt : 'Your password must be at least {ruleValue} characters'
+          }
+        ]
+      }
+    }
+  })
+;
+
+$('.ui.form.addblog')
+  .form({
+    fields: {
+      head: {
+        identifier: 'head',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please give your post a title.'
+          }
+        ]
+      },
+      body: {
+        identifier: 'body',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please add some content.'
+          }
+        ]
+      },
+      
     }
   })
 ;

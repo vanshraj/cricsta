@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+	.ui.container.centered
+		.ui.one.column.middle.aligned.very.relaxed.stackable.centered.grid(style='position: relative')
+			.row
+				.column.ten.wide
+					.ui.container
+						h3.ui.block.header.segment.raised Add Post Details
+						form.ui.form.addblog.segment.raised(method='post', action='/blog/add')
+							.ui.error.message
+							.field
+								label Title
+								.ui.left.icon.input
+									input(name='head', type='text', placeholder='Title')
+									i.quote.left.icon
+							.field
+								label Body
+									textarea(name='body', type='text', placeholder='Body')
+							.field
+									label Tags
+									.ui.left.icon.input
+										input(name='tags', type='text', placeholder='Tag 1, Tag 2, Tag 3,..')
+										i.tags.icon
+							button.ui.positive.button(type='submit') Submit Post
+							script(src='/ckeditor/ckeditor.js')
+							script
+								| CKEDITOR.replace('body');

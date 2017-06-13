@@ -10,13 +10,20 @@ var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var mongo =require('mongodb');
 var mongoose =require('mongoose');
-mongoose.connect('mongodb://vanshaj:vanshaj@ds163721.mlab.com:63721/thinkquant');
+var htmlsave = require('htmlsave');
+mongoose.connect( process.env.DATABASEURL);
 var db =mongoose.connection;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var blogs = require('./routes/blogs');
 
 var app = express();
+
+app.locals.moment = require('moment');
+app.locals.truncateText = function(text, length){
+  return htmlsave.truncate(text,length,{breakword: false});
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,6 +57,7 @@ app.get('*',function(req,res,next){
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/blog', blogs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

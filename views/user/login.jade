@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+	.ui.container
+		.ui.two.column.middle.aligned.very.relaxed.stackable.grid(style='position: relative')
+			.row
+				.column
+					.ui.container
+						h3.ui.block.header.segment.raised Please Enter Login Details
+						form.ui.form.login.segment.raised(method='post', action='/users/login')
+							.ui.error.message
+							.field
+								label Email
+								.ui.left.icon.input
+									input(name='email', type='text', placeholder='Email')
+									i.mail.icon
+							.field
+								label Password
+								.ui.left.icon.input
+									input(name='password', type='password', placeholder='Password')
+									i.lock.icon
+							button.ui.positive.button(type='submit') Log In
+				.divider-column
+					.ui.vertical.divider Or
+				.center.aligned.column
+					h2.ui.center.aligned.icon.header
+						i.circular.users.icon
+						|   Connect With
+					.ui.big.buttons.social-buttons
+						form.ui.form(method='get', action='/users/auth/google')
+							button.ui.animated.google.plus.button(tabindex='0', type='submit')
+								.visible.content Google 
+								.hidden.content
+									i.google.icon
+						.or
+						form.ui.form(method='get', action='/users/auth/facebook')
+							button.ui.animated.facebook.button(tabindex='0', type='submit')
+								.visible.content Facebook
+								.hidden.content
+									i.facebook.icon
+				
+				
