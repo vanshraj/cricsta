@@ -52,6 +52,6 @@ ul.error li{
 .ui.vertical.masthead.inverted.center.aligned.segment h3.ui.center.aligned.header{
 	color: #fff;
 }
-.ui.small.menu,footer, canvas.oddscanvas{
+canvas.oddscanvas{
 	display: none;
 }
