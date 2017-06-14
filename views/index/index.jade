@@ -10,26 +10,28 @@ block content
 		.ui.two.column.middle.aligned.very.relaxed.stackable.centered.grid(style='position: relative')
 			.row
 				.column.ten.wide
+					canvas.oddscanvas
+				.column.ten.wide
 					table.ui.table.segment.raised
 						thead
 							tr
 								th Team
 								th Actual Score
-								th Odds
 								th Win Probability
+								th Implied Odds
 								th Predicted Score
 						tbody
 							tr
 								td.team1name  ..
 								td.team1actual  ..
-								td.team1odds  ..
 								td.team1winprob  ..
+								td.team1odds  ..
 								td.team1pred  ..
 							tr
 								td.team2name ..
 								td.team2actual ..
-								td.team2odds ..
 								td.team2winprob ..
+								td.team2odds ..
 								td.team2pred ..
 			.row
 				.column.twelve.wide
@@ -47,10 +49,15 @@ block content
 						tbody
 							tr
 								td Probability
-								td.prob1percent 0
-								td.prob2percent 0
-								td.prob3percent 0
-								td.prob4percent 0
-								td.prob5percent 0
-								td.prob6percent 0
-								td.prob7percent 0
+								td.prob1percent ..
+								td.prob2percent ..
+								td.prob3percent ..
+								td.prob4percent ..
+								td.prob5percent ..
+								td.prob6percent ..
+								td.prob7percent ..
+				.column.six.wide
+					canvas.winprobcanvas
+block scripts
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js")
+	script( src="/javascripts/matchData.js" )
