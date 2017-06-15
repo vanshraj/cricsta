@@ -32,7 +32,8 @@ function liveFeed(data){
 		team2name=data.team2.name;
 		team1score=data.team1.actualScore+"/"+data.team1.wickets+" ("+data.team1.over+ " overs)";
 		team2score=data.team2.actualScore+"/"+data.team2.wickets+" ("+data.team2.over+ " overs)";
-
+		if( data.team1.wickets==10 || data.team1.over==50.0 || data.team2.over > 0 )
+			$('.firstInningsProb').fadeOut();
 		// addOddsCanvas(data);
 		// addWinProbCanvas(data);
 		$('.team1name').text(team1name);
