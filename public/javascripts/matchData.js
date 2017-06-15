@@ -34,8 +34,11 @@ function liveFeed(data){
 		team2score=data.team2.actualScore+"/"+data.team2.wickets+" ("+data.team2.over+ " overs)";
 		if( data.team1.wickets==10 || data.team1.over==50.0 || data.team2.over > 0 )
 			$('.firstInningsProb').fadeOut();
+		else
+			$('.firstInningsProb').fadeIn();
 		// addOddsCanvas(data);
 		// addWinProbCanvas(data);
+		$('.matchHeader').html("<h3 class='ui horizontal divider header'><i class='bar chart icon'></i>"+"Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name+"</h3>");
 		$('.team1name').text(team1name);
 		$('.team1actual').text(team1score);
 		$('.team1odds').text(Math.round(data.team1.odds* 100) / 100);

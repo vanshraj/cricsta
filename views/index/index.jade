@@ -2,9 +2,9 @@ extends ../layout
 
 block content
 	.ui.grid
-		.six.wide.centered.column
+		.ten.wide.centered.column.matchHeader
 			h3.ui.horizontal.divider.header
-					i.bar.chart.icon 
+					i.bar.chart.icon
 					| Match Prediction
 	.ui.container.centered
 		.ui.two.column.middle.aligned.very.relaxed.stackable.centered.grid(style='position: relative')
@@ -61,9 +61,13 @@ block content
 			.row
 				.ui.vertical.masthead.inverted.center.aligned.segment
 					.ui.text.container
-						h3.ui.center.aligned.header CRICKET TRADING ODDS 
+						h3.ui.center.aligned.header ABOUT THINKQUANT
 						p ThinkQuant is an analytics firm based out of Gurgaon, India. We specialize in making predictive models, with a rich history in the financial markets. Our predictive model for cricket ThinkQuant is live, and can work in-play during a cricket match. For more details about our product, mail us at services@thinkquant.in or call Alok Noronha (CEO) at 9953916443.
 						| 326, Star Tower, Sector 30, Gurgaon
+						br
+						a(href="https://twitter.com/quant_think")
+							i.twitter.icon
+							| Twitter/quant_think
 block scripts
 	script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js")
 	script( src="/javascripts/matchData.js" )
