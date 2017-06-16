@@ -2,7 +2,7 @@ extends ../layout
 
 block content
 	.ui.grid
-		.ten.wide.centered.column.matchHeader
+		.ui.container.ten.wide.centered.column.matchHeader
 			h3.ui.horizontal.divider.header
 					i.bar.chart.icon
 					| Match Prediction
@@ -12,7 +12,7 @@ block content
 				.column.ten.wide
 					canvas.oddscanvas
 				.column.ten.wide
-					table.ui.table.segment.raised
+					table.ui.table.unstackable.segment.raised
 						thead
 							tr
 								th Team
