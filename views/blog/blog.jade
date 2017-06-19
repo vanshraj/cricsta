@@ -11,7 +11,7 @@ block content
 							.ui.segment.raised
 								.ui.header.block.segment.raised!=post.head
 								p Posted on #{moment(post.date).format('LL')}
-								.description!=post.body
+								.description(style="overflow-x:auto")!=post.body
 							.extra
 								.ui.right.floated.inverted.blue.button
 									| Read More
