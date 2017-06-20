@@ -11,7 +11,7 @@ block content
 			.row
 				.column.ten.wide
 					canvas.oddscanvas
-				.column.ten.wide
+				.column.ten.wide.computer.only.grid
 					table.ui.table.unstackable.segment.raised
 						thead
 							tr
@@ -28,13 +28,36 @@ block content
 								td.team1odds  ..
 								td.team1pred  ..
 							tr
-								td.team2name ..
+								td.team2name  ..
 								td.team2actual ..
 								td.team2winprob ..
 								td.team2odds ..
 								td.team2pred ..
+				.column.ten.wide.tablet.mobile.only.grid
+					table.ui.table.small.definition.unstackable.segment.raised
+						tbody
+							tr
+								td Team
+								td.team1name  ..
+								td.team2name  ..
+							tr
+								td Actual Score
+								td.team1actual  ..
+								td.team2actual  ..
+							tr
+								td Win Probability
+								td.team1winprob  ..
+								td.team2winprob ..
+							tr
+								td Implied Odds
+								td.team1odds  ..
+								td.team2odds ..
+							tr
+								td Predicted Score
+								td.team1pred  ..
+								td.team2pred ..
 			.row
-				.column.twelve.wide.firstInningsProb
+				.column.twelve.wide.firstInningsProb.computer.only.grid
 					table.ui.table.segment.raised
 						thead
 							tr
@@ -56,6 +79,34 @@ block content
 								td.prob5percent ..
 								td.prob6percent ..
 								td.prob7percent ..
+				.column.twelve.wide.firstInningsProb.tablet.mobile.only.grid
+					table.ui.table.small.unstackable.definition.segment.raised
+						tbody
+							tr
+								td First Innings Score
+								td Probability
+							tr
+								td.prob1value ..
+								td.prob1percent ..
+							tr
+								td.prob2value ..
+								td.prob2percent ..
+							tr
+								td.prob3value ..
+								td.prob3percent ..
+							tr
+								td.prob4value ..
+								td.prob4percent ..
+							tr
+								td.prob5value ..
+								td.prob5percent ..
+							tr
+								td.prob6value ..
+								td.prob6percent ..
+							tr
+								td.prob7value ..
+								td.prob7percent ..
+
 				.column.six.wide
 					canvas.winprobcanvas
 			.row

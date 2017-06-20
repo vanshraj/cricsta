@@ -1,4 +1,15 @@
 $(document).ready(function(){
+	$.ajax({
+		type: 'GET',
+		url: "/matchData",
+		dataType: 'json'
+		})
+			.done(function(data) {
+				liveFeed(data);
+			})
+			.fail(function() {
+				console.log("Ajax failed to fetch data");
+			});
 	setInterval(function runner() {
 	    // run your ajax call here
 	    $.ajax({
@@ -12,7 +23,7 @@ $(document).ready(function(){
 			.fail(function() {
 				console.log("Ajax failed to fetch data");
 			});
-	}, 1000);
+	}, 60000);
 	
 });
 

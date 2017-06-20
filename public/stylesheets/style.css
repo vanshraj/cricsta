@@ -59,10 +59,18 @@ canvas.oddscanvas, canvas.winprobcanvas{
 @media (max-width: 600px) {
   .ui.container.ten.wide.centered.column.matchHeader h3.ui.horizontal.divider.header {
     font-size: 16px;
+    word-wrap: break-word;
    }
 }
 @media (max-width: 480px) {
-  .ui.container.ten.wide.centered.column.matchHeader h3.ui.horizontal.divider.header {
+  .ui.container.ten.wide.centered.column.matchHeader h3.ui.horizontal.divider.header, .ui.container.ten.wide.centered.column.matchHeader i.icon{
+    word-wrap: break-word;
     font-size: 14px;
+   }
+   .ui.vertical.masthead.inverted.center.aligned.segment h3.ui.center.aligned.header{
+   	font-size: 16px;
+   }
+   .ui.vertical.masthead.inverted.center.aligned.segment .ui.text.container, .ui.vertical.masthead.inverted.center.aligned.segment p, .ui.vertical.masthead.inverted.center.aligned.segment i.icon, .ui.vertical.masthead.inverted.center.aligned.segment a, .ui.vertical.masthead.inverted.center.aligned.segment i.icon p{
+   	font-size: 12px;
    }
 }
