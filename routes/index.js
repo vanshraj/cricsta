@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
 	res.render('index/index', { title: 'ThinkQuant' });
 });
 
+
 //about route
 router.get('/about',function(req,res){
 	res.render('index/about',{
