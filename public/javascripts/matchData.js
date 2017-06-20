@@ -49,7 +49,8 @@ function liveFeed(data){
 			$('.firstInningsProb').fadeIn();
 		// addOddsCanvas(data);
 		// addWinProbCanvas(data);
-		$('.matchHeader').html("<h3 class='ui horizontal divider header'><i class='bar chart icon'></i>"+"Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name+"</h3>");
+		$('.matchHeader.computer').html("<h3 class='ui horizontal divider header'><i class='bar chart icon'></i>"+"Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name+"</h3>");
+		$('.matchHeader.mobile h5').text("Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name);
 		$('.team1name').text(team1name);
 		$('.team1actual').text(team1score);
 		$('.team1odds').text(Math.round(data.team1.odds* 100) / 100);

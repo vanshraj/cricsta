@@ -2,10 +2,13 @@ extends ../layout
 
 block content
 	.ui.grid
-		.ui.container.ten.wide.centered.column.matchHeader
+		.ui.container.ten.wide.centered.column.matchHeader.computer.only.grid
 			h3.ui.horizontal.divider.header
 					i.bar.chart.icon
 					| Match Prediction
+		.ui.container.tablet.matchHeader.mobile.only.grid
+			h5 Match Prediction
+	br
 	.ui.container.centered
 		.ui.two.column.middle.aligned.very.relaxed.stackable.centered.grid(style='position: relative')
 			.row

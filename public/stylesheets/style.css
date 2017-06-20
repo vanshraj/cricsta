@@ -73,4 +73,7 @@ canvas.oddscanvas, canvas.winprobcanvas{
    .ui.vertical.masthead.inverted.center.aligned.segment .ui.text.container, .ui.vertical.masthead.inverted.center.aligned.segment p, .ui.vertical.masthead.inverted.center.aligned.segment i.icon, .ui.vertical.masthead.inverted.center.aligned.segment a, .ui.vertical.masthead.inverted.center.aligned.segment i.icon p{
    	font-size: 12px;
    }
+   .ui.vertical.masthead.inverted.center.aligned.segment{
+   		padding: 25px;
+   	}
 }
