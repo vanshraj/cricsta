@@ -23,11 +23,31 @@ router.get('/pricing',function(req,res){
 });
 
 //ajax routes for json response
-router.get('/matchData',function(req,res){
-	Match.getMatchData(function(err,match){
-		if(err) throw err;
-		res.send(match[0]);
-	});
-});
+router.get('/matchData', isPremium);
+
+function isPremium(req,res,next){
+	if(req.isAuthenticated()){
+		if(req.user.type=='premium'){
+			console.log("user is premium");
+			Match.getMatchLatestData(function(err,match){
+				if(err) throw err;
+				res.send(match[0]);
+			});
+		}else{
+			console.log("user is loggedin but not premium");
+			Match.getMatchData(function(err,match){
+				if(err) throw err;
+				res.send(match[0]);
+			});
+		}
+	}else{
+		console.log("user not logged in");
+		Match.getMatchData(function(err,match){
+			if(err) throw err;
+			res.send(match[0]);
+		});	
+	}	
+}
+
 
 module.exports = router;

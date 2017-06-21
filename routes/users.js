@@ -94,9 +94,9 @@ router.get('/auth/facebook/callback',
 
 //logout route
 router.get('/logout',isAuthenticated,function(req,res){
-	req.logout();
-	req.flash('success','You have logged out');
-	res.redirect('/users/login');
+	req.session.destroy(function (err) {
+		res.redirect('/');
+	});
 });
 
 //acount route
@@ -109,9 +109,11 @@ router.get('/account',isAuthenticated,function(req,res){
 function isAuthenticated(req, res, next) {
 	if(req.isAuthenticated())
         return next();
-
-    req.flash('error','Please Login First')
-    res.redirect('/users/login');
+    else{
+	    req.flash('error','Please Login First')
+    	res.redirect('/users/login');	
+    }
+    
 }
 
 function isAuthenticated2(req, res, next) {
@@ -119,7 +121,8 @@ function isAuthenticated2(req, res, next) {
     	req.flash('info','You are already logged in.')
 		res.redirect('/');	
 	}
-    return next();
+	else
+    	return next();
 }
 
 module.exports = router;

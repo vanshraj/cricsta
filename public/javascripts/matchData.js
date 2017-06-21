@@ -23,7 +23,7 @@ $(document).ready(function(){
 			.fail(function() {
 				console.log("Ajax failed to fetch data");
 			});
-	}, 60000);
+	}, 1000);
 	
 });
 

@@ -1,6 +1,6 @@
 //disabling back button
-window.history.forward();
-	function noBack() { window.history.forward(); }
+// window.history.forward();
+// 	function noBack() { window.history.forward(); }
   
 //Google analytics scripts
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
