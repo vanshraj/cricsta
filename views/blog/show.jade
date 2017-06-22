@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+	.ui.hidden.divider
+	.ui.very.relaxed.stackable.centered.grid
+		.row
+			.column.twelve.wide
+				.ui.segment.raised
+					a(href="/blog/#{post._id}")
+						h2!=post.head
+					br
+					p(style="color:rgb(242,113,28)") Posted on #{moment(post.date).format('LL')}
+					p!=post.body
+					br
+					each tag, i in post.tags
+						a.ui.orange.label=tag

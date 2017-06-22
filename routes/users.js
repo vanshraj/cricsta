@@ -94,9 +94,9 @@ router.get('/auth/facebook/callback',
 
 //logout route
 router.get('/logout',isAuthenticated,function(req,res){
-	req.logout();
-	req.flash('success','You have logged out');
-	res.redirect('/users/login');
+	req.session.destroy(function (err) {
+		res.redirect('/');
+	});
 });
 
 //acount route

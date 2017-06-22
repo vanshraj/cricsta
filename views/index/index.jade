@@ -2,62 +2,92 @@ extends ../layout
 
 block content
 	.ui.grid
-		.six.wide.centered.column
+		.ui.container.ten.wide.centered.column.matchHeader
 			h3.ui.horizontal.divider.header
-					i.bar.chart.icon 
+					i.bar.chart.icon
 					| Match Prediction
-	.ui.container.centered
-		.ui.two.column.middle.aligned.very.relaxed.stackable.centered.grid(style='position: relative')
-			.row
-				.column.ten.wide
-					canvas.oddscanvas
-				.column.ten.wide
-					table.ui.table.segment.raised
-						thead
-							tr
-								th Team
-								th Actual Score
-								th Win Probability
-								th Implied Odds
-								th Predicted Score
-						tbody
-							tr
-								td.team1name  ..
-								td.team1actual  ..
-								td.team1winprob  ..
-								td.team1odds  ..
-								td.team1pred  ..
-							tr
-								td.team2name ..
-								td.team2actual ..
-								td.team2winprob ..
-								td.team2odds ..
-								td.team2pred ..
-			.row
-				.column.twelve.wide
-					table.ui.table.segment.raised
-						thead
-							tr
-								th First Innings Score
-								th.prob1value ..
-								th.prob2value ..
-								th.prob3value ..
-								th.prob4value ..
-								th.prob5value ..
-								th.prob6value ..
-								th.prob7value ..
-						tbody
-							tr
-								td Probability
-								td.prob1percent ..
-								td.prob2percent ..
-								td.prob3percent ..
-								td.prob4percent ..
-								td.prob5percent ..
-								td.prob6percent ..
-								td.prob7percent ..
+	br
+	br
+	.ui.container
+		.ui.grid.stackable
+			.row						
 				.column.six.wide
-					canvas.winprobcanvas
+					.ui.grid.stackable.centered
+						.row
+							.column.sixteen.wide
+								table.ui.table.orange.unstackable
+									thead
+										tr
+											th Team
+											th Actual Score
+											th Win Probability
+											th Implied Odds
+											th Predicted Score
+									tbody
+										tr
+											td.team1name  ..
+											td.team1actual  ..
+											td.team1winprob  ..
+											td.team1odds  ..
+											td.team1pred  ..
+										tr
+											td.team2name ..
+											td.team2actual ..
+											td.team2winprob ..
+											td.team2odds ..
+											td.team2pred ..
+							.column.sixteen.wide
+								.ui.styled.fluid.accordion
+									.title.active
+										i.dropdown.icon
+										|	Live Win Probability
+									.content.active
+										.ui.grid.stackable.centered.transition.visible
+											.column.ten.wide
+												canvas.winprobcanvas
+				.column.ten.wide
+					.ui.grid.stackable.centered
+						.row
+							.column.sixteen.wide.firstInningsProb
+								.ui.styled.fluid.accordion
+									.title.active
+										i.dropdown.icon
+										|     First Innings Score Probability
+									.content.active
+										table.ui.table.orange.transition.visible(style="display: table !important;")
+											thead
+												tr
+													th First Innings Score
+													th.prob1value ..
+													th.prob2value ..
+													th.prob3value ..
+													th.prob4value ..
+													th.prob5value ..
+													th.prob6value ..
+													th.prob7value ..
+											tbody
+												tr
+													td Probability
+													td.prob1percent ..
+													td.prob2percent ..
+													td.prob3percent ..
+													td.prob4percent ..
+													td.prob5percent ..
+													td.prob6percent ..
+													td.prob7percent ..
+							.column.sixteen.wide
+								.ui.styled.fluid.accordion
+									.title.active
+										i.dropdown.icon
+										|     Win Probability Per Ball
+									.content.active
+										canvas.transition.visible.winprobcanvas1
+									.title
+										i.dropdown.icon
+										|     Predicted Score Per Ball
+									.content
+										canvas.transition.predscorecanvas
 block scripts
 	script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js")
+	script( src="/javascripts/chartjs-plugin-annotation.min.js")
 	script( src="/javascripts/matchData.js" )

@@ -1,18 +1,17 @@
 body {
   padding: 0px;
+  margin: 0px;
 }
 
 a {
-  color: white;
+  color: black;
 }
-a: hover {
-  color: white;
+a:hover {
+	color: black;
+	text-decoration: none;
 }
-
-footer{
-	margin-top: 6%;
-	margin-bottom: 0;
-	text-align: center;
+.inverted a{
+	color: white;
 }
 ul.success li, ul.info li, ul.error li{
 	margin:20px 0 20px 0;
@@ -41,7 +40,7 @@ ul.error li{
   padding: 0 !important;
 }
 .ui.vertical.masthead.inverted.center.aligned.segment{
-	background:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url("http://www.abc.net.au/news/image/5514196-3x2-940x627.jpg");
+	background:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), rgba(242, 113, 28, 0.2)),url("/images/footer-bg.jpg");
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -52,6 +51,12 @@ ul.error li{
 .ui.vertical.masthead.inverted.center.aligned.segment h3.ui.center.aligned.header{
 	color: #fff;
 }
-.ui.small.menu,footer, canvas.oddscanvas{
-	display: none;
-}
+.ui.footer.segment {
+	background:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), rgba(242, 113, 28, 0.2)),url("/images/footer-bg.jpg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+    margin: 5em 0em 0em;
+    padding: 6em 0em 2em ;
+  }

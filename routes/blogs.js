@@ -3,13 +3,21 @@ var router = express.Router();
 var User = require('../models/user');
 var Post = require('../models/post');
 
-//blog route
+//all blog route
 router.get('/', function(req, res, next) {
 	Post.getAllPosts(function(err,posts){
 		res.render('blog/blog',{
 			title:'Blog',
 			posts:posts
 		});
+	});
+});
+
+//single blog route
+router.get('/:id',function(req, res, next){
+	Post.getPost(req.params.id,function(err,post){
+		if(err) throw err;
+		res.render('blog/show',{ post:post });
 	});
 });
 

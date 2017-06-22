@@ -192,7 +192,7 @@
 
 /*---  Colors  ---*/
 @red              : #DB2828;
-@orange           : #F2711C;
+@orange           : #F4873E;
 @yellow           : #FBBD08;
 @olive            : #B5CC18;
 @green            : #21BA45;

@@ -1,10 +1,9 @@
-//disabling back button
-window.history.forward();
-	function noBack() { window.history.forward(); }
-
-
-
 //semantic scripts
+//accordian
+$('.ui.accordion')
+  .accordion()
+;
+
 //messages close btn
 $('.message .close')
   .on('click', function() {

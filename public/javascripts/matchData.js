@@ -1,20 +1,49 @@
 $(document).ready(function(){
-	setInterval(function runner() {
-	    // run your ajax call here
-	    $.ajax({
+	ajaxSingleCall();
+});
+
+function ajaxSingleCall(){
+	$.ajax({
 		type: 'GET',
-		url: "/matchData",
+		url: "/playerData",
 		dataType: 'json'
 		})
-			.done(function(data) {
-				liveFeed(data);
-			})
-			.fail(function() {
-				console.log("Ajax failed to fetch data");
-			});
-	}, 1000);
-	
-});
+		.done(function(data) {
+			staticFeed(data);
+		})
+		.fail(function() {
+			console.log("Ajax failed to fetch data");
+		});
+
+	$.ajax({
+		type: 'GET',
+		url: "/matchDataProb",
+		dataType: 'json'
+		})
+		.done(function(data) {
+			data.forEach(addWinProb1Canvas);
+			ajaxCalls();
+		})
+		.fail(function() {
+			console.log("Ajax failed to fetch data");
+		});
+}
+
+function ajaxCalls() {
+    // run your ajax call here
+    $.ajax({
+	type: 'GET',
+	url: "/matchData",
+	dataType: 'json'
+	})
+		.done(function(data) {
+			liveFeed(data);
+			setTimeout(ajaxCalls, 1000);
+		})
+		.fail(function() {
+			console.log("Ajax failed to fetch data");
+		});
+}
 
 //declare global variable
 var prevWinProb;
@@ -23,18 +52,27 @@ var team1score;
 var team2name;
 var team2score;
 
+function staticFeed(data){
+
+}
+
 function liveFeed(data){
 	//if new value updated then change table
 	if(data.team1.winProb!=prevWinProb){
-
+		$('.matchHeader').html("<h3 class='ui horizontal divider header'><i class='bar chart icon'></i>"+"Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name+"</h3>");
 		prevWinProb = data.team1.winProb;
 		team1name=data.team1.name;
 		team2name=data.team2.name;
 		team1score=data.team1.actualScore+"/"+data.team1.wickets+" ("+data.team1.over+ " overs)";
 		team2score=data.team2.actualScore+"/"+data.team2.wickets+" ("+data.team2.over+ " overs)";
-
-		// addOddsCanvas(data);
-		// addWinProbCanvas(data);
+		var flag = (data.prob3.percentage==100)&&(data.prob4.percentage==0);
+		if( data.team1.wickets==10 || data.team2.over > 0 || flag)
+			$('.firstInningsProb').fadeOut();
+		else
+			$('.firstInningsProb').fadeIn();
+		addWinProb1Canvas(data);
+		addWinProbCanvas(data);
+		addPredScoreCanvas(data);
 		$('.team1name').text(team1name);
 		$('.team1actual').text(team1score);
 		$('.team1odds').text(Math.round(data.team1.odds* 100) / 100);
@@ -63,45 +101,99 @@ function liveFeed(data){
 }
 
 
-//odds canvas things
-function addOddsCanvas(data) {
-	var oddData = oddsConfig.data;
-	oddData.datasets[0].label= team1name + " Odds";
-	oddData.datasets[1].label= team2name + " Odds";
-	oddData.datasets[0].data.push({
-		y:(Math.round(data.team1.odds* 100) / 100),
-		x:data.team1.over
-	});
-	oddData.datasets[1].data.push({
-		y:(Math.round(data.team2.odds* 100) / 100),
-		x:data.team1.over
-	});
-	oddsChart.update();	
+//win Prob canvas things
+function addWinProb1Canvas(data) {
+	//first innings
+	if(data.team2.over<0.1){
+		addPredScoreCanvas(data);
+		var oddData = winProb1Config.data;
+		team1name=data.team1.name;
+		team2name=data.team2.name;
+		oddData.datasets[0].label= team1name + " Winning Probability";
+		oddData.datasets[1].label= team2name + " Winning Probability";
+		oddData.datasets[0].data.push({
+			y:data.team1.winProb,
+			x:data.team1.over
+		});
+		oddData.datasets[1].data.push({
+			y:data.team2.winProb,
+			x:data.team1.over
+		});
+		winProb1Chart.update();	
+	}else{
+		//second innings
+		var oddData = winProb1Config.data;
+		if(data.team2.over>=0.1){
+			var pickAnnot = winProb1Config.options.annotation.annotations[0];
+			pickAnnot.value=data.team1.over;
+			pickAnnot.label.enabled = true;	
+		}
+		oddData.datasets[0].data.push({
+			y:data.team1.winProb,
+			x:data.team1.over+data.team2.over
+		});
+		oddData.datasets[1].data.push({
+			y:data.team2.winProb,
+			x:data.team1.over+data.team2.over
+		});
+		winProb1Chart.update();
+	}
 };
 
-var oddsConfig = {
+var winProb1Config = {
 	type: 'line',
 	data: {
 		labels:[],
 		datasets: [{
-			label: "Team1 Odds",
-			backgroundColor:'rgba(235,23,1,0.8)' ,
-			borderColor: 'rgba(235,23,1,0.8)',
+			label: "Team1 Winning Probability",
+			lineTension: 1,
+			pointRadius: 0,
+			backgroundColor:'rgba(242,113,28,0.6)' ,
+			borderColor: 'rgba(242,113,28,0.6)',
 			fill: false,
 			data: [],
 		}, {
-			label: "Team2 Odds",
-			backgroundColor: 'rgba(25,233,1,0.8)',
-			borderColor: 'rgba(25,233,1,0.8)',
+			label: "Team2 Winning Probability",
+			lineTension: 1,
+			pointRadius: 0,
+			backgroundColor: 'rgba(0,0,0,0.6)',
+			borderColor: 'rgba(0,0,0,0.6)',
 			fill: false,
 			data: []
 		}]
 	},
 	options: {
+		annotation:{
+			drawTime: 'afterDatasetsDraw',
+			annotations: [{
+				type: 'line',
+				mode: 'vertical',
+				scaleID: 'x-axis-0',
+				value: '0',
+				borderColor: 'rgba(242,113,28,0.6)',
+				borderWidth: 2,
+				label: {
+					backgroundColor: 'rgba(0,0,0,0.3)',
+					fontFamily: "sans-serif",
+					fontSize: 12,
+					fontColor: "#fff",
+					xPadding: 6,
+					yPadding: 6,
+					cornerRadius: 6,
+					position: "center",
+					xAdjust: 0,
+					yAdjust: 80,
+					enabled: false,
+					content: "End of First Innings"
+				}
+			}]
+		},
+		tooltips: {
+            enabled:true
+        },
 		responsive: true,
         title:{
-            display:true,
-            text:"Odds Time Series"
+            display:false
         },
 		scales: {
 			xAxes: [{
@@ -114,16 +206,79 @@ var oddsConfig = {
 			}],
 			yAxes: [{
 				display: true,
+				ticks: {
+                	beginAtZero:true
+            	},
 				scaleLabel: {
 					display: true,
-					labelString: 'Odds'
+					labelString: 'Winning Probability'
 				}
 			}]
 		},
 	}
 };
 
-//win prob canvas things
+
+//pred score canvas things
+function addPredScoreCanvas(data) {
+	//first innings
+		var oddData = predScoreConfig.data;
+		team1name=data.team1.name;
+		oddData.datasets[0].label= team1name + " Predicted Score";
+		oddData.datasets[0].data.push({
+			y:(Math.round(data.team1.predScore* 100) / 100),
+			x:data.team1.over
+		});
+		predScoreChart.update();	
+	
+};
+
+var predScoreConfig = {
+	type: 'line',
+	data: {
+		labels:[],
+		datasets: [{
+			label: "First Innings Predicted Score",
+			lineTension: 1,
+			pointRadius: 0,
+			backgroundColor:'rgba(242,113,28,0.6)' ,
+			borderColor: 'rgba(242,113,28,0.6)',
+			fill: false,
+			data: [],
+		}]
+	},
+	options: {
+		tooltips: {
+            enabled:true
+        },
+		responsive: true,
+        title:{
+            display:false
+        },
+		scales: {
+			xAxes: [{
+				type: 'linear',
+				display: true,
+				scaleLabel: {
+					display: true,
+					labelString: 'Overs'
+				}
+			}],
+			yAxes: [{
+				display: true,
+				ticks: {
+                	beginAtZero:false
+            	},
+				scaleLabel: {
+					display: true,
+					labelString: 'Predicted Score'
+				}
+			}]
+		},
+	}
+};
+
+//win prob doughnut canvas things
 function addWinProbCanvas(data) {
 	var probData = winProbConfig.data;
 	probData.labels[0]=team1name;
@@ -134,36 +289,145 @@ function addWinProbCanvas(data) {
 };
 
 var winProbConfig = {
-	type: 'doughnut',
-        data: {
-            datasets: [{
-                data: [],
-                backgroundColor: ['rgba(235,23,1,0.8)','rgba(25,233,1,0.8)'],
-                label: 'Winning Probability'
-            }],
-            labels: ["",""]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Winning Probability'
-            },
-            animation: {
-                animateScale: true,
-                animateRotate: true
-            }
-        }
+	type: 'doughnutLabels',
+	data: {
+		datasets: [{
+			data: [],
+			backgroundColor: ['rgba(242,113,28,0.8)','rgba(0,0,0,0.8)'],
+			label: 'Winning Probability'
+		}],
+		labels: [" "," "]
+	},
+	options: {
+		responsive: true,
+		legend: {
+			position: 'top',
+		},
+		title: {
+			display: false
+		},
+		animation: {
+			animateScale: true,
+			animateRotate: true
+		}
+	}
 };
 
 
+
 //loading canvas
-// window.onload = function() {
-// 	var oddsCanvas = $(".oddscanvas");
-// 	window.oddsChart = new Chart(oddsCanvas, oddsConfig);
-// 	var winProbCanvas = $(".winprobcanvas");
-// 	window.winProbChart = new Chart(winProbCanvas, winProbConfig);	
-// };
+window.onload = function() {
+	var winProb1Canvas = $(".winprobcanvas1");
+	window.winProb1Chart = new Chart(winProb1Canvas, winProb1Config);
+	var predScoreCanvas = $(".predscorecanvas");
+	window.predScoreChart = new Chart(predScoreCanvas, predScoreConfig);
+	var winProbCanvas = $(".winprobcanvas");
+	window.winProbChart = new Chart(winProbCanvas, winProbConfig);	
+};
+
+
+//Making new doughnut model for chart
+Chart.defaults.doughnutLabels = Chart.helpers.clone(Chart.defaults.doughnut);
+
+var helpers = Chart.helpers;
+var defaults = Chart.defaults;
+
+Chart.controllers.doughnutLabels = Chart.controllers.doughnut.extend({
+	updateElement: function(arc, index, reset) {
+    var _this = this;
+    var chart = _this.chart,
+        chartArea = chart.chartArea,
+        opts = chart.options,
+        animationOpts = opts.animation,
+        arcOpts = opts.elements.arc,
+        centerX = (chartArea.left + chartArea.right) / 2,
+        centerY = (chartArea.top + chartArea.bottom) / 2,
+        startAngle = opts.rotation, // non reset case handled later
+        endAngle = opts.rotation, // non reset case handled later
+        dataset = _this.getDataset(),
+        circumference = reset && animationOpts.animateRotate ? 0 : arc.hidden ? 0 : _this.calculateCircumference(dataset.data[index]) * (opts.circumference / (2.0 * Math.PI)),
+        innerRadius = reset && animationOpts.animateScale ? 0 : _this.innerRadius,
+        outerRadius = reset && animationOpts.animateScale ? 0 : _this.outerRadius,
+        custom = arc.custom || {},
+        valueAtIndexOrDefault = helpers.getValueAtIndexOrDefault;
+
+    helpers.extend(arc, {
+      // Utility
+      _datasetIndex: _this.index,
+      _index: index,
+
+      // Desired view properties
+      _model: {
+        x: centerX + chart.offsetX,
+        y: centerY + chart.offsetY,
+        startAngle: startAngle,
+        endAngle: endAngle,
+        circumference: circumference,
+        outerRadius: outerRadius,
+        innerRadius: innerRadius,
+        label: valueAtIndexOrDefault(dataset.label, index, chart.data.labels[index])
+      },
+
+      draw: function () {
+      	var ctx = this._chart.ctx,
+						vm = this._view,
+						sA = vm.startAngle,
+						eA = vm.endAngle,
+						opts = this._chart.config.options;
+				
+					var labelPos = this.tooltipPosition();
+					var segmentLabel = vm.circumference / opts.circumference * 100;
+					
+					ctx.beginPath();
+					
+					ctx.arc(vm.x, vm.y, vm.outerRadius, sA, eA);
+					ctx.arc(vm.x, vm.y, vm.innerRadius, eA, sA, true);
+					
+					ctx.closePath();
+					ctx.strokeStyle = vm.borderColor;
+					ctx.lineWidth = vm.borderWidth;
+					
+					ctx.fillStyle = vm.backgroundColor;
+					
+					ctx.fill();
+					ctx.lineJoin = 'bevel';
+					
+					if (vm.borderWidth) {
+						ctx.stroke();
+					}
+					
+					if (vm.circumference > 0.15) { // Trying to hide label when it doesn't fit in segment
+						ctx.beginPath();
+						ctx.font = helpers.fontString(opts.defaultFontSize, opts.defaultFontStyle, opts.defaultFontFamily);
+						ctx.fillStyle = "#fff";
+						ctx.textBaseline = "top";
+						ctx.textAlign = "center";
+            
+            // Round percentage in a way that it always adds up to 100%
+						ctx.fillText(segmentLabel.toFixed(0) + "%", labelPos.x, labelPos.y);
+					}
+      }
+    });
+
+    var model = arc._model;
+    model.backgroundColor = custom.backgroundColor ? custom.backgroundColor : valueAtIndexOrDefault(dataset.backgroundColor, index, arcOpts.backgroundColor);
+    model.hoverBackgroundColor = custom.hoverBackgroundColor ? custom.hoverBackgroundColor : valueAtIndexOrDefault(dataset.hoverBackgroundColor, index, arcOpts.hoverBackgroundColor);
+    model.borderWidth = custom.borderWidth ? custom.borderWidth : valueAtIndexOrDefault(dataset.borderWidth, index, arcOpts.borderWidth);
+    model.borderColor = custom.borderColor ? custom.borderColor : valueAtIndexOrDefault(dataset.borderColor, index, arcOpts.borderColor);
+
+    // Set correct angles if not resetting
+    if (!reset || !animationOpts.animateRotate) {
+      if (index === 0) {
+        model.startAngle = opts.rotation;
+      } else {
+        model.startAngle = _this.getMeta().data[index - 1]._model.endAngle;
+      }
+
+      model.endAngle = model.startAngle + model.circumference;
+    }
+
+    arc.pivot();
+  }
+});
+
+
