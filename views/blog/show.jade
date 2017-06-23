@@ -6,7 +6,7 @@ block content
 		.row
 			.column.twelve.wide
 				.ui.segment.raised(style="overflow-x:auto")
-					a(href="/blog/#{post._id}")
+					a(href="/blog/show/#{post._id}")
 						h2!=post.head
 					br
 					p(style="color:rgb(242,113,28)") Posted on #{moment(post.date).format('LL')}

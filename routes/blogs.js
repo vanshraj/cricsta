@@ -13,15 +13,6 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-//single blog route
-router.get('/:id',function(req, res, next){
-	Post.getPost(req.params.id,function(err,post){
-		if(err) throw err;
-		res.render('blog/show',{ post:post });
-	});
-});
-
-
 // adding blog routes
 router.get('/add', isAuthenticated, isAdmin,function(req, res, next){
 	res.render('blog/addblog',{title:'Add Blog'});
@@ -45,6 +36,14 @@ router.post('/add',isAuthenticated, isAdmin, function(req, res, next){
 	res.location('/blog');
 	res.redirect('/blog');
 
+});
+
+//single blog route
+router.get('/show/:id',function(req, res, next){
+	Post.getPost(req.params.id,function(err,post){
+		if(err) throw err;
+		res.render('blog/show',{ post:post });
+	});
 });
 
 //middleware
