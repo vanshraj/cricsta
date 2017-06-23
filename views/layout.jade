@@ -11,7 +11,7 @@ html
 		link(rel="stylesheet", type="text/css", href="/semantic/dist/semantic.min.css")
 		link(rel="stylesheet", href='/stylesheets/style.css')
 	body
-		.ui.small.menu.inverted.fixed
+		.ui.small.menu.inverted.fixed.computer.tablet.only.grid
 			a.item(href='/')
 				img(src="/images/logo.png" style="width:10.8em")
 			a(class=(title==='Blog'? 'active item':'item'),href='/blog')
@@ -43,33 +43,58 @@ html
 							.visible.content Sign Out
 							.hidden.content
 								i.sign.out.icon
+		.ui.small.menu.inverted.fixed.mobile.only.grid
+			a.item.menuToggle
+				i.sidebar.large.icon
+			.right.menu
+				a.item(href='/')
+					img(src="/images/logo.png" style="width:8.8em")
+		.ui.left.vertical.inverted.sidebar.menu.center.aligned
+			a.item(href='/')
+				img(src="/images/logo.png" style="width:10.8em")
+			a(class=(title==='Blog'? 'active item':'item'),href='/blog')
+				| Blog
+			if user
+				if user.type == 'admin'
+					a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')
+						| Add Blog
+			if !user
+					a(class=(title==='signup'? 'active item':'item'),href='/users/register')
+						| Register
+					a(class=(title==='login'? 'active item':'item'),href='/users/login')
+						| Sign In
+			if user
+					a(class=(title==='Account'? 'active item':'item'),href='/users/account')
+						| #{user.name}
+					a.item(href='/users/logout')
+						| Logout
 		.ui.hidden.divider(style="margin-top:70px")
 		.ui.container
 			!= messages()
 			block content
-	.ui.inverted.vertical.footer.segment
-		.ui.center.aligned.container
-			.ui.stackable.inverted.divided.grid
-				.eight.wide.column
-					h3.ui.inverted.header About ThinkQuant
-					p ThinkQuant is an analytics firm based out of Gurgaon, India. We specialize in making predictive models, with a rich history in the financial markets. Our predictive model for cricket ThinkQuant is live, and can work in-play during a cricket match.
-				.eight.wide.column
-					h3.ui.inverted.header Contact Us
-					i.mail.icon
-					| services@thinkquant.in 
-					i.phone.icon
-					| Alok Noronha (CEO) at 9953916443.
-					br
-					i.building.icon
-					| 326, Star Tower, Sector 30, Gurgaon
-					br
-					a(href="https://twitter.com/quant_think")
-						i.twitter.icon
-						| Twitter/quant_think
-			.ui.inverted.section.divider
-			img.ui.centered.small.image(src='/images/logo.png')
-			.ui.horizontal.inverted.small.divided.link.list
-				p.item &copy; 2017, All Rights Reserved
+		.ui.inverted.vertical.footer.segment
+			.ui.center.aligned.container
+				.ui.stackable.inverted.divided.grid
+					.eight.wide.column
+						h3.ui.inverted.header About ThinkQuant
+						p ThinkQuant is an analytics firm based out of Gurgaon, India. We specialize in making predictive models, with a rich history in the financial markets. Our predictive model for cricket ThinkQuant is live, and can work in-play during a cricket match.
+					.eight.wide.column
+						h3.ui.inverted.header Contact Us
+						i.mail.icon
+						| services@thinkquant.in 
+						i.phone.icon
+						| Alok Noronha (CEO) at 9953916443.
+						br
+						i.building.icon
+						| 326, Star Tower, Sector 30, Gurgaon
+						br
+						a(href="https://twitter.com/quant_think")
+							i.twitter.icon
+							| Twitter/quant_think
+				.ui.inverted.section.divider
+				img.ui.centered.small.image(src='/images/logo.png')
+				.ui.horizontal.inverted.small.divided.link.list
+					p.item &copy; 2017, All Rights Reserved
 	script( src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" )
 	script( src="/semantic/dist/semantic.min.js" )
 	script( src="/javascripts/scripts.js" )

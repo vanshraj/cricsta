@@ -148,7 +148,9 @@ var winProb1Config = {
 		datasets: [{
 			label: "Team1 Winning Probability",
 			lineTension: 1,
-			pointRadius: 0,
+			pointRadius: 2,
+			pointBackgroundColor:'rgba(0,0,0,0)',
+			pointBorderColor:'rgba(242,113,28,0)',
 			backgroundColor:'rgba(242,113,28,0.6)' ,
 			borderColor: 'rgba(242,113,28,0.6)',
 			fill: false,
@@ -156,7 +158,9 @@ var winProb1Config = {
 		}, {
 			label: "Team2 Winning Probability",
 			lineTension: 1,
-			pointRadius: 0,
+			pointRadius: 2,
+			pointBackgroundColor:'rgba(0,0,0,0)',
+			pointBorderColor:'rgba(0,0,0,0)',
 			backgroundColor: 'rgba(0,0,0,0.6)',
 			borderColor: 'rgba(0,0,0,0.6)',
 			fill: false,
@@ -241,7 +245,9 @@ var predScoreConfig = {
 		datasets: [{
 			label: "First Innings Predicted Score",
 			lineTension: 1,
-			pointRadius: 0,
+			pointRadius: 2,
+			pointBackgroundColor:'rgba(0,0,0,0)',
+			pointBorderColor:'rgba(242,113,28,0)',
 			backgroundColor:'rgba(242,113,28,0.6)' ,
 			borderColor: 'rgba(242,113,28,0.6)',
 			fill: false,

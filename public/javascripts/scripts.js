@@ -7,8 +7,17 @@
   ga('create', 'UA-101117440-1', 'auto');
   ga('send', 'pageview');
 
-  
+
 //semantic scripts
+
+//mobile menu
+$('.menuToggle').on('click',function(){
+    $('.left.sidebar')
+    .sidebar('toggle')
+  ;  
+});
+
+
 //accordian
 $('.ui.accordion')
   .accordion()
