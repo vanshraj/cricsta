@@ -50,17 +50,10 @@ ul.error li{
   }
 
 /*css for tablets*/
-@media (max-width: 600px) {
-  .ui.container.ten.wide.centered.column.matchHeader h3.ui.horizontal.divider.header {
-    font-size: 16px;
+@media (max-width: 780px) {
+  .ui.mobile.only.grid.center.aligned .ui.container.matchHeader h5{
     word-wrap: break-word;
    }
 }
 
 /*css for mobiles*/
-@media (max-width: 480px) {
-  .ui.container.ten.wide.centered.column.matchHeader h3.ui.horizontal.divider.header, .ui.container.ten.wide.centered.column.matchHeader i.icon{
-    word-wrap: break-word;
-    font-size: 14px;
-   }
-}

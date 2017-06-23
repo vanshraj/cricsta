@@ -11,7 +11,7 @@ block content
 								a(href="/blog/#{post._id}")!=post.head
 							.ui.attached.segment.piled
 								p Posted on #{moment(post.date).format('LL')}
-								.description!=(truncateText(post.body,700))
+								.description(style="overflow-x:auto")!=(truncateText(post.body,700))
 								.extra(style="margin-top:15px")
 									a(href="/blog/#{post._id}")
 										.ui.tiny.inverted.orange.button

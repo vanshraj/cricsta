@@ -59,8 +59,8 @@ function staticFeed(data){
 function liveFeed(data){
 	//if new value updated then change table
 	if(data.team1.winProb!=prevWinProb){
-		$('.matchHeader').html("<h3 class='ui horizontal divider header'><i class='bar chart icon'></i>"+"Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name+"</h3>");
-		$('.matchHeader.mobile h5').text("Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name);
+		$('.computer .matchHeader').html("<h3 class='ui horizontal divider header'><i class='bar chart icon'></i>"+"Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name+"</h3>");
+		$('.mobile .matchHeader h5').text("Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name);
 		prevWinProb = data.team1.winProb;
 		team1name=data.team1.name;
 		team2name=data.team2.name;

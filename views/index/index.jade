@@ -1,22 +1,23 @@
 extends ../layout
 
 block content
-	.ui.grid
-		.ui.container.ten.wide.centered.column.matchHeader.computer.only.grid
+	.ui.grid.tablet.computer.only
+		.ui.container.ten.wide.centered.column.matchHeader
 			h3.ui.horizontal.divider.header
 					i.bar.chart.icon
 					| Match Prediction
-		.ui.container.tablet.matchHeader.mobile.only.grid
+	.ui.mobile.only.grid.center.aligned
+		.ui.container.tablet.matchHeader
 			h5 Match Prediction
 	br
 	br
 	.ui.container
 		.ui.grid.stackable
 			.row
-				.column.six.wide
+				.column.six.wide.computer.only.sixteen.wide.tablet.mobile.only.grid
 					.ui.grid.stackable.centered
 						.row
-							.column.sixteen.wide.computer.only.grid
+							.column.sixteen.wide.computer.only.ten.wide.tablet.only.grid
 								table.ui.table.orange.unstackable
 									thead
 										tr
@@ -38,7 +39,7 @@ block content
 											td.team2winprob ..
 											td.team2odds ..
 											td.team2pred ..
-							.column.ten.wide.tablet.mobile.only.grid
+							.column.sixteen.wide.mobile.only.grid
 								table.ui.table.small.definition.unstackable.orange
 									tbody
 										tr
@@ -61,19 +62,19 @@ block content
 											td Predicted Score
 											td.team1pred  ..
 											td.team2pred ..
-							.column.sixteen.wide
+							.column.sixteen.wide.computer.only.six.wide.tablet.only.grid
 								.ui.styled.fluid.accordion
 									.title.active
 										i.dropdown.icon
 										|	Live Win Probability
 									.content.active
 										.ui.grid.stackable.centered.transition.visible
-											.column.ten.wide
+											.column.ten.wide.computer.only.eleven.wide.tablet.only.grid
 												canvas.winprobcanvas
-				.column.ten.wide
+				.column.ten.wide.computer.only.sixteen.wide.tablet.mobile.only.grid
 					.ui.grid.stackable.centered
 						.row
-							.column.sixteen.wide.firstInningsProb.computer.only.grid
+							.column.sixteen.wide.firstInningsProb.computer.tablet.only.grid
 								.ui.styled.fluid.accordion
 									.title.active
 										i.dropdown.icon
@@ -100,7 +101,7 @@ block content
 													td.prob5percent ..
 													td.prob6percent ..
 													td.prob7percent ..
-							.column.twelve.wide.firstInningsProb.tablet.mobile.only.grid
+							.column.twelve.wide.firstInningsProb.mobile.only.grid
 								table.ui.table.small.unstackable.definition.orange
 									tbody
 										tr
