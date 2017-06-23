@@ -45,7 +45,7 @@ router.get('/matchData',function(req,res){
 			if(err) throw err;
 			res.send(match[0]);
 		});	
-	}	
+	}
 });
 
 //starting probs response

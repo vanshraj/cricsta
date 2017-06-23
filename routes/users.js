@@ -109,9 +109,11 @@ router.get('/account',isAuthenticated,function(req,res){
 function isAuthenticated(req, res, next) {
 	if(req.isAuthenticated())
         return next();
-
-    req.flash('error','Please Login First')
-    res.redirect('/users/login');
+    else{
+	    req.flash('error','Please Login First')
+    	res.redirect('/users/login');	
+    }
+    
 }
 
 function isAuthenticated2(req, res, next) {
@@ -119,7 +121,8 @@ function isAuthenticated2(req, res, next) {
     	req.flash('info','You are already logged in.')
 		res.redirect('/');	
 	}
-    return next();
+	else
+    	return next();
 }
 
 module.exports = router;

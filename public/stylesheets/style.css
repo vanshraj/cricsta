@@ -39,18 +39,6 @@ ul.error li{
   position: relative;
   padding: 0 !important;
 }
-.ui.vertical.masthead.inverted.center.aligned.segment{
-	background:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), rgba(242, 113, 28, 0.2)),url("/images/footer-bg.jpg");
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	width: 100%;
-	padding: 60px;
-}
-.ui.vertical.masthead.inverted.center.aligned.segment h3.ui.center.aligned.header{
-	color: #fff;
-}
 .ui.footer.segment {
 	background:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), rgba(242, 113, 28, 0.2)),url("/images/footer-bg.jpg");
 	background-position: center;
@@ -60,3 +48,19 @@ ul.error li{
     margin: 5em 0em 0em;
     padding: 6em 0em 2em ;
   }
+
+/*css for tablets*/
+@media (max-width: 600px) {
+  .ui.container.ten.wide.centered.column.matchHeader h3.ui.horizontal.divider.header {
+    font-size: 16px;
+    word-wrap: break-word;
+   }
+}
+
+/*css for mobiles*/
+@media (max-width: 480px) {
+  .ui.container.ten.wide.centered.column.matchHeader h3.ui.horizontal.divider.header, .ui.container.ten.wide.centered.column.matchHeader i.icon{
+    word-wrap: break-word;
+    font-size: 14px;
+   }
+}
