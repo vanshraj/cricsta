@@ -1,19 +1,18 @@
-$(document).ready(function(){
-	ajaxSingleCall();
-});
-
+ $(window).on('load', function () {
+ 	ajaxSingleCall();
+ });
 function ajaxSingleCall(){
-	// $.ajax({
-	// 	type: 'GET',
-	// 	url: "/playerData",
-	// 	dataType: 'json'
-	// 	})
-	// 	.done(function(data) {
-	// 		staticFeed(data);
-	// 	})
-	// 	.fail(function() {
-	// 		console.log("Ajax failed to fetch data");
-	// 	});
+	$.ajax({
+		type: 'GET',
+		url: "/playerData",
+		dataType: 'json'
+		})
+		.done(function(data) {
+			staticFeed(data);
+		})
+		.fail(function() {
+			console.log("Ajax failed to fetch data");
+		});
 
 	$.ajax({
 		type: 'GET',
@@ -31,20 +30,18 @@ function ajaxSingleCall(){
 
 function ajaxCalls() {
     // run your ajax call here
-    setInterval(function runner() {
-	    // run your ajax call here
-	    $.ajax({
-		type: 'GET',
-		url: "/matchData",
-		dataType: 'json'
+    $.ajax({
+	type: 'GET',
+	url: "/matchData",
+	dataType: 'json'
+	})
+		.done(function(data) {
+			liveFeed(data);
+			setTimeout(ajaxCalls, 1000);
 		})
-			.done(function(data) {
-				liveFeed(data);
-			})
-			.fail(function() {
-				console.log("Ajax failed to fetch data");
-			});
-	}, 1000);
+		.fail(function() {
+			console.log("Ajax failed to fetch data");
+		});
 }
 
 //declare global variable
