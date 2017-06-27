@@ -17,6 +17,10 @@ $('.menuToggle').on('click',function(){
   ;  
 });
 
+//menu tabs
+$('.menu .item')
+  .tab()
+;
 
 //accordian
 $('.ui.accordion')

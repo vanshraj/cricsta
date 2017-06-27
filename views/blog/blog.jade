@@ -5,20 +5,45 @@ block content
 	.ui.very.relaxed.stackable.centered.grid
 		.row
 			.column.eleven.wide
+				.ui.grid
 					if posts
 						each post, i in posts
-							.ui.header.top.attached(style="border-bottom: 2px solid #ff851b")
-								a(href="/blog/show/#{post._id}")!=post.head
-							.ui.attached.segment.piled
-								p Posted on #{moment(post.date).format('LL')}
-								.description(style="overflow-x:auto")!=(truncateText(post.body,700))
-								.extra(style="margin-top:15px")
-									a(href="/blog/show/#{post._id}")
-										.ui.tiny.inverted.orange.button
-											| Read More
-											i.right.chevron.icon
-							br
-							br
+							.column.sixteen.wide
+								.ui.header.top.attached(style="border-bottom: 2px solid #ff851b")
+									a(href="/blog/show/#{post._id}")!=post.head
+								.ui.attached.segment.piled
+									p.ui.orange.right.ribbon.label Posted on #{moment(post.date).format('LL')}
+									br
+									br
+									.description(style="overflow-x:auto")!=(truncateText(post.body,200))
+									.extra(style="margin-top:15px")
+										a(href="/blog/show/#{post._id}")
+											.ui.tiny.inverted.orange.button
+												| Read More
+												i.right.chevron.icon
+								br
+								br
+				.ui.grid.centered
+					.ui.secondary.pointed.orange.menu
+						- page = parseInt(page)
+						- pages = parseInt(pages)
+						if(page==1)
+							a.active.item(href="/blog/page/#{page}") #{page}
+							a.item(href="/blog/page/#{page+1}") #{page+1}
+							.disabled.item ...
+							a.item(href="/blog/page/#{pages}") #{pages}
+						if((page-1)>0)
+							if((page-1)!=1)
+								a.item(href="/blog/page/1") #{1}
+								.disabled.item ...
+							a.item(href="/blog/page/#{page-1}") #{page-1}
+							a.active.item(href="/blog/page/#{page}") #{page}
+							if(page!=pages)
+								if((page+1)!=pages)
+									a.item(href="/blog/page/#{page+1}") #{page+1}
+									.disabled.item ...
+								a.item(href="/blog/page/#{pages}") #{pages}
+
 			.column.five.wide
 				.ui.segments
 					.ui.segment.center.aligned

@@ -5,12 +5,24 @@ var Post = require('../models/post');
 
 //all blog route
 router.get('/', function(req, res, next) {
-	Post.getAllPosts(function(err,posts){
-		res.render('blog/blog',{
-			title:'Blog',
-			posts:posts
+	res.redirect('/blog/page/1');
+});
+
+router.get('/page/:i',function(req, res, next){
+	if(req.params.i>0){
+		Post.getPaginatedPosts(req.params.i,function(err,posts){
+			if(err) throw err;
+			res.render('blog/blog',{
+				title: 'Blog',
+				posts:posts.docs,
+				page:posts.page,
+				pages:posts.pages
+			});
 		});
-	});
+	}else{
+		throw "Undefined Page";
+	}
+	
 });
 
 // adding blog routes

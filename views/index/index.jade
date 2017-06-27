@@ -129,17 +129,13 @@ block content
 											td.prob7value ..
 											td.prob7percent ..						
 							.column.sixteen.wide
-								.ui.styled.fluid.accordion
-									.title.active
-										i.dropdown.icon
-										|     Win Probability Per Ball
-									.content.active
-										canvas.transition.visible.winprobcanvas1
-									.title
-										i.dropdown.icon
-										|     Predicted Score Per Ball
-									.content
-										canvas.transition.predscorecanvas
+								.ui.top.attached.pointing.menu
+									a.item.active(data-tab='first') Win Probability Per Ball
+									a.item(data-tab='second') Predicted Score Per Ball
+								.ui.bottom.attached.tab.segment.active(data-tab='first')
+									canvas.transition.visible.winprobcanvas1
+								.ui.bottom.attached.tab.segment(data-tab='second')
+									canvas.transition.predscorecanvas
 block scripts
 	script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js")
 	script( src="/javascripts/chartjs-plugin-annotation.min.js")

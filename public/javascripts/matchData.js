@@ -307,6 +307,7 @@ var winProbConfig = {
 	options: {
 		responsive: true,
 		legend: {
+			reverse: true,
 			position: 'top',
 		},
 		title: {

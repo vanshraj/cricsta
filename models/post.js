@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 mongoose.connect(process.env.DATABASEURL);
 var db = mongoose.connection;
 var User = require('../models/user');
+var mongoosePaginate = require('mongoose-paginate');
 
 // Post Schema
 var PostSchema = mongoose.Schema({
@@ -16,6 +17,7 @@ var PostSchema = mongoose.Schema({
 	author: { type: mongoose.Schema.Types.ObjectId, ref:'User'}
 });
 
+PostSchema.plugin(mongoosePaginate);
 
 var Post = mongoose.model('Post', PostSchema);
 
@@ -34,6 +36,12 @@ module.exports.getAllPosts = function(callback){
             .populate('author')
             .populate('comments.author')
             .exec(callback)
+}
+
+//paginated posts
+module.exports.getPaginatedPosts = function(i,callback){
+	var query ={};
+	Post.paginate(query, {sort: { date: -1 }, page: i, limit: 5 }, callback);
 }
 
 //create a new post
