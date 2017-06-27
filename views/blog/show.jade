@@ -5,11 +5,12 @@ block content
 	.ui.very.relaxed.stackable.centered.grid
 		.row
 			.column.twelve.wide
-				.ui.segment(style="overflow-x:auto")
-					a(href="/blog/show/#{post._id}")
-						h2!=post.head
-				p.ui.orange.right.ribbon.label Posted on #{moment(post.date).format('LL')}
-					p!=post.body
+				.ui.header.top.attached(style="border-bottom: 2px solid #ff851b")
+					h3(href="/blog/show/#{post._id}")!=post.head
+				.ui.attached.segment
+					p.ui.orange.right.ribbon.label Posted on #{moment(post.date).format('LL')}
 					br
+					br
+					.description(style="overflow-x:auto")!=post.body
 					each tag, i in post.tags
 						a.ui.orange.label=tag
