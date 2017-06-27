@@ -52,7 +52,9 @@ ul.error li{
  .ui.fixed.menu + .ui.grid{
  	padding-top: 0;
  }
-
+a.ui.orange.label{
+	margin-top: 5px;
+}
 /*css for tablets*/
 @media (max-width: 780px) {
   .ui.mobile.only.grid.center.aligned .ui.container.matchHeader h5{
