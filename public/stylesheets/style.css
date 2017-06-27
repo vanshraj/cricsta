@@ -58,6 +58,9 @@ ul.error li{
   .ui.mobile.only.grid.center.aligned .ui.container.matchHeader h5{
     word-wrap: break-word;
    }
+   .menuTabs{
+   	font-size: 11px;
+   }
 }
 
 /*css for mobiles*/
