@@ -2,7 +2,16 @@ extends ../layout
 
 block content
 	.ui.hidden.divider
-	.ui.very.relaxed.stackable.centered.grid
+	.ui.container.mobile.only.grid(style="overflow-x:auto")
+					a(href="/blog/show/#{post._id}")
+						h2!=post.head
+					br
+					p(style="color:rgb(242,113,28)") Posted on #{moment(post.date).format('LL')}
+					p!=post.body
+					br
+					each tag, i in post.tags
+						a.ui.orange.label=tag
+	.ui.very.relaxed.stackable.centered.computer.tablet.only.grid
 		.row
 			.column.twelve.wide
 				.ui.segment.raised(style="overflow-x:auto")
