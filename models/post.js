@@ -44,6 +44,22 @@ module.exports.getPaginatedPosts = function(i,callback){
 	Post.paginate(query, {sort: { date: -1 }, page: i, limit: 5 }, callback);
 }
 
+//get next previous
+module.exports.getNextLink = function(post, callback){
+	var query= { date:{$gt: post.date} };
+	Post.findOne(query,'_id').sort({date: 1}).limit(1).exec(callback);
+}
+module.exports.getPreviousLink = function(post, callback){
+	var query= { date:{$lt: post.date} };
+	Post.findOne(query,'_id').sort( {date: -1}).limit(1).exec(callback);
+}
+
+//get n featured blogs
+module.exports.getNFeaturedPosts = function(n, callback){
+	var query = { featured: true};
+	Post.find(query,'_id head body').sort({date: -1}).limit(n).exec(callback);
+}
+
 //create a new post
 module.exports.createPost =function( newPost, callback){
 	newPost.save(callback);

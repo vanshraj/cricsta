@@ -14,3 +14,14 @@ block content
 					.description(style="overflow-x:auto")!=post.body
 					each tag, i in post.tags
 						a.ui.orange.label=tag
+				br
+				br
+				.ui.grid.centered
+					.ui.compact.pointed.orange.menu
+						if(previous)
+							a.item(href="/blog/show/#{previous._id}")
+								i.arrow.left.icon.orange
+								| previous
+						if(next)
+							a.item(href="/blog/show/#{next._id}") next &nbsp
+								i.arrow.right.icon.orange

@@ -3,7 +3,7 @@
  });
 function ajaxSingleCall(){
 	$.ajax({
-		type: 'GET',
+		type: 'POST',
 		url: "/playerData",
 		dataType: 'json'
 		})
@@ -15,7 +15,7 @@ function ajaxSingleCall(){
 		});
 
 	$.ajax({
-		type: 'GET',
+		type: 'POST',
 		url: "/matchDataProb",
 		dataType: 'json'
 		})
@@ -31,7 +31,7 @@ function ajaxSingleCall(){
 function ajaxCalls() {
     // run your ajax call here
     $.ajax({
-	type: 'GET',
+	type: 'POST',
 	url: "/matchData",
 	dataType: 'json'
 	})
@@ -66,10 +66,10 @@ function liveFeed(data){
 		team1score=data.team1.actualScore+"/"+data.team1.wickets+" ("+data.team1.over+ " overs)";
 		team2score=data.team2.actualScore+"/"+data.team2.wickets+" ("+data.team2.over+ " overs)";
 		var flag = (data.prob3.percentage==100)&&(data.prob4.percentage==0);
-		if( data.team1.wickets==10 || data.team2.over > 0 || flag)
-			$('.firstInningsProb').fadeOut();
-		else
-			$('.firstInningsProb').fadeIn();
+		// if( data.team1.wickets==10 || data.team2.over > 0 || flag)
+		// 	$('.firstInningsProb').fadeOut();
+		// else
+		// 	$('.firstInningsProb').fadeIn();
 		addWinProb1Canvas(data);
 		addWinProbCanvas(data);
 		addPredScoreCanvas(data);

@@ -136,6 +136,26 @@ block content
 									canvas.transition.visible.winprobcanvas1
 								.ui.bottom.attached.tab.segment(data-tab='second')
 									canvas.transition.predscorecanvas
+	br
+	br
+	.ui.grid.centered
+		.ui.container.ten.wide.centered.column
+			h3.ui.horizontal.divider.header
+					i.comments.icon
+					| Featured Blogs
+	br
+	br
+	.ui.container
+		.ui.grid.equal.width.stackable
+			if featuredPosts
+				each featuredPost, i in featuredPosts
+					.column
+						.ui.orange.segment.raised
+							a(href="/blog/show/#{featuredPost._id}") 
+								h4 #{featuredPost.head}
+							br
+							br
+							.description(style="overflow-x:hidden; color:#6f6f6f")!=(truncateText(featuredPost.body,100))
 block scripts
 	script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js")
 	script( src="/javascripts/chartjs-plugin-annotation.min.js")

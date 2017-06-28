@@ -12,7 +12,9 @@ block content
 								.ui.header.top.attached(style="border-bottom: 2px solid #ff851b")
 									a(href="/blog/show/#{post._id}")!=post.head
 								.ui.attached.segment.piled
-									p.ui.orange.right.ribbon.label Posted on #{moment(post.date).format('LL')}
+									p.ui.orange.right.ribbon.label 
+										i.wait.icon
+										| Posted on #{moment(post.date).format('LL')}
 									br
 									br
 									.description(style="overflow-x:auto")!=(truncateText(post.body,200))
@@ -52,3 +54,13 @@ block content
 								input.prompt(type='text', placeholder='Search...')
 								i.search.icon
 							.results
+				.ui.segments
+					.ui.segment.center.aligned
+						p(style="font-size:18px") FEATURED BLOGS
+					if featuredPosts
+						each featuredPost, i in featuredPosts 
+							.ui.orange.segment
+								a(href="/blog/show/#{featuredPost._id}") #{featuredPost.head}
+								br
+								br
+								.description(style="overflow-x:hidden; color:#6f6f6f")!=(truncateText(featuredPost.body,100))

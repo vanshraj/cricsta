@@ -1,30 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var Match = require('../models/match');
+var Post = require('../models/post');
 var Player = require('../models/match');
 
 // GET home page.
 router.get('/', function(req, res, next) {
-	res.render('index/index', { title: 'ThinkQuant' });
+	Post.getNFeaturedPosts(3,function(err, featuredPosts){
+		if(err) throw err;
+		res.render('index/index', { title: 'ThinkQuant', featuredPosts: featuredPosts });
+	});
 });
 
-// //about route
-// router.get('/about',function(req,res){
-// 	res.render('index/about',{
-// 		title:'About'
-// 	})
-// });
 
-// //pricing route
-// router.get('/pricing',function(req,res){
-// 	res.render('index/pricing',{
-// 		title:'Pricing'
-// 	})
-// });
 //ajax routes for json response
-
 //live response
-router.get('/matchData',function(req,res){
+router.post('/matchData',function(req,res){
 	if(req.isAuthenticated()){
 		if(req.user.type=='premium'||req.user.type=='admin'){
 			// console.log("user is premium");
@@ -49,7 +40,7 @@ router.get('/matchData',function(req,res){
 });
 
 //starting probs response
-router.get('/matchDataProb',function(req,res){
+router.post('/matchDataProb',function(req,res){
 	Match.getMatchData(function(err,match){
 		if(err) throw err;
 		Match.getMatchAllProb(match,function(err,probs){
@@ -60,7 +51,7 @@ router.get('/matchDataProb',function(req,res){
 });
 
 //player data response
-router.get('/playerData',function(req, res){
+router.post('/playerData',function(req, res){
 	Match.getMatchData(function(err,match){
 		if(err) throw err;
 		Player.getPlayerData(match,function(err,data){

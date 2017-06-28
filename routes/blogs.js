@@ -12,17 +12,21 @@ router.get('/page/:i',function(req, res, next){
 	if(req.params.i>0){
 		Post.getPaginatedPosts(req.params.i,function(err,posts){
 			if(err) throw err;
-			res.render('blog/blog',{
-				title: 'Blog',
-				posts:posts.docs,
-				page:posts.page,
-				pages:posts.pages
+			Post.getNFeaturedPosts(5,function(err, featuredPosts){
+				if(err) throw err;
+				res.render('blog/blog',{
+					title: 'Blog',
+					posts:posts.docs,
+					page:posts.page,
+					pages:posts.pages,
+					featuredPosts: featuredPosts
+				});
 			});
 		});
-	}else{
+	}
+	else{
 		throw "Undefined Page";
 	}
-	
 });
 
 // adding blog routes
@@ -54,7 +58,13 @@ router.post('/add',isAuthenticated, isAdmin, function(req, res, next){
 router.get('/show/:id',function(req, res, next){
 	Post.getPost(req.params.id,function(err,post){
 		if(err) throw err;
-		res.render('blog/show',{ post:post });
+		Post.getNextLink(post,function(err,nextLink){
+			if(err) throw err;
+			Post.getPreviousLink(post,function(err,previousLink){
+				if(err) throw err;
+				res.render('blog/show',{ post:post, next: nextLink, previous: previousLink });
+			});
+		});
 	});
 });
 
