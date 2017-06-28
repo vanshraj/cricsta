@@ -6,9 +6,12 @@ var Player = require('../models/match');
 
 // GET home page.
 router.get('/', function(req, res, next) {
-	Post.getNFeaturedPosts(3,function(err, featuredPosts){
+	Post.getNFeaturedPosts(1,function(err, featuredPosts){
 		if(err) throw err;
-		res.render('index/index', { title: 'ThinkQuant', featuredPosts: featuredPosts });
+		Post.getAllPosts(function(err, posts){
+			if(err) throw err;
+			res.render('index/index', { title: 'ThinkQuant', posts:posts ,featuredPosts: featuredPosts });
+		});
 	});
 });
 

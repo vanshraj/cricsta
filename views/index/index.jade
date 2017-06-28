@@ -130,12 +130,27 @@ block content
 											td.prob7percent ..						
 							.column.sixteen.wide
 								.ui.top.attached.pointing.menu
-									a.item.menuTabs.active(data-tab='first') Win Probability Per Ball
-									a.item.menuTabs(data-tab='second') Predicted Score Per Ball
+									a.item.menuTabs.active(data-tab='first') Win Probability
+									a.item.menuTabs(data-tab='second') Predicted Score
 								.ui.bottom.attached.tab.segment.active(data-tab='first')
-									canvas.transition.visible.winprobcanvas1
+									canvas.winprobcanvas1
 								.ui.bottom.attached.tab.segment(data-tab='second')
-									canvas.transition.predscorecanvas
+									canvas.predscorecanvas
+							.column.sixteen.wide
+								h4.ui.header.segment Pre Match Estimated Player Statistics
+								.ui.top.attached.pointing.menu
+									a.item.active.menuTabs.team1namebatsmen(data-tab='third') Team1 Batsmen
+									a.item.team2namebatsmen.menuTabs(data-tab='fourth') Team2 Batsmen
+									a.item.team1namebowler.menuTabs(data-tab='fifth') Team1 Bowlers
+									a.item.team2namebowler.menuTabs(data-tab='sixth') Team2 Bowlers
+								.ui.bottom.attached.tab.segment.active(data-tab='third')
+									canvas.batsmencanvas1
+								.ui.bottom.attached.tab.segment(data-tab='fourth')
+									canvas.batsmencanvas2
+								.ui.bottom.attached.tab.segment(data-tab='fifth')
+									canvas.bowlercanvas1
+								.ui.bottom.attached.tab.segment(data-tab='sixth')
+									canvas.bowlercanvas2
 	br
 	br
 	.ui.grid.centered
@@ -147,6 +162,15 @@ block content
 	br
 	.ui.container
 		.ui.grid.equal.width.stackable
+			if posts
+				each post, i in posts
+					.column
+						.ui.orange.segment.raised
+							a(href="/blog/show/#{post._id}") 
+								h4 #{post.head}
+							br
+							br
+							.description(style="overflow-x:hidden; color:#6f6f6f")!=(truncateText(post.body,100))
 			if featuredPosts
 				each featuredPost, i in featuredPosts
 					.column

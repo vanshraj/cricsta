@@ -52,7 +52,14 @@ var team2name;
 var team2score;
 
 function staticFeed(data){
-
+	$('.team1namebatsmen').text(data.team1.name + " Batsmen");
+	$('.team1namebowler').text(data.team1.name +" Bowlers");
+	$('.team2namebatsmen').text(data.team2.name+" Batsmen");
+	$('.team2namebowler').text(data.team2.name+ " Bowlers");
+	data.team1.batsmen.forEach(addPlayer1Canvas);
+	data.team2.batsmen.forEach(addPlayer2Canvas);
+	data.team1.bowlers.forEach(addPlayer3Canvas);
+	data.team2.bowlers.forEach(addPlayer4Canvas);
 }
 
 function liveFeed(data){
@@ -66,10 +73,10 @@ function liveFeed(data){
 		team1score=data.team1.actualScore+"/"+data.team1.wickets+" ("+data.team1.over+ " overs)";
 		team2score=data.team2.actualScore+"/"+data.team2.wickets+" ("+data.team2.over+ " overs)";
 		var flag = (data.prob3.percentage==100)&&(data.prob4.percentage==0);
-		// if( data.team1.wickets==10 || data.team2.over > 0 || flag)
-		// 	$('.firstInningsProb').fadeOut();
-		// else
-		// 	$('.firstInningsProb').fadeIn();
+		if( data.team1.wickets==10 || data.team2.over > 0 || flag)
+			$('.firstInningsProb').fadeOut();
+		else
+			$('.firstInningsProb').fadeIn();
 		addWinProb1Canvas(data);
 		addWinProbCanvas(data);
 		addPredScoreCanvas(data);
@@ -99,6 +106,157 @@ function liveFeed(data){
 		$('.prob7percent').text(data.prob7.percentage+"%");	
 	}
 }
+
+//player configs
+var batsmenConfig1 = {
+	type: "horizontalBar",
+	data: {
+		labels:[],
+		datasets: [{
+			label: "Runs Scored",
+			backgroundColor:'rgba(242,113,28,0.6)',
+			borderColor: 'rgba(242,113,28,0.6)',
+			data: [],
+		}, {
+			label: "Balls Played",
+			backgroundColor: 'rgba(0,0,0,0.6)',
+			borderColor: 'rgba(0,0,0,0.6)',
+			data: []
+		}]
+	},
+	options:{
+		tooltips: {
+            enabled:true
+        },
+		responsive: true,
+        title:{
+            display:false
+        }
+	}
+}
+var batsmenConfig2 = {
+	type: "horizontalBar",
+	data: {
+		labels:[],
+		datasets: [{
+			label: "Runs Scored",
+			backgroundColor:'rgba(242,113,28,0.6)',
+			borderColor: 'rgba(242,113,28,0.6)',
+			data: [],
+		}, {
+			label: "Balls Played",
+			backgroundColor: 'rgba(0,0,0,0.6)',
+			borderColor: 'rgba(0,0,0,0.6)',
+			data: []
+		}]
+	},
+	options:{
+		tooltips: {
+            enabled:true
+        },
+		responsive: true,
+        title:{
+            display:false
+        }
+	}
+}
+var bowlerConfig1 = {
+	type: "horizontalBar",
+	data: {
+		labels:[],
+		datasets: [{
+			label:"Wickets Taken",
+			backgroundColor:'rgba(242,113,28,0.6)',
+			borderColor: 'rgba(242,113,28,0.6)',
+			data: [],
+		}
+		// , {
+		// 	label:"Runs Conceded",
+		// 	backgroundColor: 'rgba(0,0,0,0.6)',
+		// 	borderColor: 'rgba(0,0,0,0.6)',
+		// 	data: []
+		// }
+		]
+	},
+	options:{
+		scales: {
+            yAxes: [{
+            	barPercentage: 0.4
+            }]
+        },
+		tooltips: {
+            enabled:true
+        },
+		responsive: true,
+        title:{
+            display:false
+        }
+	}
+}
+var bowlerConfig2 = {
+	type: "horizontalBar",
+	data: {
+		labels:[],
+		datasets: [{
+			label:"Wickets Taken",
+			backgroundColor:'rgba(242,113,28,0.6)' ,
+			borderColor: 'rgba(242,113,28,0.6)',
+			data: [],
+		}
+		// , {
+		// 	label:"Runs Conceded",
+		// 	backgroundColor: 'rgba(0,0,0,0.6)',
+		// 	borderColor: 'rgba(0,0,0,0.6)',
+		// 	data: []
+		// }
+		]
+	},
+	options:{
+		scales: {
+            yAxes: [{
+            	barPercentage: 0.4
+            }]
+        },
+		tooltips: {
+            enabled:true
+        },
+		responsive: true,
+        title:{
+            display:false
+        }
+	}
+}
+
+//adding data
+function addPlayer1Canvas(data){
+	var x = batsmenConfig1.data;
+	x.labels.push(data.name);
+	x.datasets[0].data.push(Math.round(data.runsScored* 100) / 100);
+	x.datasets[1].data.push(Math.round(data.ballsPlayed* 100) / 100);
+	batsmenChart1.update();
+}
+function addPlayer2Canvas(data){
+	var x = batsmenConfig2.data;
+	x.labels.push(data.name);
+	x.datasets[0].data.push(Math.round(data.runsScored* 100) / 100);
+	x.datasets[1].data.push(Math.round(data.ballsPlayed* 100) / 100);
+	batsmenChart1.update();
+}
+function addPlayer3Canvas(data){
+	var x = bowlerConfig1.data;
+	x.labels.push(data.name);
+	x.datasets[0].data.push(Math.round(data.wicketsTaken* 100) / 100);
+	// x.datasets[1].data.push(Math.round(data.runsConceded* 100) / 100);
+	bowlerChart1.update();
+}
+function addPlayer4Canvas(data){
+	var x = bowlerConfig2.data;
+	x.labels.push(data.name);
+	x.datasets[0].data.push(Math.round(data.wicketsTaken* 100) / 100);
+	// x.datasets[1].data.push(Math.round(data.runsConceded* 100) / 100);
+	bowlerChart2.update();
+}
+
 
 
 //win Prob canvas things
@@ -329,7 +487,15 @@ window.onload = function() {
 	var predScoreCanvas = $(".predscorecanvas");
 	window.predScoreChart = new Chart(predScoreCanvas, predScoreConfig);
 	var winProbCanvas = $(".winprobcanvas");
-	window.winProbChart = new Chart(winProbCanvas, winProbConfig);	
+	window.winProbChart = new Chart(winProbCanvas, winProbConfig);
+	var batsmenCanvas1 = $(".batsmencanvas1");
+	window.batsmenChart1 = new Chart( batsmenCanvas1, batsmenConfig1);
+	var batsmenCanvas2 = $(".batsmencanvas2");
+	window.batsmenChart2 = new Chart( batsmenCanvas2, batsmenConfig2);
+	var bowlerCanvas1 = $(".bowlercanvas1");
+	window.bowlerChart1 = new Chart( bowlerCanvas1, bowlerConfig1);
+	var bowlerCanvas2 = $(".bowlercanvas2");
+	window.bowlerChart2 = new Chart( bowlerCanvas2, bowlerConfig2);
 };
 
 

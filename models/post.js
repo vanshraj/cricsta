@@ -32,7 +32,7 @@ module.exports.getPost = function(id, callback){
 module.exports.getAllPosts = function(callback){
 	var query = {};
 	Post.find(query,null, {sort: {date: -1}})
-			.limit(5)
+			.limit(2)
             .populate('author')
             .populate('comments.author')
             .exec(callback)

@@ -70,7 +70,7 @@ module.exports.getMatchAllProb = function(match,callback){
 
 module.exports.getPlayerData = function(match,callback){
 	var query = { 'matchId': match[0].matchId };
-	Player.find(query).exec(callback);
+	Player.findOne(query).exec(callback);
 }
 
 module.exports.updateId = function(callback){

@@ -8,7 +8,9 @@ block content
 				.ui.header.top.attached(style="border-bottom: 2px solid #ff851b")
 					h3(href="/blog/show/#{post._id}")!=post.head
 				.ui.attached.segment
-					p.ui.orange.right.ribbon.label Posted on #{moment(post.date).format('LL')}
+					p.ui.orange.right.ribbon.label
+						i.wait.icon
+						| Posted on #{moment(post.date).format('LL')}
 					br
 					br
 					.description(style="overflow-x:auto")!=post.body
