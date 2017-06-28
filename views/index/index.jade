@@ -138,7 +138,7 @@ block content
 									canvas.predscorecanvas
 							.column.sixteen.wide
 								h4.ui.header.segment Pre Match Estimated Player Statistics
-								.ui.top.attached.pointing.menu
+								.ui.top.attached.pointing.menu.stackable
 									a.item.active.menuTabs.team1namebatsmen(data-tab='third') Team1 Batsmen
 									a.item.team2namebatsmen.menuTabs(data-tab='fourth') Team2 Batsmen
 									a.item.team1namebowler.menuTabs(data-tab='fifth') Team1 Bowlers
@@ -153,11 +153,14 @@ block content
 									canvas.bowlercanvas2
 	br
 	br
-	.ui.grid.centered
+	.ui.grid.tablet.computer.only
 		.ui.container.ten.wide.centered.column
 			h3.ui.horizontal.divider.header
 					i.comments.icon
 					| Featured Blogs
+	.ui.mobile.only.grid.center.aligned
+		.ui.container.tablet
+			h4 Featured Blogs
 	br
 	br
 	.ui.container
@@ -167,19 +170,19 @@ block content
 					.column
 						.ui.orange.segment.raised
 							a(href="/blog/show/#{post._id}") 
-								h4 #{post.head}
+								h4.smallBlog #{post.head}
 							br
 							br
-							.description(style="overflow-x:hidden; color:#6f6f6f")!=(truncateText(post.body,100))
+							.description.smallBlog(style="overflow-x:hidden; color:#6f6f6f")!=(truncateText(post.body,100))
 			if featuredPosts
 				each featuredPost, i in featuredPosts
 					.column
 						.ui.orange.segment.raised
 							a(href="/blog/show/#{featuredPost._id}") 
-								h4 #{featuredPost.head}
+								h4.smallBlog #{featuredPost.head}
 							br
 							br
-							.description(style="overflow-x:hidden; color:#6f6f6f")!=(truncateText(featuredPost.body,100))
+							.description.smallBlog(style="overflow-x:hidden; color:#6f6f6f")!=(truncateText(featuredPost.body,100))
 block scripts
 	script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js")
 	script( src="/javascripts/chartjs-plugin-annotation.min.js")
