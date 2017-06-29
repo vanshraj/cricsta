@@ -6,7 +6,8 @@ block content
 		.row
 			.column.twelve.wide
 				.ui.header.top.attached(style="border-bottom: 2px solid #ff851b")
-					h3(href="/blog/show/#{post._id}")!=post.head
+					a
+						h3(href="/blog/show/#{post._id}")!=post.head
 				.ui.attached.segment
 					p.ui.orange.right.ribbon.label
 						i.wait.icon
@@ -27,3 +28,47 @@ block content
 						if(next)
 							a.item(href="/blog/show/#{next._id}") next &nbsp
 								i.arrow.right.icon.orange
+				.ui.grid.centered
+					.row
+						.column.sixteen.wide
+							.ui.segment
+								.ui.comments
+									h3.ui.dividing.header Comments
+									if(post.comments.length)
+										each comment, i in post.comments
+											.comment
+												a.avatar
+													img(src='/images/matt.jpg')
+												.content
+													a.author #{comment.author.name}
+													.text
+														p!=comment.text
+													if user
+														-var id1 = " "+comment.author._id
+														-var id2 = " "+user._id
+														if(id1===id2)
+															.actions
+																form(method="post", action="/blog/deleteComment")
+																	input(name='userId', type='hidden', value='#{user._id}')
+																	input(name='authorId', type='hidden',value='#{comment.author._id}')
+																	input(name='postId', type='hidden', value='#{post._id}')
+																	input(name='commentId', type='hidden', value='#{comment._id}')
+																	button.ui.deleteButton(type='submit') Delete
+									else
+										p No comments.
+								if user
+									form.ui.reply.form#commentForm(method="post", action="/blog/addComment")
+										input(name='userId', type='hidden', value='#{user._id}')
+										input(name='postId', type='hidden', value='#{post._id}')
+										.field
+											textarea(name='comment', type='text', placeholder='Write comment...')
+										button.ui.orange.submit.labeled.icon.button.commentsButton(type='submit')
+											i.icon.edit
+											|  Add Comment
+								else
+									.ui.info.message
+										p
+											| Please 
+											span
+												a(href="/users/login") login 
+											|  first to add comment

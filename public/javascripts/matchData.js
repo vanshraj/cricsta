@@ -107,6 +107,84 @@ function liveFeed(data){
 	}
 }
 
+var playerOption={
+		"animation": {
+        	"duration": 1,
+						"onComplete": function () {
+							var chartInstance = this.chart,
+								ctx = chartInstance.ctx;
+							
+							ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+							ctx.textAlign = 'center';
+							ctx.textBaseline = 'bottom';
+
+							this.data.datasets.forEach(function (dataset, i) {
+								var meta = chartInstance.controller.getDatasetMeta(i);
+								meta.data.forEach(function (bar, index) {
+									var data = dataset.data[index];  
+									if(data!=0)                          
+										ctx.fillText(data+" runs scored", bar._model.x -60, bar._model.y +5);
+								});
+							});
+						}
+        },
+		scales: {
+			xAxes: [{
+				ticks: {
+                	beginAtZero:true
+            	}
+			}],
+            yAxes: [{
+            	barPercentage: 0.9
+            }]
+        },
+		tooltips: {
+            enabled:false,
+        },
+		responsive: true,
+        title:{
+            display:false
+        }
+	}
+var playerOption1={
+	"animation": {
+    	"duration": 1,
+					"onComplete": function () {
+						var chartInstance = this.chart,
+							ctx = chartInstance.ctx;
+						
+						ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+						ctx.textAlign = 'center';
+						ctx.textBaseline = 'bottom';
+
+						this.data.datasets.forEach(function (dataset, i) {
+							var meta = chartInstance.controller.getDatasetMeta(i);
+							meta.data.forEach(function (bar, index) {
+								var data = dataset.data[index];  
+								if(data!=0)                          
+									ctx.fillText(data+" wickets taken", bar._model.x -60, bar._model.y +5);
+							});
+						});
+					}
+    },
+	scales: {
+		xAxes: [{
+			ticks: {
+            	beginAtZero:true
+        	}
+		}],
+        yAxes: [{
+        	barPercentage: 0.9
+        }]
+    },
+	tooltips: {
+        enabled:false,
+    },
+	responsive: true,
+    title:{
+        display:false
+    }
+}
 //player configs
 var batsmenConfig1 = {
 	type: "horizontalBar",
@@ -117,22 +195,9 @@ var batsmenConfig1 = {
 			backgroundColor:'rgba(242,113,28,0.6)',
 			borderColor: 'rgba(242,113,28,0.6)',
 			data: [],
-		}, {
-			label: "Balls Played",
-			backgroundColor: 'rgba(0,0,0,0.6)',
-			borderColor: 'rgba(0,0,0,0.6)',
-			data: []
 		}]
 	},
-	options:{
-		tooltips: {
-            enabled:true
-        },
-		responsive: true,
-        title:{
-            display:false
-        }
-	}
+	options:playerOption,
 }
 var batsmenConfig2 = {
 	type: "horizontalBar",
@@ -143,22 +208,9 @@ var batsmenConfig2 = {
 			backgroundColor:'rgba(242,113,28,0.6)',
 			borderColor: 'rgba(242,113,28,0.6)',
 			data: [],
-		}, {
-			label: "Balls Played",
-			backgroundColor: 'rgba(0,0,0,0.6)',
-			borderColor: 'rgba(0,0,0,0.6)',
-			data: []
 		}]
 	},
-	options:{
-		tooltips: {
-            enabled:true
-        },
-		responsive: true,
-        title:{
-            display:false
-        }
-	}
+	options:playerOption,
 }
 var bowlerConfig1 = {
 	type: "horizontalBar",
@@ -169,29 +221,9 @@ var bowlerConfig1 = {
 			backgroundColor:'rgba(242,113,28,0.6)',
 			borderColor: 'rgba(242,113,28,0.6)',
 			data: [],
-		}
-		// , {
-		// 	label:"Runs Conceded",
-		// 	backgroundColor: 'rgba(0,0,0,0.6)',
-		// 	borderColor: 'rgba(0,0,0,0.6)',
-		// 	data: []
-		// }
-		]
+		}]
 	},
-	options:{
-		scales: {
-            yAxes: [{
-            	barPercentage: 0.4
-            }]
-        },
-		tooltips: {
-            enabled:true
-        },
-		responsive: true,
-        title:{
-            display:false
-        }
-	}
+	options:playerOption1,
 }
 var bowlerConfig2 = {
 	type: "horizontalBar",
@@ -202,29 +234,9 @@ var bowlerConfig2 = {
 			backgroundColor:'rgba(242,113,28,0.6)' ,
 			borderColor: 'rgba(242,113,28,0.6)',
 			data: [],
-		}
-		// , {
-		// 	label:"Runs Conceded",
-		// 	backgroundColor: 'rgba(0,0,0,0.6)',
-		// 	borderColor: 'rgba(0,0,0,0.6)',
-		// 	data: []
-		// }
-		]
+		}]
 	},
-	options:{
-		scales: {
-            yAxes: [{
-            	barPercentage: 0.4
-            }]
-        },
-		tooltips: {
-            enabled:true
-        },
-		responsive: true,
-        title:{
-            display:false
-        }
-	}
+	options:playerOption1,
 }
 
 //adding data
@@ -232,14 +244,14 @@ function addPlayer1Canvas(data){
 	var x = batsmenConfig1.data;
 	x.labels.push(data.name);
 	x.datasets[0].data.push(Math.round(data.runsScored* 100) / 100);
-	x.datasets[1].data.push(Math.round(data.ballsPlayed* 100) / 100);
+	// x.datasets[1].data.push(Math.round(data.ballsPlayed* 100) / 100);
 	batsmenChart1.update();
 }
 function addPlayer2Canvas(data){
 	var x = batsmenConfig2.data;
 	x.labels.push(data.name);
 	x.datasets[0].data.push(Math.round(data.runsScored* 100) / 100);
-	x.datasets[1].data.push(Math.round(data.ballsPlayed* 100) / 100);
+	// x.datasets[1].data.push(Math.round(data.ballsPlayed* 100) / 100);
 	batsmenChart1.update();
 }
 function addPlayer3Canvas(data){

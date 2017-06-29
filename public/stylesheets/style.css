@@ -55,6 +55,12 @@ ul.error li{
 a.ui.orange.label{
 	margin-top: 5px;
 }
+.deleteButton{
+	background:none!important;
+    border:none; 
+    padding:0!important;
+    color:red;
+}
 /*css for tablets*/
 @media (max-width: 780px) {
   .ui.mobile.only.grid.center.aligned .ui.container.matchHeader h5{

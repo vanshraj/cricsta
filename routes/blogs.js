@@ -68,6 +68,44 @@ router.get('/show/:id',function(req, res, next){
 	});
 });
 
+//add comments
+router.post('/addComment',isAuthenticated,function(req,res,next){
+	// console.log(req.body.comment+" "+ req.body.userId+" "+req.body.postId);
+	var newComment = {
+		'text': req.body.comment,
+		'author': req.body.userId
+	}
+	var postId = req.body.postId;
+	Post.addComment(postId, newComment, function(err,comment){
+		if(err) throw err;
+		// console.log(comment);
+		// res.send(comment);
+		req.flash('success','Comment Added');
+		res.location('/blog/show/'+postId);
+		res.redirect('/blog/show/'+postId);
+	});
+});
+
+//delete comment
+router.post('/deleteComment',isAuthenticated, function(req,res,next){
+	var commentId=req.body.commentId;
+	var postId=req.body.postId;
+	var authorId=req.body.authorId;
+	var userId=req.body.userId;
+	if((""+authorId)==(""+userId))
+		Post.deleteComment(postId, commentId, function(err, comment){
+			if(err) throw err;
+			req.flash('success','Comment Deleted');
+			res.location('/blog/show/'+postId);
+			res.redirect('/blog/show/'+postId);
+		});
+	else{
+		req.flash('error','You Can only delete your own comment');
+		res.location('/blog/show/'+postId);
+		res.redirect('/blog/show/'+postId);
+	}
+});
+
 //middleware
 function isAuthenticated(req, res, next) {
 	if(req.isAuthenticated())

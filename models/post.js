@@ -25,7 +25,9 @@ module.exports = Post;
 
 //get single post according to id
 module.exports.getPost = function(id, callback){
-	Post.findById(id).exec(callback);
+	Post.findById(id)
+				.populate('comments.author')
+				.exec(callback);
 }
 
 //get all posts
@@ -63,4 +65,16 @@ module.exports.getNFeaturedPosts = function(n, callback){
 //create a new post
 module.exports.createPost =function( newPost, callback){
 	newPost.save(callback);
+}
+
+//add comments
+module.exports.addComment = function( postId, newComment, callback){
+	var query = { '_id': postId};
+	Post.findOneAndUpdate( query, { $push:{'comments': newComment} }, {new:true} , callback);
+}
+
+//delete comments
+module.exports.deleteComment = function( postId, commentId, callback){
+	var query = { '_id': postId};
+	Post.findOneAndUpdate( query, { $pull:{'comments': {'_id':commentId}} }, callback);
 }
