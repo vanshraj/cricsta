@@ -30,13 +30,11 @@ module.exports.getPost = function(id, callback){
 				.exec(callback);
 }
 
-//get all posts
+//get all posts for index
 module.exports.getAllPosts = function(callback){
-	var query = {};
+	var query = {featured: false};
 	Post.find(query,null, {sort: {date: -1}})
-			.limit(2)
-            .populate('author')
-            .populate('comments.author')
+			.limit(1)
             .exec(callback)
 }
 

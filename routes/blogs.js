@@ -38,6 +38,7 @@ router.post('/add',isAuthenticated, isAdmin, function(req, res, next){
 	//get form values
 	var newPost = new Post({
 		head: req.body.head,
+		featured: false,
 		body: req.body.body,
 		author: req.user._id,
 		date: new Date(),

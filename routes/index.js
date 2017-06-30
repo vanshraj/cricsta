@@ -6,7 +6,7 @@ var Player = require('../models/match');
 
 // GET home page.
 router.get('/', function(req, res, next) {
-	Post.getNFeaturedPosts(1,function(err, featuredPosts){
+	Post.getNFeaturedPosts(2,function(err, featuredPosts){
 		if(err) throw err;
 		Post.getAllPosts(function(err, posts){
 			if(err) throw err;
