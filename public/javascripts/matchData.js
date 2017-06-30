@@ -65,7 +65,7 @@ function staticFeed(data){
 function liveFeed(data){
 	//if new value updated then change table
 	if(data.team1.winProb!=prevWinProb){
-		$('.computer .matchHeader').html("<h3 class='ui horizontal divider header'><i class='bar chart icon'></i>"+"Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name+"</h3>");
+		$('.computer .matchHeader').html("<h3 class='ui horizontal divider header'><i class='line chart icon'></i>"+"Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name+"</h3>");
 		$('.mobile .matchHeader h5').text("Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name);
 		prevWinProb = data.team1.winProb;
 		team1name=data.team1.name;
@@ -107,6 +107,14 @@ function liveFeed(data){
 	}
 }
 
+//for mobile responsive player stats
+if($(window).width() >= 1024) {
+    var x = Chart.defaults.global.defaultFontSize;
+    var labelNum=60;
+}else{
+	var x = 6;
+	var labelNum=0;
+}
 var playerOption={
 		"animation": {
         	"duration": 1,
@@ -114,7 +122,7 @@ var playerOption={
 							var chartInstance = this.chart,
 								ctx = chartInstance.ctx;
 							
-							ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+							ctx.font = Chart.helpers.fontString(x, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
 							ctx.textAlign = 'center';
 							ctx.textBaseline = 'bottom';
 
@@ -123,7 +131,7 @@ var playerOption={
 								meta.data.forEach(function (bar, index) {
 									var data = dataset.data[index];  
 									if(data!=0)                          
-										ctx.fillText(data+" runs scored", bar._model.x -60, bar._model.y +5);
+										ctx.fillText(data+" runs scored", bar._model.x - labelNum, bar._model.y +5);
 								});
 							});
 						}
@@ -153,7 +161,7 @@ var playerOption1={
 						var chartInstance = this.chart,
 							ctx = chartInstance.ctx;
 						
-						ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+						ctx.font = Chart.helpers.fontString(x, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
 						ctx.textAlign = 'center';
 						ctx.textBaseline = 'bottom';
 
@@ -162,7 +170,7 @@ var playerOption1={
 							meta.data.forEach(function (bar, index) {
 								var data = dataset.data[index];  
 								if(data!=0)                          
-									ctx.fillText(data+" wickets taken", bar._model.x -60, bar._model.y +5);
+									ctx.fillText(data+" wickets taken", bar._model.x -labelNum, bar._model.y +5);
 							});
 						});
 					}

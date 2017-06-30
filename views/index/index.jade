@@ -4,7 +4,7 @@ block content
 	.ui.grid.tablet.computer.only
 		.ui.container.ten.wide.centered.column.matchHeader
 			h3.ui.horizontal.divider.header
-					i.bar.chart.icon
+					i.line.chart.icon
 					| Match Prediction
 	.ui.mobile.only.grid.center.aligned
 		.ui.container.tablet.matchHeader
@@ -137,8 +137,17 @@ block content
 									canvas.winprobcanvas1
 								.ui.bottom.attached.tab.segment(data-tab='second')
 									canvas.predscorecanvas
+								br
 							.column.sixteen.wide
-								h4.ui.header.segment Pre Match Estimated Player Statistics
+								.ui.grid.tablet.computer.only
+									.ui.container.fourteen.wide.centered.column
+										h3.ui.horizontal.divider.header
+											i.bar.chart.icon
+											| Pre Match Estimated Player Statistics
+								.ui.mobile.only.grid.center.aligned
+									.ui.container.tablet
+										h4 Pre Match Estimated Player Statistics
+								br				
 								.ui.top.attached.pointing.menu.stackable
 									a.item.active.menuTabs.team1namebatsmen(data-tab='third') Team1 Batsmen
 									a.item.team2namebatsmen.menuTabs(data-tab='fourth') Team2 Batsmen
