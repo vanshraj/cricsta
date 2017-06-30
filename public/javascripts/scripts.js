@@ -130,3 +130,19 @@ $('.ui.form.addblog')
     }
   })
 ;
+
+$('.ui.reply.form.addComment')
+  .form({
+    fields: {
+      comment: {
+        identifier: 'comment',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Comment cannot be empty.'
+          }
+        ]
+      },
+    }
+  })
+;

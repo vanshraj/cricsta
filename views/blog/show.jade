@@ -57,7 +57,8 @@ block content
 									else
 										p No comments.
 								if user
-									form.ui.reply.form#commentForm(method="post", action="/blog/addComment")
+									form.ui.reply.form.addComment(method="post", action="/blog/addComment")
+										.ui.error.message
 										input(name='userId', type='hidden', value='#{user._id}')
 										input(name='postId', type='hidden', value='#{post._id}')
 										.field
