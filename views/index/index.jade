@@ -6,9 +6,35 @@ block content
 			h3.ui.horizontal.divider.header
 					i.line.chart.icon
 					| Match Prediction
+		if !user
+			.ui.container.eight.wide.centered.column.center.aligned
+				.ui.warning.message
+					i.close.icon
+					.header
+						| The following predictions are one minute delayed!
+					| Please visit our 
+					span
+						a(style="text-decoration:underline" href="/users/register") registration
+					|  page or 
+					span
+						a(style="text-decoration:underline" href="/users/login") login
+					|  to get latest predictions.
 	.ui.mobile.only.grid.center.aligned
 		.ui.container.tablet.matchHeader
 			h5 Match Prediction
+		if !user
+			br
+			.ui.container
+				.ui.warning.message(style="font-size:12px")
+						i.close.icon
+						.header
+							| The following predictions are one minute delayed!
+						| Please visit our 
+						span
+							a(style="text-decoration:underline" href="/users/register") registration
+						|  page or 
+						span
+							a(style="text-decoration:underline" href="/users/login") login
 	br
 	br
 	.ui.container

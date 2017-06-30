@@ -112,7 +112,7 @@ if($(window).width() >= 1024) {
     var x = Chart.defaults.global.defaultFontSize;
     var labelNum=60;
 }else{
-	var x = 6;
+	var x = 7;
 	var labelNum=0;
 }
 var playerOption={
