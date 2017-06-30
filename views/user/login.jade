@@ -1,6 +1,22 @@
 extends ../layout
 
 block content
+	.ui.computer.tablet.only.grid.centered
+		.six.wide.column.center.aligned
+			.ui.info.message
+				i.close.icon
+				| If you are a new user please  
+				span
+					a(href="/users/register") register
+				|  first.
+	.ui.container.mobile.only.grid.center.aligned
+		.sixteen.wide.column
+			.ui.info.message(style="font-size:12px")
+				i.close.icon
+				| If you are a new user please  
+				span
+					a(style="text-decoration:underline" href="/users/register") register
+				|  first.
 	.ui.container
 		.ui.two.column.middle.aligned.very.relaxed.stackable.grid(style='position: relative')
 			.row
