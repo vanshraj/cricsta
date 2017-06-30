@@ -131,7 +131,7 @@ var playerOption={
 								meta.data.forEach(function (bar, index) {
 									var data = dataset.data[index];  
 									if(data!=0)                          
-										ctx.fillText(data+" runs scored", bar._model.x - labelNum, bar._model.y +5);
+										ctx.fillText(data+" runs", bar._model.x - labelNum, bar._model.y +5);
 								});
 							});
 						}
@@ -170,7 +170,7 @@ var playerOption1={
 							meta.data.forEach(function (bar, index) {
 								var data = dataset.data[index];  
 								if(data!=0)                          
-									ctx.fillText(data+" wickets taken", bar._model.x -labelNum, bar._model.y +5);
+									ctx.fillText(data+" wickets", bar._model.x -labelNum, bar._model.y +5);
 							});
 						});
 					}
