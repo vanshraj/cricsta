@@ -9,6 +9,7 @@ var PostSchema = mongoose.Schema({
 	head: {type: String},
 	body: {type: String},
 	date: {type: Date},
+	featured: {type: Boolean},
 	tags: [String],
 	comments: [{ 
 		text: String,

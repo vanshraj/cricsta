@@ -31,13 +31,13 @@ function ajaxSingleCall(){
 function ajaxCalls() {
     // run your ajax call here
     $.ajax({
-	type: 'POST',
+	type: 'GET',
 	url: "/matchData",
 	dataType: 'json'
 	})
 		.done(function(data) {
 			liveFeed(data);
-			setTimeout(ajaxCalls, 1000);
+			setTimeout(ajaxCalls, 1500);
 		})
 		.fail(function() {
 			console.log("Ajax failed to fetch data");

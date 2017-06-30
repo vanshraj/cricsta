@@ -53,7 +53,7 @@ module.exports = Player;
 module.exports.getMatchData = function(callback){
 	var d = new Date();
     d.setUTCSeconds(00);
-    d.setUTCMilliseconds(000)
+    d.setUTCMilliseconds(000);
     d = d.toISOString();
 	var query = { date:{ $lt:d } };
 	Match.find(query).limit(1).sort({ date: -1 }).exec(callback)

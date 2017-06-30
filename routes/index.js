@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 
 //ajax routes for json response
 //live response
-router.post('/matchData',function(req,res){
+router.get('/matchData',function(req,res){
 	if(req.isAuthenticated()){
 		if(req.user.type=='premium'||req.user.type=='admin'){
 			// console.log("user is premium");
