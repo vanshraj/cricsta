@@ -39,8 +39,8 @@ function ajaxCalls() {
 			liveFeed(data);
 			setTimeout(ajaxCalls, 1500);
 		})
-		.fail(function() {
-			console.log("Ajax failed to fetch data");
+		.fail(function(a,b,c) {
+			console.log("Ajax failed to fetch data "+b+" "+c);
 		});
 }
 
