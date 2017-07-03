@@ -72,8 +72,7 @@ function liveFeed(data){
 		team2name=data.team2.name;
 		team1score=data.team1.actualScore+"/"+data.team1.wickets+" ("+data.team1.over+ " overs)";
 		team2score=data.team2.actualScore+"/"+data.team2.wickets+" ("+data.team2.over+ " overs)";
-		var flag = (data.prob3.percentage==100)&&(data.prob4.percentage==0);
-		if( data.team1.wickets==10 || data.team2.over > 0 || flag)
+		if( data.team1.wickets==10 || data.team2.over > 0 || data.team1.over==data.totalOver)
 			$('.firstInningsProb').fadeOut();
 		else
 			$('.firstInningsProb').fadeIn();
@@ -282,6 +281,8 @@ function addPlayer4Canvas(data){
 //win Prob canvas things
 function addWinProb1Canvas(data) {
 	//first innings
+	winProb1Config.options.scales.xAxes[0].ticks.min=0;
+	winProb1Config.options.scales.xAxes[0].ticks.max=data.totalOver*2;
 	if(data.team2.over<0.1){
 		addPredScoreCanvas(data);
 		var oddData = winProb1Config.data;
