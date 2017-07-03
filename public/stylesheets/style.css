@@ -14,7 +14,7 @@ a:hover {
 	color: white;
 }
 ul.success li, ul.info li, ul.error li{
-	margin:20px 0 20px 0;
+	margin:0;
 	padding: 15px;
 	border: 1px solid transparent;
 	border-radius: 5px;
@@ -60,6 +60,9 @@ a.ui.orange.label{
     border:none; 
     padding:0!important;
     color:red;
+}
+.timeline-Viewport {
+    height: 130px !important;
 }
 /*css for tablets*/
 @media (max-width: 780px) {

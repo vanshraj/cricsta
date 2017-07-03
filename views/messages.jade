@@ -1,0 +1,16 @@
+.ui.container
+	.ui.grid.centered
+		.ten.wide.computer.only.grid.centered.column.center.aligned
+			.ui.container
+				each type in Object.keys(messages)
+					.ui.message(class="#{type}")
+						i.close.icon
+						each message in messages[type]
+							p= message
+		.sixteen.wide.mobile.tablet.only.grid.centered.column.center.aligned
+			.ui.container
+				each type in Object.keys(messages)
+					.ui.message(class="#{type}")
+						i.close.icon
+						each message in messages[type]
+							p(style="font-size:12px")= message
