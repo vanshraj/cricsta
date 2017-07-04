@@ -8,6 +8,10 @@ block content
 				.ui.grid
 					.column.sixteen.wide
 						h2.ui.dividing.header Blogs
+					.ui.large.breadcrumb
+						a.section(href="/") Home
+						i.right.chevron.icon.divider
+						.active.section(href="/blog") Blog
 					if posts
 						each post, i in posts
 							.column.sixteen.wide
@@ -35,31 +39,52 @@ block content
 					.ui.secondary.pointed.orange.menu
 						- page = parseInt(page)
 						- pages = parseInt(pages)
-						if(page==1)
-							a.active.item(href="/blog/page/#{page}") #{page}
-							a.item(href="/blog/page/#{page+1}") #{page+1}
-							.disabled.item ...
-							a.item(href="/blog/page/#{pages}") #{pages}
-						if((page-1)>0)
-							if((page-1)!=1)
-								a.item(href="/blog/page/1") #{1}
-								.disabled.item ...
-							a.item(href="/blog/page/#{page-1}") #{page-1}
-							a.active.item(href="/blog/page/#{page}") #{page}
-							if(page!=pages)
-								if((page+1)!=pages)
-									a.item(href="/blog/page/#{page+1}") #{page+1}
+						if(search)
+							if(pages>1)
+								if(page==1)
+									a.active.item(href="/blog/search/page/#{page}?searchQuery=#{searchQuery}") #{page}
+									a.item(href="/blog/search/page/#{page+1}?searchQuery=#{searchQuery}") #{page+1}
 									.disabled.item ...
+									a.item(href="/blog/search/page/#{pages}?searchQuery=#{searchQuery}") #{pages}
+								if((page-1)>0)
+									if((page-1)!=1)
+										a.item(href="/blog/search/page/1?searchQuery=#{searchQuery}") #{1}
+										.disabled.item ...
+									a.item(href="/blog/search/page/#{page-1}?searchQuery=#{searchQuery}") #{page-1}
+									a.active.item(href="/blog/search/page/#{page}?searchQuery=#{searchQuery}") #{page}
+									if(page!=pages)
+										if((page+1)!=pages)
+											a.item(href="/blog/search/page/#{page+1}?searchQuery=#{searchQuery}") #{page+1}
+											.disabled.item ...
+										a.item(href="/blog/search/page/#{pages}?searchQuery=#{searchQuery}") #{pages}
+							else
+								a.active.item(href="/blog/search/page/#{page}?searchQuery=#{searchQuery}") #{page}
+						else
+							if(page==1)
+								a.active.item(href="/blog/page/#{page}") #{page}
+								a.item(href="/blog/page/#{page+1}") #{page+1}
+								.disabled.item ...
 								a.item(href="/blog/page/#{pages}") #{pages}
-
+							if((page-1)>0)
+								if((page-1)!=1)
+									a.item(href="/blog/page/1") #{1}
+									.disabled.item ...
+								a.item(href="/blog/page/#{page-1}") #{page-1}
+								a.active.item(href="/blog/page/#{page}") #{page}
+								if(page!=pages)
+									if((page+1)!=pages)
+										a.item(href="/blog/page/#{page+1}") #{page+1}
+										.disabled.item ...
+									a.item(href="/blog/page/#{pages}") #{pages}
 			.column.five.wide
 				.ui.segments
 					.ui.segment.center.aligned
 						.ui.fluid.search
-							.ui.icon.input
-								input.prompt(type='text', placeholder='Search...')
-								i.search.icon
-							.results
+							form(method="get", action="/blog/search/page/1")
+								.ui.icon.input
+									input.prompt(name='searchQuery', type='text', placeholder='Search...')
+									button.searchButton(type='submit')
+										i.search.icon
 				.ui.segments
 					.ui.segment.center.aligned
 						p(style="font-size:18px") FEATURED BLOGS

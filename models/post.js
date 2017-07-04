@@ -45,6 +45,17 @@ module.exports.getPaginatedPosts = function(i,callback){
 	Post.paginate(query, {sort: { date: -1 }, page: i, limit: 5 }, callback);
 }
 
+//get paginated post with search query
+module.exports.getPaginatedPostsSearch = function(i, searchQuery, callback){
+	var query = { 
+		$or:[
+				{ head: {$regex: searchQuery, $options: "i"} },
+				{ body: {$regex: searchQuery, $options: "i"} } 
+			]
+	};
+	Post.paginate(query, {sort: { date: -1 }, page: i, limit: 5 }, callback);
+}
+
 //get next previous
 module.exports.getNextLink = function(post, callback){
 	var query= { date:{$gt: post.date} };

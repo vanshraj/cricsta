@@ -5,6 +5,12 @@ block content
 	.ui.very.relaxed.stackable.centered.grid
 		.row
 			.column.twelve.wide
+				.ui.large.breadcrumb
+					a.section(href="/") Home
+					i.right.chevron.icon.divider
+					a.section(href="/blog") Blog
+					i.right.chevron.icon.divider
+					.active.section(href="/blog/show/#{post._id}") Post
 				.ui.header.top.attached(style="border-bottom: 2px solid #ff851b")
 					a
 						h3(href="/blog/show/#{post._id}")!=post.head

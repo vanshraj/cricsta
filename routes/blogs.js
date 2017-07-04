@@ -5,7 +5,32 @@ var Post = require('../models/post');
 
 //all blog route
 router.get('/', function(req, res, next) {
-	res.redirect('/blog/page/1');
+	res.redirect('/blog/page/1')
+});
+
+router.get('/search/page/:i',function(req, res, next){
+	if(req.params.i>0){
+		Post.getPaginatedPostsSearch(req.params.i, req.query.searchQuery, function(err,posts){
+			if(err) throw err;
+			console.log(posts.pages);
+			console.log(posts.page);
+			Post.getNFeaturedPosts(5,function(err, featuredPosts){
+				if(err) throw err;
+				res.render('blog/blog',{
+					title: 'Blog',
+					posts:posts.docs,
+					page:posts.page,
+					pages:posts.pages,
+					featuredPosts: featuredPosts,
+					search: true,
+					searchQuery: req.query.searchQuery
+				});
+			});
+		});
+	}
+	else{
+		throw "Undefined Page";
+	}
 });
 
 router.get('/page/:i',function(req, res, next){

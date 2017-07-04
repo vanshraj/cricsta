@@ -55,11 +55,14 @@ ul.error li{
 a.ui.orange.label{
 	margin-top: 5px;
 }
-.deleteButton{
+.deleteButton, .searchButton{
 	background:none!important;
     border:none; 
     padding:0!important;
     color:red;
+}
+.searchButton{
+	color:black;
 }
 .timeline-Viewport {
     height: 130px !important;

@@ -281,8 +281,6 @@ function addPlayer4Canvas(data){
 //win Prob canvas things
 function addWinProb1Canvas(data) {
 	//first innings
-	winProb1Config.options.scales.xAxes[0].ticks.min=0;
-	winProb1Config.options.scales.xAxes[0].ticks.max=data.totalOver*2;
 	if(data.team2.over<0.1){
 		addPredScoreCanvas(data);
 		var oddData = winProb1Config.data;
@@ -390,7 +388,9 @@ var winProb1Config = {
 			yAxes: [{
 				display: true,
 				ticks: {
-                	beginAtZero:true
+                	beginAtZero:true,
+                	max:100,
+                	min:0
             	},
 				scaleLabel: {
 					display: true,
