@@ -21,9 +21,10 @@ block content
 									br
 									.description(style="overflow-x:auto")!=(truncateText(post.body,200))
 									.extra(style="margin-top:15px")
-										.ui.tiny.inverted.orange.button
-											| #{post.comments.length} Comments  
-											i.comments.icon
+										a(href="/blog/show/#{post._id}#comments")
+											.ui.tiny.inverted.orange.button
+												| #{post.comments.length} Comments  
+												i.comments.icon
 										a(href="/blog/show/#{post._id}")
 											.ui.tiny.inverted.orange.button
 												| Read More

@@ -82,8 +82,8 @@ router.post('/addComment',isAuthenticated,function(req,res,next){
 		// console.log(comment);
 		// res.send(comment);
 		req.flash('success','Comment Added');
-		res.location('/blog/show/'+postId);
-		res.redirect('/blog/show/'+postId);
+		res.location('/blog/show/'+postId+"#comments");
+		res.redirect('/blog/show/'+postId+"#comments");
 	});
 });
 
@@ -97,8 +97,8 @@ router.post('/deleteComment',isAuthenticated, function(req,res,next){
 		Post.deleteComment(postId, commentId, function(err, comment){
 			if(err) throw err;
 			req.flash('success','Comment Deleted');
-			res.location('/blog/show/'+postId);
-			res.redirect('/blog/show/'+postId);
+			res.location('/blog/show/'+postId+"#comments");
+			res.redirect('/blog/show/'+postId+"#comments");
 		});
 	else{
 		req.flash('error','You Can only delete your own comment');
