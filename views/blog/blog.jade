@@ -10,8 +10,14 @@ block content
 						h2.ui.dividing.header Blogs
 					.ui.large.breadcrumb
 						a.section(href="/") Home
-						i.right.chevron.icon.divider
-						.active.section(href="/blog") Blog
+						if search
+							i.right.chevron.icon.divider
+							a.section(href="/blog") Blog
+							i.right.chevron.icon.divider
+							.active.section Search for: #{searchQuery}
+						else
+							i.right.chevron.icon.divider
+							.active.section(href="/blog") Blog
 					if posts
 						each post, i in posts
 							.column.sixteen.wide
