@@ -47,12 +47,8 @@ module.exports.getPaginatedPosts = function(i,callback){
 
 //get paginated post with search query
 module.exports.getPaginatedPostsSearch = function(i, searchQuery, callback){
-	var query = { 
-		$or:[
-				{ head: {$regex: searchQuery, $options: "i"} },
-				{ body: {$regex: searchQuery, $options: "i"} } 
-			]
-	};
+	var queryString = '\"' + searchQuery.split(' ').join('\" \"') + '\"';
+	var query = { $text: { $search: queryString } };
 	Post.paginate(query, {sort: { date: -1 }, page: i, limit: 5 }, callback);
 }
 
