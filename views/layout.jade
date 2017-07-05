@@ -15,7 +15,7 @@ html
 			a.item(href='/')
 				img(src="/images/logo.png" style="width:10.8em")
 			a(class=(title==='Blog'? 'active item':'item'),href='/blog')
-				| Blog
+				| Blogs
 			if user
 				if user.type == 'admin'
 					a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')
@@ -53,7 +53,7 @@ html
 			a.item(href='/')
 				img(src="/images/logo.png" style="width:10.8em")
 			a(class=(title==='Blog'? 'active item':'item'),href='/blog')
-				| Blog
+				| Blogs
 			if user
 				if user.type == 'admin'
 					a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')
@@ -69,6 +69,13 @@ html
 					a.item(href='/users/logout')
 						| Logout
 		.ui.hidden.divider(style="margin-top:70px")
+		if(error)
+			.error404
+				a(href="/")
+					i.icon.arrow.left
+				.ui.container.center.aligned
+					h1 404
+					p We're sorry but it looks like that page doesn't exist.
 		.ui.container
 			.ui.grid.centered
 				.column.ten.wide.computer.only.sixteen.wide.mobile.tablet.only.grid
