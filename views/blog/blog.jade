@@ -5,19 +5,27 @@ block content
 	.ui.very.relaxed.stackable.centered.grid
 		.row
 			.column.eleven.wide
-				.ui.grid
+				.ui.grid.centered
 					.column.sixteen.wide
 						h2.ui.dividing.header Blogs
-					.ui.large.breadcrumb
-						a.section(href="/") Home
-						if search
-							i.right.chevron.icon.divider
-							a.section(href="/blog") Blog
-							i.right.chevron.icon.divider
-							.active.section Search for: #{searchQuery}
-						else
-							i.right.chevron.icon.divider
-							.active.section(href="/blog") Blog
+						.ui.large.breadcrumb
+							a.section(href="/") Home
+							if search
+								i.right.chevron.icon.divider
+								a.section(href="/blog") Blog
+								i.right.chevron.icon.divider
+								.active.section Search for: #{searchQuery}
+							else
+								i.right.chevron.icon.divider
+								.active.section(href="/blog") Blog
+					.column.sixteen.wide
+						.ui.segment.center.aligned.mobile.tablet.only.grid
+							.ui.fluid.search
+								form(method="get", action="/blog/search/page/1")
+									.ui.icon.input
+										input.prompt(name='searchQuery', type='text', placeholder='Search...')
+										button.searchButton(type='submit')
+											i.search.icon
 					if posts
 						each post, i in posts
 							.column.sixteen.wide
@@ -91,7 +99,7 @@ block content
 								.header No results found for #{searchQuery}
 			.column.five.wide
 				.ui.segments
-					.ui.segment.center.aligned
+					.ui.segment.center.aligned.computer.only.grid
 						.ui.fluid.search
 							form(method="get", action="/blog/search/page/1")
 								.ui.icon.input
