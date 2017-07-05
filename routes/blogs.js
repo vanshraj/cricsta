@@ -12,8 +12,6 @@ router.get('/search/page/:i',function(req, res, next){
 	if(req.params.i>0){
 		Post.getPaginatedPostsSearch(req.params.i, req.query.searchQuery, function(err,posts){
 			if(err) throw err;
-			console.log(posts.pages);
-			console.log(posts.page);
 			Post.getNFeaturedPosts(5,function(err, featuredPosts){
 				if(err) throw err;
 				res.render('blog/blog',{
