@@ -15,6 +15,10 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+//about page
+router.get('/about',function(req, res){
+	res.render('index/about',{title: 'About'});
+});
 
 //ajax routes for json response
 //live response

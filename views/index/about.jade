@@ -1,19 +1,18 @@
 extends ../layout
 
-block content
-	.ui.vertical.masthead.inverted.center.aligned.segment
-		.ui.text.container
-			h3.ui.center.aligned.header ABOUT THINKQUANT
-			p ThinkQuant is an analytics firm based out of Gurgaon, India. We specialize in making predictive models, with a rich history in the financial markets. Our predictive model for cricket ThinkQuant is live, and can work in-play during a cricket match. For more details about our product, contact below
-			i.mail.icon
-			| services@thinkquant.in
-			br  
-			i.phone.icon
-			| Alok Noronha (CEO) at 9953916443.
+block free
+	style.
+		body,html{
+			background-color:#1b1c1d !important;
+		}
+		.pusher{
+			background-color:#1b1c1d !important;
+		}
+	.intro
+		.ui.container
+			h1 
+				span Cricket 
+				|  Odds Prediction Model
 			br
-			i.building.icon
-			| 326, Star Tower, Sector 30, Gurgaon
-			br
-			a(href="https://twitter.com/quant_think")
-				i.twitter.icon
-				| Twitter/quant_think
+			h3 The ThinkQuant model is a bottom up model, where we take individual player (batsman and bowler) attributes plus ground attributes as inputs. Our model is a simulation of 600 (for 50 over matches) interactions between a batsman and a bowler in those specific conditions. 
+			h3 Our outputs are in-play, not just pre-match. Currently we price match winning probabilities, team score projections,probabilities of reaching a particular score and top scorer / top wicket taker predictions for limited overs matches.

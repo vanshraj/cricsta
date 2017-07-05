@@ -1,6 +1,14 @@
+@font-face {
+  font-family: handwritten;
+  src: url('/fonts/hand.ttf');
+}
 body {
+  font-family: 'Raleway', sans-serif;
   padding: 0px;
   margin: 0px;
+}
+.header{
+	font-family: 'Raleway', sans-serif !important;
 }
 
 a {
@@ -100,8 +108,52 @@ a.ui.orange.label{
 .timeline-Viewport {
     height: 130px !important;
 }
+
+.intro{
+	color: white;
+	background-color:#1b1c1d;
+	/*background-color: pink;*/
+	/*font-family: 'Space Mono';*/
+	justify-content: center;
+	padding-bottom: 10%; 
+	padding-top:5%; 
+}
+.intro h1{
+	font-weight: 100 !important;
+	margin-right: 30%;
+	border-bottom: 10px solid #F2721C;
+	font-size: 26px;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	/*opacity: .4;*/
+}
+.intro h1 span{
+  font-family: handwritten;
+  font-size: 50px;
+}
+.intro h3{
+	font-weight: 100 !important;
+	font-size: 18px;
+	letter-spacing: 2px;
+	opacity: .9;
+	justify-content: center;
+	margin-left: 30%; 
+	max-width: 60%;
+}
 /*css for tablets*/
 @media (max-width: 780px) {
+	.intro h1{
+		margin-right: 2%;
+		font-size: 22px;
+	}
+	.intro h1 span{
+		font-size: 30px;
+	}
+	.intro h3{
+		font-size: 14px;
+		margin-left: 2%; 
+		max-width: 100%;
+	}
 	.error404{
 		margin-top: -43px;
 	}
