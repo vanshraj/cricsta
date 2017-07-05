@@ -1,6 +1,6 @@
 @font-face {
   font-family: handwritten;
-  src: url('/fonts/hand.ttf');
+  src: url('/fonts/hand.ttf') format('truetype');
 }
 body {
   font-family: 'Raleway', sans-serif;
