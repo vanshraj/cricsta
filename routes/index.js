@@ -22,7 +22,7 @@ router.get('/about',function(req, res){
 
 //ajax routes for json response
 //live response
-router.get('/matchData',function(req,res){
+router.post('/matchData',function(req,res){
 	if(req.isAuthenticated()){
 		if(req.user.type=='premium'||req.user.type=='admin'){
 			// console.log("user is premium");

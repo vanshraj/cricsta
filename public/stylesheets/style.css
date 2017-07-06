@@ -81,6 +81,7 @@ ul.error li{
 	font-family: 'Montserrat', sans-serif;
 }
 .ui.footer.segment {
+	background-color: #1b1c1d;
 	background:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), rgba(242, 113, 28, 0.2)),url("/images/footer-bg.jpg");
 	background-position: center;
 	background-size: cover;
@@ -128,7 +129,7 @@ a.ui.orange.label{
 	/*opacity: .4;*/
 }
 .intro h1 span{
-  font-family: handwritten;
+  font-family: handwritten, 'Raleway', sans-serif;
   font-size: 50px;
 }
 .intro h3{

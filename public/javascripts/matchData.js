@@ -31,7 +31,7 @@ function ajaxSingleCall(){
 function ajaxCalls() {
     // run your ajax call here
     $.ajax({
-	type: 'GET',
+	type: 'POST',
 	url: "/matchData",
 	dataType: 'json'
 	})
