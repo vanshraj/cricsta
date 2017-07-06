@@ -52,7 +52,7 @@ module.exports = Player;
 
 //exporting schema functions
 
-module.exports.getMatchData = function(callback){
+module.exports.getMatchDataOne = function(callback){
 	var d = new Date();
     d.setUTCSeconds(00);
     d.setUTCMilliseconds(000);
@@ -60,6 +60,21 @@ module.exports.getMatchData = function(callback){
 	var query = { date:{ $lt:d } };
 	Match.find(query).limit(1).sort({ date: -1 }).exec(callback)
 }
+
+module.exports.getMatchDataFive = function(callback){
+	var d = new Date();
+    d.setUTCSeconds(00);
+    d.setUTCMilliseconds(000);
+    m = d.getUTCMinutes();
+    x = m%10;
+    z = (x<5)? 0:5;
+    m = m-x+z 
+    d.setUTCMinutes(m);
+    d = d.toISOString();
+	var query = { date:{ $lt:d } };
+	Match.find(query).limit(1).sort({ date: -1 }).exec(callback)
+}
+
 module.exports.getMatchLatestData = function(callback){
 	var query = {};
 	Match.find(query).limit(1).sort({ date: -1 }).exec(callback)

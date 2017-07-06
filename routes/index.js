@@ -32,14 +32,14 @@ router.post('/matchData',function(req,res){
 			});
 		}else{
 			// console.log("user is loggedin but not premium");
-			Match.getMatchData(function(err,match){
+			Match.getMatchDataOne(function(err,match){
 				if(err) throw err;
 				res.send(match[0]);
 			});
 		}
 	}else{
 		// console.log("user not logged in");
-		Match.getMatchData(function(err,match){
+		Match.getMatchDataFive(function(err,match){
 			if(err) throw err;
 			res.send(match[0]);
 		});	

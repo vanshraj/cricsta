@@ -37,10 +37,11 @@ function ajaxCalls() {
 	})
 		.done(function(data) {
 			liveFeed(data);
-			setTimeout(ajaxCalls, 1500);
+			setTimeout(ajaxCalls, 1000);
 		})
-		.fail(function(a,b,c) {
-			console.log("Ajax failed to fetch data "+b+" "+c);
+		.fail(function() {
+			console.log("Ajax failed to fetch data ");
+			window.location.reload();
 		});
 }
 
