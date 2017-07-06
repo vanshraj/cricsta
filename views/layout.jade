@@ -20,6 +20,8 @@ html
 				| Blog
 			a(class=(title==='About'? 'active item':'item'),href='/about')
 				| About Us
+			a(class=(title==='Membership'? 'active item':'item'),href='/membership')
+				| Membership
 			if user
 				if user.type == 'admin'
 					a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')
@@ -60,6 +62,8 @@ html
 				| Blog
 			a(class=(title==='About'? 'active item':'item'),href='/about')
 				| About Us
+			a(class=(title==='Membership'? 'active item':'item'),href='/membership')
+				| Membership
 			if user
 				if user.type == 'admin'
 					a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')

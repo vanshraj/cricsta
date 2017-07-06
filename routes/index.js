@@ -20,6 +20,11 @@ router.get('/about',function(req, res){
 	res.render('index/about',{title: 'About'});
 });
 
+//membership page
+router.get('/membership',function(req, res){
+	res.render('index/membership',{title: 'Membership'});
+});
+
 //ajax routes for json response
 //live response
 router.post('/matchData',function(req,res){
