@@ -48,7 +48,7 @@ router.post('/matchData',function(req,res){
 
 //starting probs response
 router.post('/matchDataProb',function(req,res){
-	Match.getMatchData(function(err,match){
+	Match.getMatchLatestData(function(err,match){
 		if(err) throw err;
 		Match.getMatchAllProb(match,function(err,probs){
 			if(err) throw err;
@@ -59,7 +59,7 @@ router.post('/matchDataProb',function(req,res){
 
 //player data response
 router.post('/playerData',function(req, res){
-	Match.getMatchData(function(err,match){
+	Match.getMatchLatestData(function(err,match){
 		if(err) throw err;
 		Player.getPlayerData(match,function(err,data){
 			if(err) throw err;
