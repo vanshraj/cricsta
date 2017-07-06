@@ -18,15 +18,17 @@ block content
 					|  or 
 					span
 						a(style="text-decoration:underline" href="/users/login") login
-					|  to get faster predictions as per your membership.
+					|  to get faster predictions.
 		else
 			if( user.type!="premium" && user.type!="admin")
 				.ui.container.eight.wide.centered.column.center.aligned
 					.ui.warning.message
 						i.close.icon
 						.header
-							| The following predictions are refreshed every 1 minute!
-						| Please contact Alok Noronha (CEO) at +91-9953916443 to get live predictions.
+							| The following predictions are refreshed every minute!
+						| To get live predictions email us at services@thinkquant.in or call us at
+						br
+						| +91-9953916443.
 	.ui.mobile.only.grid.center.aligned
 		.ui.container.tablet.matchHeader
 			h5 Match Prediction
@@ -43,15 +45,17 @@ block content
 						|  or 
 						span
 							a(style="text-decoration:underline" href="/users/login") login
-						|  to get faster predictions as per your membership.
+						|  to get faster predictions.
 		else
 			if( user.type!="premium" && user.type!="admin")
-				.ui.container.eight.wide.centered.column.center.aligned
-					.ui.warning.message
+				.ui.container.sixteen.wide.centered.column.center.aligned
+					.ui.warning.message(style="font-size:12px")
 						i.close.icon
 						.header
-							| The following predictions are refreshed every 1 minute!
-						| Please contact Alok Noronha (CEO) at +91-9953916443 to get live predictions.
+							| The following predictions are refreshed every minute!
+						| To get live predictions email us at services@thinkquant.in or call us at
+						br
+						| +91-9953916443.
 	br
 	br
 	.ui.container
