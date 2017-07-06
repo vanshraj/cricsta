@@ -10,6 +10,22 @@
 
 //semantic scripts
 
+//toggling cards on hover
+$('.ui.card').hover( function(){
+  //for mouse in
+  $(this).removeClass("raised");
+}, function(){
+  //for mouse out
+  $(this).addClass("raised");
+});
+$('.segment').hover( function(){
+  //for mouse in
+  $(this).removeClass("raised");
+}, function(){
+  //for mouse out
+  $(this).addClass("raised");
+});
+
 //mobile menu
 $('.menuToggle').on('click',function(){
     $('.left.sidebar')

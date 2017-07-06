@@ -1,3 +1,36 @@
 extends ../layout
 
 block content
+	.ui.container(style="padding:5% 0px 5%")
+		.ui.grid.centered.equal.width.stackable
+			.row
+				.ui.grid.centered
+					.column
+						h1.membershipHeader Membership Plans
+						br
+			.row
+				.ui.cards
+					.ui.card.raised
+						.content
+							.header Free Plan
+							.description
+								| Simply login for free and get predictions refreshed every minute.
+						a.ui.bottom.attached.button.orange(href="/users/login")
+							i.sign.in.icon
+							|       Login
+					.ui.card.raised
+						.content
+							.header Monthly Plan
+							.description
+								| Buy the monthly plan and get live predictions during a match for one month.
+						.ui.bottom.attached.button.orange
+							i.paypal.icon
+							|       PayPal
+					.ui.card.raised
+						.content
+							.header Yearly Plan
+							.description
+								| Buy the yearly plan and get live predictions during a match for one year.
+						.ui.bottom.attached.button.orange
+							i.paypal.icon
+							|       PayPal
