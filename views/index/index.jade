@@ -19,6 +19,14 @@ block content
 					span
 						a(style="text-decoration:underline" href="/users/login") login
 					|  to get predictions as per your membership.
+		else
+			if( user.type!="premium" && user.type!="admin")
+				.ui.container.eight.wide.centered.column.center.aligned
+					.ui.warning.message
+						i.close.icon
+						.header
+							| The following predictions are refreshed every 1 minute!
+						| Please contact Alok Noronha (CEO) at +91-9953916443.
 	.ui.mobile.only.grid.center.aligned
 		.ui.container.tablet.matchHeader
 			h5 Match Prediction

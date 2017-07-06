@@ -68,7 +68,7 @@ router.get('/login',isAuthenticated2, function(req, res, next) {
 
 router.post('/login',isAuthenticated2, passport.authenticate('local',{failureRedirect:'/users/login', failureFlash:'Invalid Email Id or Password'}),function(req,res){
 	console.log('Authentication Successful');
-	req.flash('success','You are logged in.');
+	// req.flash('success','You are logged in.');
 	res.redirect('/');
 });
 
@@ -78,7 +78,7 @@ router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: 'users/login', failureFlash:'Authentication Unsuccessful.' }),
   function(req, res) {
     console.log('Authentication Successful');
-	req.flash('success','You are logged in.');
+	// req.flash('success','You are logged in.');
 	res.redirect('/');
   });
 
@@ -88,7 +88,7 @@ router.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: 'users/login', failureFlash:'Authentication Unsuccessful.' }),
   function(req, res) {
     console.log('Authentication Successful');
-	req.flash('success','You are logged in.');
+	// req.flash('success','You are logged in.');
 	res.redirect('/');
   });
 
