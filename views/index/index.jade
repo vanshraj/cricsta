@@ -11,14 +11,14 @@ block content
 				.ui.warning.message
 					i.close.icon
 					.header
-						| The following predictions are refreshed every minute!
+						| The following predictions are refreshed every 5 minutes!
 					| Please  
 					span
 						a(style="text-decoration:underline" href="/users/register") register
 					|  or 
 					span
 						a(style="text-decoration:underline" href="/users/login") login
-					|  to get live predictions.
+					|  to get predictions as per your membership.
 	.ui.mobile.only.grid.center.aligned
 		.ui.container.tablet.matchHeader
 			h5 Match Prediction
@@ -28,14 +28,14 @@ block content
 				.ui.warning.message(style="font-size:12px")
 						i.close.icon
 						.header
-							| The following predictions are refreshed every minute!
+							| The following predictions are refreshed every 5 minutes!
 						| Please  
 						span
 							a(style="text-decoration:underline" href="/users/register") register
 						|  or 
 						span
 							a(style="text-decoration:underline" href="/users/login") login
-						|  to get live predictions.
+						|  to get predictions as per your membership.
 	br
 	br
 	.ui.container
@@ -100,7 +100,7 @@ block content
 											.column.ten.wide.computer.only.thirteen.wide.tablet.only.grid
 												canvas.winprobcanvas
 								br
-								.column.sixteen.wide
+								.column.sixteen.wide.computer.only.grid
 									.ui.segments
 										.ui.segment.center.aligned
 											p(style="font-size:18px") THINKQUANT TWEETS
