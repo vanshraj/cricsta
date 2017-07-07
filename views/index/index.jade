@@ -220,6 +220,7 @@ block content
 							br
 							br
 							.description.smallBlog(style="overflow-x:hidden; color:#6f6f6f")!=(truncateText(post.body,100))
+							a(style="color:#fd761c", href="/blog/show/#{post._id}")  read more...
 			if featuredPosts
 				each featuredPost, i in featuredPosts
 					.column
@@ -229,6 +230,7 @@ block content
 							br
 							br
 							.description.smallBlog(style="overflow-x:hidden; color:#6f6f6f")!=(truncateText(featuredPost.body,100))
+							a(style="color:#fd761c", href="/blog/show/#{featuredPost._id}")  read more..
 block scripts
 	script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js")
 	script( src="/javascripts/chartjs-plugin-annotation.min.js")
