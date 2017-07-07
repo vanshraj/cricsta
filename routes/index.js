@@ -25,6 +25,17 @@ router.get('/membership',function(req, res){
 	res.render('index/membership',{title: 'Membership'});
 });
 
+//accepting payment for month
+router.post('/membership/monthly/complete', isAuthenticated, function(req, res){
+	res.redirect('/users/account');
+	console.log("making a user paid for one month here heloooooooo/n/n/nheloooooooo");
+});
+
+//accepting payment for year
+router.post('/membership/yearly/complete', isAuthenticated, function(req, res){
+	res.redirect('/users/account');
+});
+
 //ajax routes for json response
 //live response
 router.post('/matchData',function(req,res){
@@ -73,11 +84,14 @@ router.post('/playerData',function(req, res){
 	});
 });
 
-// router.get('/changeData',function(req,res){
-// 	Match.updateId(function(err,match){
-// 		if(err) throw err;
-// 		res.send(match);
-// 	});
-// })
+function isAuthenticated(req, res, next) {
+	if(req.isAuthenticated())
+        return next();
+    else{
+	    req.flash('error','Please Login First')
+    	res.redirect('/users/login');	
+    }
+    
+}
 
 module.exports = router;

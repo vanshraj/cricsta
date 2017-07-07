@@ -51,6 +51,8 @@ var team1name;
 var team1score;
 var team2name;
 var team2score;
+var team1over;
+var team2over;
 
 function staticFeed(data){
 	$('.team1namebatsmen').text(data.team1.name + " Batsmen");
@@ -77,7 +79,9 @@ function liveFeed(data){
 			$('.firstInningsProb').fadeOut();
 		else
 			$('.firstInningsProb').fadeIn();
-		addWinProb1Canvas(data);
+		if(team1over<=data.team1.over)
+			if(team2over<data.team2.over)
+				addWinProb1Canvas(data);
 		addWinProbCanvas(data);
 		addPredScoreCanvas(data);
 		$('.team1name').text(team1name);
@@ -282,6 +286,8 @@ function addPlayer4Canvas(data){
 //win Prob canvas things
 function addWinProb1Canvas(data) {
 	//first innings
+	team1over=data.team1.over;
+	team2over=data.team2.over;
 	if(data.team2.over<0.1){
 		addPredScoreCanvas(data);
 		var oddData = winProb1Config.data;
