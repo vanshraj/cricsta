@@ -15,7 +15,7 @@ block content
 							.header Free Plan
 							.description
 								| Simply login for free and get predictions refreshed every minute.
-						a.ui.bottom.attached.button.orange(href="/users/login")
+						a.ui.bottom.attached.button#loginButton(href="/users/login")
 							i.sign.in.icon
 							|       Login
 					.ui.card.raised
@@ -23,14 +23,13 @@ block content
 							.header Monthly Plan
 							.description
 								| Buy the monthly plan and get live predictions during a match for one month.
-						.ui.bottom.attached.button.orange
-							i.paypal.icon
-							|       PayPal
+						button.ui.bottom.attached.button#paypal-button-month
 					.ui.card.raised
 						.content
 							.header Yearly Plan
 							.description
 								| Buy the yearly plan and get live predictions during a match for one year.
-						.ui.bottom.attached.button.orange
-							i.paypal.icon
-							|       PayPal
+						button.ui.bottom.attached.button#paypal-button-year
+block scripts
+	script(src="https://www.paypalobjects.com/api/checkout.js")
+	script(src="/javascripts/payments.js")

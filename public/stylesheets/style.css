@@ -129,7 +129,9 @@ a.ui.orange.label{
 	/*opacity: .4;*/
 }
 .membershipHeader{
-	border-bottom: 2px solid #fd761c;
+	border-bottom: 5px solid #fd761c;
+	border-radius: 5px;
+	padding: 0px 25px 15px;
 }
 .intro h1 span{
   font-family: handwritten, 'Raleway', sans-serif;
@@ -144,6 +146,12 @@ a.ui.orange.label{
 	margin:0% 20%;
 }
 
+#paypal-button-month, #paypal-button-year{
+	padding-bottom:0px;
+}
+#loginButton{
+	padding:22.5px 0px;
+}
 /*css for tablets*/
 @media (max-width: 780px) {
 
