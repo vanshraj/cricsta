@@ -23,9 +23,9 @@ block content
 								tr
 									td #{batsmen.name}
 									td 
-										| #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
+										| #{Math.round(batsmen.runsScored*0.9* 100) / 100} runs
 										.ui.button.blue.mini.inverted.right.floated Back
-									td #{Math.round(batsmen.runsScored*0.9* 100) / 100} runs
+									td #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
 										.ui.button.red.mini.inverted.right.floated Lay
 					thead
 						tr
@@ -35,11 +35,31 @@ block content
 							each batsmen, i in data.team2.batsmen
 								tr
 									td #{batsmen.name}
-									td #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
-										.ui.button.blue.mini.inverted.right.floated Back
 									td #{Math.round(batsmen.runsScored*0.9* 100) / 100} runs
+										.ui.button.blue.mini.inverted.right.floated Back
+									td #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
 										.ui.button.red.mini.inverted.right.floated Lay
 			.column
+				table.ui.selectable.celled.table.orange.unstackable.structured.small
+					thead
+						tr
+							th Team
+							th Best  Scores Backer
+							th Best  Scores Layer
+					tbody
+						tr
+							td #{data.team1.name}
+							td #{Math.round(doc.team1.predScore*0.9* 100) / 100} runs
+								.ui.button.blue.mini.inverted.right.floated Back
+							td #{Math.round(doc.team1.predScore*1.1* 100) / 100} runs
+								.ui.button.red.mini.inverted.right.floated Lay
+					tbody
+						tr
+							td #{data.team2.name}
+							td #{Math.round(doc.team2.predScore*0.9* 100) / 100} runs
+								.ui.button.blue.mini.inverted.right.floated Back
+							td #{Math.round(doc.team2.predScore*1.1* 100) / 100} runs
+								.ui.button.red.mini.inverted.right.floated Lay				
 				table.ui.selectable.celled.table.orange.unstackable.structured.small
 					thead
 						tr
@@ -54,9 +74,9 @@ block content
 							each bowler, i in data.team1.bowlers
 								tr
 									td #{bowler.name}
-									td #{Math.round(bowler.wicketsTaken*1.1* 100) / 100} wickets
-										.ui.button.blue.mini.inverted.right.floated Back
 									td #{Math.round(bowler.wicketsTaken*0.9* 100) / 100} wickets
+										.ui.button.blue.mini.inverted.right.floated Back
+									td #{Math.round(bowler.wicketsTaken*1.1* 100) / 100} wickets
 										.ui.button.red.mini.inverted.right.floated Lay
 					thead
 						tr
@@ -66,7 +86,7 @@ block content
 							each bowler, i in data.team2.bowlers
 								tr
 									td #{bowler.name}
-									td #{Math.round(bowler.wicketsTaken*1.1* 100) / 100} wickets
-										.ui.button.blue.mini.inverted.right.floated Back
 									td #{Math.round(bowler.wicketsTaken*0.9* 100) / 100} wickets
+										.ui.button.blue.mini.inverted.right.floated Back
+									td #{Math.round(bowler.wicketsTaken*1.1* 100) / 100} wickets
 										.ui.button.red.mini.inverted.right.floated Lay

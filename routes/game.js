@@ -8,7 +8,10 @@ router.get('/',function(req, res){
 		if(err) throw err;
 		Player.getPlayerData(match,function(err,data){
 			if(err) throw err;
-			res.render('game/table',{data:data, title:"Game"});
+			Match.getMatchFirstProb(match, function(err,doc){
+				if(err) throw err;
+				res.render('game/table',{ data:data, doc:doc, title:"Game"});
+			});
 		});
 	});
 });

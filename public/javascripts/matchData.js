@@ -521,6 +521,42 @@ window.onload = function() {
 };
 
 
+
+// var team1col='rgba(242,113,28,0.8)';
+// var team2col='rgba(0,0,0,0.8)';
+
+// if(team1name=="IND"||team1name=="SLA"||team1name=="ENG"||team1name=="AFG"||team1name=="India"||team1name=="England"||team1name=="Sri Lanka"||team1name=="Afghanistan"){
+// 	team1col=bluecol;
+// 	if(team2name=="IND"||team2name=="SLA"||team2name=="ENG"||team2name=="AFG"||team2name=="India"||team2name=="England"||team2name=="Sri Lanka"||team2name=="Afghanistan")
+// 		team2col=team2col;
+// 	else if(team2name=="PAK"||team2name=="BAN"||team2name=="RSA"||team2name=="Pakistan"||team2name=="Bangladesh"||team2name=="South Africa")
+// 		team2col=greencol;
+// 	else if(team2name=="AUS"||team2name=="Australia")
+// 		team2col=yellowcol;
+// 	else if(team2name=="NWZ"||team2name=="NZ"||team2name=="New Zealand")
+// 		team2col=team2col;
+// 	else if(team2name=="WI"||team2name=="West Indies"||team2name=="Zimbawe"||team2name=="ZIM")
+// 		team2col=redcol;
+// }
+// else if(team1name=="WI"||team1name=="West Indies"||team1name=="Zimbawe"||team1name=="ZIM"){
+// 	team1col=redcol;
+// 	if(team2name=="IND"||team2name=="SLA"||team2name=="ENG"||team2name=="AFG"||team2name=="India"||team2name=="England"||team2name=="Sri Lanka"||team2name=="Afghanistan")
+// 		team2col=bluecol;
+// 	else if(team2name=="PAK"||team2name=="BAN"||team2name=="RSA"||team2name=="Pakistan"||team2name=="Bangladesh"||team2name=="South Africa")
+// 		team2col=greencol;
+// 	else if(team2name=="AUS"||team2name=="Australia")
+// 		team2col=yellowcol;
+// 	else
+// 		team2col=team2col;
+// }
+// //defining colors of teams
+// var bluecol= 'rgba(0, 128, 255, 0.8)';
+// var greencol= 'rgba(0, 102, 0, 0.8)';
+// var redcol= 'rgba(220,20,60, 0.8)';
+// var yellowcol= 'rgba(252, 209, 22, 0.8)';
+// var nzcol= 'rgba(0, 0, 0, 0.8)';
+
+
 //Making new doughnut model for chart
 Chart.defaults.doughnutLabels = Chart.helpers.clone(Chart.defaults.doughnut);
 

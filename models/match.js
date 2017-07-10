@@ -77,6 +77,12 @@ module.exports.getMatchAllProb = function(match,callback){
 	Match.find(query,'team1.predScore team1.winProb team2.winProb team1.over team2.over team1.name team2.name ').sort({ 'team1.over': 1,'team2.over': 1 }).exec(callback);
 }
 
+module.exports.getMatchFirstProb = function(match,callback){
+	var query = { 'matchId': match[0].matchId };
+	Match.findOne(query,'team1.predScore team2.predScore').sort({'team1.over': 1}).exec(callback);
+}
+
+
 module.exports.getPlayerData = function(match,callback){
 	var query = { 'matchId': match[0].matchId };
 	Player.findOne(query).sort({ date: -1 }).exec(callback);
