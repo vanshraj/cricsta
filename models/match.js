@@ -25,11 +25,13 @@ var PlayerSchema = mongoose.Schema({
 	date:{ type: Date, default: Date.now },
 	team1:{
 		name:{type: String},
+		color:{type: String},
 		batsmen:[ { name:{type:String}, runsScored:{type: Number}, ballsPlayed:{type: Number} } ],
 		bowlers:[ { name:{type:String}, wicketsTaken:{type: Number}, runsConceded:{type: Number} } ]
 	},
 	team2:{
 		name:{type:String},
+		color:{type: String},
 		batsmen:[ { name:{type:String}, runsScored:{type: Number}, ballsPlayed:{type: Number} } ],
 		bowlers:[ { name:{type:String}, wicketsTaken:{type: Number}, runsConceded:{type: Number} } ]
 	}

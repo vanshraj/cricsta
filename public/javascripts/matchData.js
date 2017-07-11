@@ -45,6 +45,17 @@ function ajaxCalls() {
 		});
 }
 
+//declaring colors
+var team1col='rgba(242,113,28,0.8)';
+var team2col='rgba(0,0,0,0.8)';
+
+//defining colors of teams
+var bluecol= 'rgba(0, 128, 255, 0.8)';
+var greencol= 'rgba(0, 102, 0, 0.8)';
+var redcol= 'rgba(220,20,60, 0.8)';
+var yellowcol= 'rgba(252, 209, 22, 0.8)';
+var blackcol= 'rgba(0, 0, 0, 0.8)';
+
 //declare global variable
 var prevWinProb;
 var team1name;
@@ -53,6 +64,8 @@ var team2name;
 var team2score;
 
 function staticFeed(data){
+	team1col = (data.team1.color=='blue'? bluecol : (data.team1.color =='red'? redcol: (data.team1.color =='yellow'? yellowcol: (data.team1.color=='green'? greencol: ( data.team1.color=='black'? blackcol: team1col)))));
+	team2col = (data.team2.color=='blue'? bluecol : (data.team2.color =='red'? redcol: (data.team2.color =='yellow'? yellowcol: (data.team2.color=='green'? greencol: ( data.team2.color=='black'? blackcol: team2col)))));
 	$('.team1namebatsmen').text(data.team1.name + " Batsmen");
 	$('.team1namebowler').text(data.team1.name +" Bowlers");
 	$('.team2namebatsmen').text(data.team2.name+" Batsmen");
@@ -125,6 +138,7 @@ var playerOption={
 							ctx.font = Chart.helpers.fontString(x, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
 							ctx.textAlign = 'center';
 							ctx.textBaseline = 'bottom';
+							ctx.fillStyle= '#FFFFFF';
 
 							this.data.datasets.forEach(function (dataset, i) {
 								var meta = chartInstance.controller.getDatasetMeta(i);
@@ -164,13 +178,15 @@ var playerOption1={
 						ctx.font = Chart.helpers.fontString(x, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
 						ctx.textAlign = 'center';
 						ctx.textBaseline = 'bottom';
-
+						ctx.fillStyle= "#fff";
 						this.data.datasets.forEach(function (dataset, i) {
 							var meta = chartInstance.controller.getDatasetMeta(i);
 							meta.data.forEach(function (bar, index) {
 								var data = dataset.data[index];  
-								if(data!=0)                          
+								if(data!=0){
 									ctx.fillText(data+" wickets", bar._model.x -labelNum, bar._model.y +5);
+
+								}                          
 							});
 						});
 					}
@@ -200,8 +216,8 @@ var batsmenConfig1 = {
 		labels:[],
 		datasets: [{
 			label: "Runs Scored",
-			backgroundColor:'rgba(242,113,28,0.6)',
-			borderColor: 'rgba(242,113,28,0.6)',
+			backgroundColor: team1col,
+			borderColor: team1col,
 			data: [],
 		}]
 	},
@@ -213,8 +229,8 @@ var batsmenConfig2 = {
 		labels:[],
 		datasets: [{
 			label: "Runs Scored",
-			backgroundColor:'rgba(242,113,28,0.6)',
-			borderColor: 'rgba(242,113,28,0.6)',
+			backgroundColor: team2col,
+			borderColor: team2col,
 			data: [],
 		}]
 	},
@@ -226,8 +242,8 @@ var bowlerConfig1 = {
 		labels:[],
 		datasets: [{
 			label:"Wickets Taken",
-			backgroundColor:'rgba(242,113,28,0.6)',
-			borderColor: 'rgba(242,113,28,0.6)',
+			backgroundColor: team1col,
+			borderColor: team1col,
 			data: [],
 		}]
 	},
@@ -239,8 +255,8 @@ var bowlerConfig2 = {
 		labels:[],
 		datasets: [{
 			label:"Wickets Taken",
-			backgroundColor:'rgba(242,113,28,0.6)' ,
-			borderColor: 'rgba(242,113,28,0.6)',
+			backgroundColor:team2col ,
+			borderColor:team2col,
 			data: [],
 		}]
 	},
@@ -327,9 +343,9 @@ var winProb1Config = {
 			lineTension: 1,
 			pointRadius: 2,
 			pointBackgroundColor:'rgba(0,0,0,0)',
-			pointBorderColor:'rgba(242,113,28,0)',
-			backgroundColor:'rgba(242,113,28,0.6)' ,
-			borderColor: 'rgba(242,113,28,0.6)',
+			pointBorderColor:'rgba(0,0,0,0)',
+			backgroundColor:team1col ,
+			borderColor: team1col,
 			fill: false,
 			data: [],
 		}, {
@@ -338,8 +354,8 @@ var winProb1Config = {
 			pointRadius: 2,
 			pointBackgroundColor:'rgba(0,0,0,0)',
 			pointBorderColor:'rgba(0,0,0,0)',
-			backgroundColor: 'rgba(0,0,0,0.6)',
-			borderColor: 'rgba(0,0,0,0.6)',
+			backgroundColor: team2col,
+			borderColor: team2col,
 			fill: false,
 			data: []
 		}]
@@ -427,8 +443,8 @@ var predScoreConfig = {
 			pointRadius: 2,
 			pointBackgroundColor:'rgba(0,0,0,0)',
 			pointBorderColor:'rgba(242,113,28,0)',
-			backgroundColor:'rgba(242,113,28,0.6)' ,
-			borderColor: 'rgba(242,113,28,0.6)',
+			backgroundColor:team1col ,
+			borderColor: team1col,
 			fill: false,
 			data: [],
 		}]
@@ -479,7 +495,7 @@ var winProbConfig = {
 	data: {
 		datasets: [{
 			data: [],
-			backgroundColor: ['rgba(242,113,28,0.8)','rgba(0,0,0,0.8)'],
+			backgroundColor: [team1col,team2col],
 			label: 'Winning Probability'
 		}],
 		labels: [" "," "]
@@ -519,42 +535,6 @@ window.onload = function() {
 	var bowlerCanvas2 = $(".bowlercanvas2");
 	window.bowlerChart2 = new Chart( bowlerCanvas2, bowlerConfig2);
 };
-
-
-
-// var team1col='rgba(242,113,28,0.8)';
-// var team2col='rgba(0,0,0,0.8)';
-
-// if(team1name=="IND"||team1name=="SLA"||team1name=="ENG"||team1name=="AFG"||team1name=="India"||team1name=="England"||team1name=="Sri Lanka"||team1name=="Afghanistan"){
-// 	team1col=bluecol;
-// 	if(team2name=="IND"||team2name=="SLA"||team2name=="ENG"||team2name=="AFG"||team2name=="India"||team2name=="England"||team2name=="Sri Lanka"||team2name=="Afghanistan")
-// 		team2col=team2col;
-// 	else if(team2name=="PAK"||team2name=="BAN"||team2name=="RSA"||team2name=="Pakistan"||team2name=="Bangladesh"||team2name=="South Africa")
-// 		team2col=greencol;
-// 	else if(team2name=="AUS"||team2name=="Australia")
-// 		team2col=yellowcol;
-// 	else if(team2name=="NWZ"||team2name=="NZ"||team2name=="New Zealand")
-// 		team2col=team2col;
-// 	else if(team2name=="WI"||team2name=="West Indies"||team2name=="Zimbawe"||team2name=="ZIM")
-// 		team2col=redcol;
-// }
-// else if(team1name=="WI"||team1name=="West Indies"||team1name=="Zimbawe"||team1name=="ZIM"){
-// 	team1col=redcol;
-// 	if(team2name=="IND"||team2name=="SLA"||team2name=="ENG"||team2name=="AFG"||team2name=="India"||team2name=="England"||team2name=="Sri Lanka"||team2name=="Afghanistan")
-// 		team2col=bluecol;
-// 	else if(team2name=="PAK"||team2name=="BAN"||team2name=="RSA"||team2name=="Pakistan"||team2name=="Bangladesh"||team2name=="South Africa")
-// 		team2col=greencol;
-// 	else if(team2name=="AUS"||team2name=="Australia")
-// 		team2col=yellowcol;
-// 	else
-// 		team2col=team2col;
-// }
-// //defining colors of teams
-// var bluecol= 'rgba(0, 128, 255, 0.8)';
-// var greencol= 'rgba(0, 102, 0, 0.8)';
-// var redcol= 'rgba(220,20,60, 0.8)';
-// var yellowcol= 'rgba(252, 209, 22, 0.8)';
-// var nzcol= 'rgba(0, 0, 0, 0.8)';
 
 
 //Making new doughnut model for chart

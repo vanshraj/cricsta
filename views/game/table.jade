@@ -4,6 +4,32 @@ block content
 	.ui.centered.grid.center.aligned
 			.column.center.aligned
 				h1 #{data.team1.name} Vs #{data.team2.name}
+	if !user
+		.ui.grid.tablet.computer.only
+			.ui.container.eight.wide.centered.column.center.aligned
+				.ui.warning.message
+					i.close.icon
+					.header
+					| Please  
+					span
+						a(style="text-decoration:underline" href="/users/register") register
+					|  or 
+					span
+						a(style="text-decoration:underline" href="/users/login") login
+					|  to play the game.
+				br
+		.ui.mobile.only.grid.center.aligned
+			.ui.container
+				.ui.warning.message(style="font-size:12px")
+					i.close.icon
+					.header
+					| Please  
+					span
+						a(style="text-decoration:underline" href="/users/register") register
+					|  or 
+					span
+						a(style="text-decoration:underline" href="/users/login") login
+					|  to play the game.
 				br
 	.ui.container
 		.ui.equal.width.grid.stackable
