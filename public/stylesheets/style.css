@@ -118,6 +118,17 @@ a.ui.orange.label{
 	/*text-align: center;*/
 	padding-top:5%; 
 }
+.intro.company, .intro.services{
+	color: #1b1c1d;
+	background-color:#fff;
+	justify-content: center;
+	padding-bottom: 10%; 
+	/*text-align: center;*/
+	padding-top:5%; 
+}
+.intro.services p strong{
+	text-transform: uppercase;
+}
 .intro h1{
 	font-weight: 100 !important;
 	margin: 2% 7%;
@@ -127,6 +138,11 @@ a.ui.orange.label{
 	text-transform: uppercase;
 	letter-spacing: 5px;
 	/*opacity: .4;*/
+}
+.intro img{
+	margin-top: 2%;
+	margin-left: 11%;
+	max-width: 70%;	
 }
 .intro h1 span{
   font-family: handwritten, 'Raleway', sans-serif;
@@ -139,9 +155,29 @@ a.ui.orange.label{
 	opacity: .9;
 	justify-content: center;
 	margin:0% 20%;
+	line-height: 2em;
+}
+
+.intro li, .intro ul, .intro p{
+	font-weight: 100 !important;
+	font-size: 18px;
+	letter-spacing: 2px;
+	opacity: .9;
+	justify-content: center;
+	line-height: 2.4em;
+}
+.intro ul, .intro p{
+	margin:0% 12%;
+}
+.intro.company a{
+	color: #F2721C;
 }
 /*css for tablets*/
 @media (max-width: 780px) {
+	.intro img{
+		margin-left: 1%;
+		max-width: 98%;	
+	}
 	.intro h1{
 		/*margin-right: 2%;*/
 		margin: 2% 1%;
@@ -150,9 +186,15 @@ a.ui.orange.label{
 	.intro h1 span{
 		font-size: 30px;
 	}
-	.intro h3{
+	.intro.company h1 {
+		font-size: 16px;
+		letter-spacing: 2px;
+		text-transform: none;
+	}
+	.intro h3, .intro li, .intro ul, .intro p{
 		font-size: 14px;
 		margin: 2% 1%;
+		justify-content: center;
 	}
 	.error404{
 		margin-top: -43px;

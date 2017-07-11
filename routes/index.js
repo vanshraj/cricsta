@@ -15,9 +15,17 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-//about page
-router.get('/about',function(req, res){
+//about pages
+router.get('/about/model',function(req, res){
 	res.render('index/about',{title: 'About'});
+});
+
+router.get('/about/company',function(req, res){
+	res.render('index/company',{title:'About'});
+});
+
+router.get('/services',function(req, res){
+	res.render('index/services',{title:'Services'});
 });
 
 //ajax routes for json response
