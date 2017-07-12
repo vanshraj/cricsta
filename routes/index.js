@@ -17,11 +17,11 @@ router.get('/', function(req, res, next) {
 
 //about pages
 router.get('/about/model',function(req, res){
-	res.render('index/about',{title: 'About'});
+	res.render('index/about',{title: 'About Model'});
 });
 
 router.get('/about/company',function(req, res){
-	res.render('index/company',{title:'About'});
+	res.render('index/company',{title:'About Company'});
 });
 
 router.get('/services',function(req, res){

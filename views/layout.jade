@@ -64,10 +64,12 @@ html
 				img(src="/images/logo.png" style="width:10.8em")
 			a(class=(title==='Blog'? 'active item':'item'),href='/blog')
 				| Blog
-			a(class=(title==='About'? 'active item':'item'),href='/about/company')
+			a(class=(title==='About Company'? 'active item':'item'),href='/about/company')
 				| About Company
-			a(class=(title==='About'? 'active item':'item'),href='/about/model')
+			a(class=(title==='About Model'? 'active item':'item'),href='/about/model')
 				| About Model
+			a(class=(title==='Services'? 'active item':'item'),href='/services')
+				| Services
 			if user
 				if user.type == 'admin'
 					a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')
