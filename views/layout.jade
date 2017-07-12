@@ -14,8 +14,8 @@ html
 		link(rel="stylesheet", href='/stylesheets/style.css')
 	body
 		.ui.small.menu.inverted.fixed.computer.tablet.only.grid
-			a.item(href='/')
-				img(src="/images/logo.png" style="width:10.8em")
+			a.item(href='/', style="background:white")
+				img(src="/images/logo.png" style="width:7.8em")
 			a(class=(title==='Blog'? 'active item':'item'),href='/blog')
 				| Blog
 			.ui.simple.dropdown.inverted.item
@@ -118,7 +118,7 @@ html
 							i.twitter.icon
 							| Twitter/quant_think
 				.ui.inverted.section.divider
-				img.ui.centered.small.image(src='/images/logo.png')
+				img.ui.centered.small.image(style="background:white", src='/images/logo.png')
 				.ui.horizontal.inverted.small.divided.link.list
 					p.item &copy; 2017, All Rights Reserved
 	script( src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" )
