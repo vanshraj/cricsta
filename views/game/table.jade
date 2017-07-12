@@ -34,85 +34,111 @@ block content
 	.ui.container
 		.ui.equal.width.grid.stackable
 			.column
-				table.ui.selectable.celled.table.orange.unstackable.structured.small
-					thead
-						tr
-							th Batsmen
-							th Best Runs Backer 
-							th Best Runs Layer 
-					thead
-						tr
-							th(colspan="3") #{data.team1.name} Batsmen
-					tbody
-						if data.team1.batsmen
-							each batsmen, i in data.team1.batsmen
-								tr
-									td #{batsmen.name}
-									td 
-										| #{Math.round(batsmen.runsScored*0.9* 100) / 100} runs
-										.ui.button.red.mini.inverted.right.floated Lay
-									td #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
-										.ui.button.blue.mini.inverted.right.floated Back
-					thead
-						tr
-							th(colspan="3") #{data.team2.name} Batsmen
-					tbody
-						if data.team2.batsmen
-							each batsmen, i in data.team2.batsmen
-								tr
-									td #{batsmen.name}
-									td #{Math.round(batsmen.runsScored*0.9* 100) / 100} runs
-										.ui.button.red.mini.inverted.right.floated Lay
-									td #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
-										.ui.button.blue.mini.inverted.right.floated Back
+				.ui.top.attached.tabular.menu
+					a.item.menuTabs.active(data-tab='first') #{data.team1.name} Batsmen
+					a.item.menuTabs(data-tab='second') #{data.team2.name} Batsmen
+					a.item.menuTabs(data-tab='third') #{data.team1.name} Bowlers
+					a.item.menuTabs(data-tab='fourth') #{data.team2.name} Bowlers
+				.ui.bottom.attached.tab.segment.active(data-tab='first')
+					table.ui.selectable.celled.table.orange.unstackable.structured.small
+						thead
+							tr
+								th Batsmen
+								th Best Runs Buyer 
+								th Best Runs Seller
+						tbody
+							if data.team1.batsmen
+								each batsmen, i in data.team1.batsmen
+									tr
+										td
+											img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
+											| &nbsp &nbsp #{batsmen.name}
+											img(src="/images/bat.png" style="float:right; max-width:40px")
+										td 
+											| #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
+											.ui.button.green.mini.inverted.right.floated Buy
+										td #{Math.round(batsmen.runsScored*0.9*100) / 100} runs
+											.ui.button.red.mini.inverted.right.floated Sell
+				.ui.bottom.attached.tab.segment(data-tab='second')
+					table.ui.selectable.celled.table.orange.unstackable.structured.small
+						thead
+							tr
+								th Batsmen
+								th Best Runs Buyer 
+								th Best Runs Seller 
+						tbody
+							if data.team2.batsmen
+								each batsmen, i in data.team2.batsmen
+									tr
+										td
+											img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
+											| &nbsp &nbsp #{batsmen.name}
+											img(src="/images/bat.png" style="float:right; max-width:40px")
+										td #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
+											.ui.button.green.mini.inverted.right.floated Buy
+										td #{Math.round(batsmen.runsScored*0.9* 100) / 100} runs
+											.ui.button.red.mini.inverted.right.floated Sell
+				.ui.bottom.attached.tab.segment(data-tab='third')
+					table.ui.selectable.celled.table.orange.unstackable.structured.small
+						thead
+							tr
+								th Bowlers
+								th Best  Wickets Buyer
+								th Best  Wickets Seller
+						tbody
+							if data.team1.bowlers
+								each bowler, i in data.team1.bowlers
+									tr
+										td
+											img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
+											| &nbsp &nbsp #{bowler.name}
+											img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
+										td #{Math.round(bowler.wicketsTaken*1.1* 100) / 100} wickets
+											.ui.button.green.mini.inverted.right.floated Buy
+										td #{Math.round(bowler.wicketsTaken*0.9* 100) / 100} wickets
+											.ui.button.red.mini.inverted.right.floated Sell
+				.ui.bottom.attached.tab.segment(data-tab='fourth')
+					table.ui.selectable.celled.table.orange.unstackable.structured.small
+						thead
+							tr
+								th Bowlers
+								th Best  Wickets Buyer
+								th Best  Wickets Seller
+						tbody
+							if data.team2.bowlers
+								each bowler, i in data.team2.bowlers
+									tr
+										td
+											img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
+											| &nbsp &nbsp #{bowler.name}
+											img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
+											| &nbsp &nbsp
+										td #{Math.round(bowler.wicketsTaken*1.1* 100) / 100} wickets
+											.ui.button.green.mini.inverted.right.floated Buy
+										td #{Math.round(bowler.wicketsTaken*0.9* 100) / 100} wickets
+											.ui.button.red.mini.inverted.right.floated Sell
 			.column
 				table.ui.selectable.celled.table.orange.unstackable.structured.small
 					thead
 						tr
 							th Team
-							th Best  Scores Backer
-							th Best  Scores Layer
+							th Best  Scores Buyer
+							th Best  Scores Seller
 					tbody
 						tr
-							td #{data.team1.name}
-							td #{Math.round(doc.team1.predScore*0.9* 100) / 100} runs
-								.ui.button.red.mini.inverted.right.floated Lay
+							td
+								img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
+								| &nbsp &nbsp #{data.team1.name}
 							td #{Math.round(doc.team1.predScore*1.1* 100) / 100} runs
-								.ui.button.blue.mini.inverted.right.floated Back
+								.ui.button.green.mini.inverted.right.floated Buy
+							td #{Math.round(doc.team1.predScore*0.9* 100) / 100} runs
+								.ui.button.red.mini.inverted.right.floated Sell
 					tbody
 						tr
-							td #{data.team2.name}
-							td #{Math.round(doc.team2.predScore*0.9* 100) / 100} runs
-								.ui.button.red.mini.inverted.right.floated Lay
+							td
+								img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
+								| &nbsp &nbsp  #{data.team2.name}
 							td #{Math.round(doc.team2.predScore*1.1* 100) / 100} runs
-								.ui.button.blue.mini.inverted.right.floated Back				
-				table.ui.selectable.celled.table.orange.unstackable.structured.small
-					thead
-						tr
-							th Bowlers
-							th Best  Wickets Backer
-							th Best  Wickets Layer
-					thead
-						tr
-							th(colspan="3") #{data.team1.name} Bowlers
-					tbody
-						if data.team1.bowlers
-							each bowler, i in data.team1.bowlers
-								tr
-									td #{bowler.name}
-									td #{Math.round(bowler.wicketsTaken*0.9* 100) / 100} wickets
-										.ui.button.red.mini.inverted.right.floated Lay
-									td #{Math.round(bowler.wicketsTaken*1.1* 100) / 100} wickets
-										.ui.button.blue.mini.inverted.right.floated Back
-					thead
-						tr
-							th(colspan="3") #{data.team2.name} Bowlers
-					tbody					
-						if data.team2.bowlers
-							each bowler, i in data.team2.bowlers
-								tr
-									td #{bowler.name}
-									td #{Math.round(bowler.wicketsTaken*0.9* 100) / 100} wickets
-										.ui.button.red.mini.inverted.right.floated Lay
-									td #{Math.round(bowler.wicketsTaken*1.1* 100) / 100} wickets
-										.ui.button.blue.mini.inverted.right.floated Back
+								.ui.button.green.mini.inverted.right.floated Buy
+							td #{Math.round(doc.team2.predScore*0.9* 100) / 100} runs
+								.ui.button.red.mini.inverted.right.floated Sell
