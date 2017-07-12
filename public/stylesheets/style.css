@@ -141,8 +141,8 @@ a.ui.orange.label{
 }
 .intro img{
 	margin-top: 2%;
-	margin-left: 20%;
-	max-width: 60%;	
+	margin-left: 25%;
+	max-width: 50%;	
 }
 .intro h1 span{
   font-family: handwritten, 'Raleway', sans-serif;
@@ -160,15 +160,16 @@ a.ui.orange.label{
 
 .intro li, .intro ul, .intro p{
 	font-weight: 100 !important;
-	font-size: 18px;
-	letter-spacing: 2px;
+	font-size: 15px;
+	letter-spacing: 1px;
 	opacity: .9;
 	justify-content: center;
-	line-height: 2.4em;
+	line-height: 2em;
 }
 .intro ul, .intro p{
 	margin:0% 12%;
 }
+
 .intro.company a{
 	color: #F2721C;
 }

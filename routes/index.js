@@ -4,9 +4,6 @@ var Match = require('../models/match');
 var Post = require('../models/post');
 var Player = require('../models/match');
 
-router.get('*', function(req, res, next) {
-	res.redirect('http://thinkquant.in/');
-});
 // GET home page.
 router.get('/', function(req, res, next) {
 	Post.getNFeaturedPosts(2,function(err, featuredPosts){
