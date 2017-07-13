@@ -69,18 +69,18 @@ block content
 							td
 								img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
 								| &nbsp &nbsp #{data.team1.name}
-							td #{Math.round(doc.team1.predScore*1.1* 100) / 100} runs
+							td #{Math.round(doc.team1.predScore*1.05* 100) / 100} runs
 								.ui.button.green.mini.inverted.right.floated Buy
-							td #{Math.round(doc.team1.predScore*0.9* 100) / 100} runs
+							td #{Math.round(doc.team1.predScore*0.95* 100) / 100} runs
 								.ui.button.red.mini.inverted.right.floated Sell
 					tbody
 						tr
 							td
 								img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
 								| &nbsp &nbsp  #{data.team2.name}
-							td #{Math.round(doc.team2.predScore*1.1* 100) / 100} runs
+							td #{Math.round(doc.team2.predScore*1.05* 100) / 100} runs
 								.ui.button.green.mini.inverted.right.floated Buy
-							td #{Math.round(doc.team2.predScore*0.9* 100) / 100} runs
+							td #{Math.round(doc.team2.predScore*0.95* 100) / 100} runs
 								.ui.button.red.mini.inverted.right.floated Sell
 			.column
 				.ui.top.attached.pointing.menu.stackable
@@ -104,9 +104,9 @@ block content
 											| &nbsp &nbsp #{batsmen.name}
 											img(src="/images/bat.png" style="float:right; max-width:35px")
 										td 
-											| #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
+											| #{Math.round(batsmen.runsScored*1.05* 100) / 100} runs
 											.ui.button.green.mini.inverted.right.floated Buy
-										td #{Math.round(batsmen.runsScored*0.9*100) / 100} runs
+										td #{Math.round(batsmen.runsScored*0.95*100) / 100} runs
 											.ui.button.red.mini.inverted.right.floated Sell
 				.ui.bottom.attached.tab.segment(data-tab='second')
 					table.ui.selectable.celled.table.orange.unstackable.structured.small
@@ -123,9 +123,9 @@ block content
 											img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
 											| &nbsp &nbsp #{batsmen.name}
 											img(src="/images/bat.png" style="float:right; max-width:35px")
-										td #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
+										td #{Math.round(batsmen.runsScored*1.05* 100) / 100} runs
 											.ui.button.green.mini.inverted.right.floated Buy
-										td #{Math.round(batsmen.runsScored*0.9* 100) / 100} runs
+										td #{Math.round(batsmen.runsScored*0.95* 100) / 100} runs
 											.ui.button.red.mini.inverted.right.floated Sell
 				.ui.bottom.attached.tab.segment(data-tab='third')
 					table.ui.selectable.celled.table.orange.unstackable.structured.small
@@ -142,9 +142,9 @@ block content
 											img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
 											| &nbsp &nbsp #{bowler.name}
 											img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
-										td #{Math.round(bowler.wicketsTaken*1.1* 100) / 100} wickets
+										td #{Math.round(bowler.wicketsTaken*1.05* 100) / 100} wickets
 											.ui.button.green.mini.inverted.right.floated Buy
-										td #{Math.round(bowler.wicketsTaken*0.9* 100) / 100} wickets
+										td #{Math.round(bowler.wicketsTaken*0.95* 100) / 100} wickets
 											.ui.button.red.mini.inverted.right.floated Sell
 				.ui.bottom.attached.tab.segment(data-tab='fourth')
 					table.ui.selectable.celled.table.orange.unstackable.structured.small
@@ -162,7 +162,7 @@ block content
 											| &nbsp &nbsp #{bowler.name}
 											img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
 											| &nbsp &nbsp
-										td #{Math.round(bowler.wicketsTaken*1.1* 100) / 100} wickets
+										td #{Math.round(bowler.wicketsTaken*1.05* 100) / 100} wickets
 											.ui.button.green.mini.inverted.right.floated Buy
-										td #{Math.round(bowler.wicketsTaken*0.9* 100) / 100} wickets
+										td #{Math.round(bowler.wicketsTaken*0.95* 100) / 100} wickets
 											.ui.button.red.mini.inverted.right.floated Sell
