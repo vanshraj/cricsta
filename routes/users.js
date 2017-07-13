@@ -101,9 +101,16 @@ router.get('/logout',isAuthenticated,function(req,res){
 
 //acount route
 router.get('/account',isAuthenticated,function(req,res){
-	res.render('user/account',{
-		title:'Account'
-	})
+	if(req.user.type=='admin'){
+		res.render('user/admin',{
+			title:'Account'
+		});
+	}
+	else{
+		res.render('user/account',{
+			title:'Account'
+		});
+	}
 });
 
 function isAuthenticated(req, res, next) {
