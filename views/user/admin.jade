@@ -1,11 +1,17 @@
 extends ../layout
 
 block content
-	a(href="/admin/start")
-		button.btn.primary Start
-	a(href="/admin/live")
-		button.btn.primary Live
-	a(href="/admin/stop")
-		button.btn.primary Stop
-	a(href="/admin/prepare")
-		button.btn.primary Prepare
+	.ui.container(style="margin:5%")
+		.ui.grid.equal.width
+			.column
+				a(href="/admin/prepare")
+					.ui.button.primary Prepare
+			.column
+				a(href="/admin/start")
+					.ui.button.green Start
+			.column
+				a(href="/admin/live")
+					.ui.button.orange Live
+			.column
+				a(href="/admin/stop")
+					.ui.button.red Stop
