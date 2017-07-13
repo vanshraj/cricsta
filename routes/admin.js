@@ -1,28 +1,30 @@
 var express = require('express');
 var router = express.Router();
+var kill = require('tree-kill');
 
-router.get('/start',function(req, res, next){
+var child;
+
+router.get('/start',isAdmin, function(req, res, next){
 	// res.send("start");
 	var exec = require('child_process').exec; 
-	var child = exec('java -jar ../Simulation/simulation.jar',function (error, stdout, stderr){ 
-	console.log('Output -> ' + stdout); 
+	child = exec('cd ../Simulation && java -jar Simulation.jar',function (error, stdout, stderr){ 
+	console.log('Output -> ' + stdout);
 	if(error !== null){
-		console.log("Error -> "+error); } 
+		console.log("Error -> "+error); 
+		res.send("error occured");
+		} 
 	});
+	res.redirect('/users/account');
 	module.exports = child; 
 });
 
-router.get('/stop',function(req, res, next){
-	var exec = require('child_process').exec; 
-	var child = exec('',function (error, stdout, stderr){ 
-	console.log('Output -> ' + stdout); 
-	if(error !== null){
-		console.log("Error -> "+error); } 
-	});
+router.get('/stop',isAdmin, function(req, res, next){
+	kill(child.pid);
+	res.redirect('/users/account');
 	module.exports = child; 	
 });
 
-router.get('/live',function(req, res, next){
+router.get('/live',isAdmin, function(req, res, next){
 	var exec = require('child_process').exec; 
 	var child = exec('python ../Simulation/dump_live.py',function (error, stdout, stderr){ 
 	console.log('Output -> ' + stdout); 
@@ -32,7 +34,7 @@ router.get('/live',function(req, res, next){
 	module.exports = child; 
 });
 
-router.get('/prepare',function(req, res, next){
+router.get('/prepare',isAdmin, function(req, res, next){
 	var exec = require('child_process').exec; 
 	var child = exec('java -jar ../Simulation/Prepare.jar',function (error, stdout, stderr){ 
 	console.log('Output -> ' + stdout); 
