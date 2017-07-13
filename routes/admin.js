@@ -7,13 +7,13 @@ router.get('/start',isAdmin, function(req, res, next){
 	if(childpid==""){
 		var exec = require('child_process').exec; 
 		var child = exec('cd ../Simulation && java -jar Simulation.jar',function (error, stdout, stderr){ 
-		childpid=child.pid;
 		console.log('Output -> ' + stdout);
 		if(error !== null){
 			console.log("Error -> "+error); 
 			res.send("error occured");
 			} 
 		});
+		childpid=child.pid;
 		res.redirect('/users/account');
 	}else{
 		req.flash('error','Already running simulation stop first');
