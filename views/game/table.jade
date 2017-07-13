@@ -34,6 +34,55 @@ block content
 	.ui.container
 		.ui.equal.width.grid.stackable
 			.column
+				.ui.card.orange(style="width:100%")
+					.content
+						.left.floated.header Account Details
+						.right.floated.author
+							img.ui.avatar.image(src='/images/matt.jpg')
+							|  Vanshaj Behl
+						.left.floated.meta(style="clear:both;")
+							span.category Virtual Money
+						.description
+							table.ui.very.basic.table
+								tbody
+									tr
+										td Balance Points
+										td(colspan="2") 1000 points
+									tr
+										td Stocks
+										td(colspan="2") 150 points
+									tr
+										td Account Value
+										td(colspan="2") 1150 points
+									tr
+										td.positive Profit/Loss
+										td.positive(colspan="2") 15 points
+				br
+				table.ui.selectable.celled.table.orange.unstackable.structured.small
+					thead
+						tr
+							th Team
+							th Best  Scores Buyer
+							th Best  Scores Seller
+					tbody
+						tr
+							td
+								img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
+								| &nbsp &nbsp #{data.team1.name}
+							td #{Math.round(doc.team1.predScore*1.1* 100) / 100} runs
+								.ui.button.green.mini.inverted.right.floated Buy
+							td #{Math.round(doc.team1.predScore*0.9* 100) / 100} runs
+								.ui.button.red.mini.inverted.right.floated Sell
+					tbody
+						tr
+							td
+								img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
+								| &nbsp &nbsp  #{data.team2.name}
+							td #{Math.round(doc.team2.predScore*1.1* 100) / 100} runs
+								.ui.button.green.mini.inverted.right.floated Buy
+							td #{Math.round(doc.team2.predScore*0.9* 100) / 100} runs
+								.ui.button.red.mini.inverted.right.floated Sell
+			.column
 				.ui.top.attached.tabular.menu
 					a.item.menuTabs.active(data-tab='first') #{data.team1.name} Batsmen
 					a.item.menuTabs(data-tab='second') #{data.team2.name} Batsmen
@@ -53,7 +102,7 @@ block content
 										td
 											img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
 											| &nbsp &nbsp #{batsmen.name}
-											img(src="/images/bat.png" style="float:right; max-width:40px")
+											img(src="/images/bat.png" style="float:right; max-width:35px")
 										td 
 											| #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
 											.ui.button.green.mini.inverted.right.floated Buy
@@ -73,7 +122,7 @@ block content
 										td
 											img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
 											| &nbsp &nbsp #{batsmen.name}
-											img(src="/images/bat.png" style="float:right; max-width:40px")
+											img(src="/images/bat.png" style="float:right; max-width:35px")
 										td #{Math.round(batsmen.runsScored*1.1* 100) / 100} runs
 											.ui.button.green.mini.inverted.right.floated Buy
 										td #{Math.round(batsmen.runsScored*0.9* 100) / 100} runs
@@ -117,28 +166,3 @@ block content
 											.ui.button.green.mini.inverted.right.floated Buy
 										td #{Math.round(bowler.wicketsTaken*0.9* 100) / 100} wickets
 											.ui.button.red.mini.inverted.right.floated Sell
-			.column
-				table.ui.selectable.celled.table.orange.unstackable.structured.small
-					thead
-						tr
-							th Team
-							th Best  Scores Buyer
-							th Best  Scores Seller
-					tbody
-						tr
-							td
-								img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
-								| &nbsp &nbsp #{data.team1.name}
-							td #{Math.round(doc.team1.predScore*1.1* 100) / 100} runs
-								.ui.button.green.mini.inverted.right.floated Buy
-							td #{Math.round(doc.team1.predScore*0.9* 100) / 100} runs
-								.ui.button.red.mini.inverted.right.floated Sell
-					tbody
-						tr
-							td
-								img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
-								| &nbsp &nbsp  #{data.team2.name}
-							td #{Math.round(doc.team2.predScore*1.1* 100) / 100} runs
-								.ui.button.green.mini.inverted.right.floated Buy
-							td #{Math.round(doc.team2.predScore*0.9* 100) / 100} runs
-								.ui.button.red.mini.inverted.right.floated Sell
