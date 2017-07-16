@@ -1,14 +1,11 @@
 extends ../layout
 
 block content
-	.ui.container(style="margin:5%")
-		.ui.grid.equal.width
-			.column
-				a(href="/admin/prepare")
-					.ui.button.primary Prepare
-			.column
-				a(href="/admin/start")
-					.ui.button.green Start
-			.column
-				a(href="/admin/stop")
-					.ui.button.red Stop
+	.ui.container
+		.ui.container(style="margin:5%")
+			.ui.grid.centered.center.aligned
+				.ten.wide.column
+					.five.ui.buttons
+						a.ui.button.primary(href="/admin/prepare") Prepare
+						a.ui.button.green(href="/admin/start") Start
+						a.ui.button.red(href="/admin/stop") Stop
