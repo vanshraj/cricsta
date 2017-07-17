@@ -26,6 +26,8 @@ html
 					a.item(href="/about/model") About Model
 			a(class=(title==='Services'? 'active item':'item'),href='/services')
 				| Services
+			a(class=(title==='Game'? 'active item':'item'),href='/game')
+				| Game
 			if user
 				if user.type == 'admin'
 					a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')
@@ -70,6 +72,8 @@ html
 				| About Model
 			a(class=(title==='Services'? 'active item':'item'),href='/services')
 				| Services
+			a(class=(title==='Game'? 'active item':'item'),href='/game')
+				| Game
 			if user
 				if user.type == 'admin'
 					a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')

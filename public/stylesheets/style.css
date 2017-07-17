@@ -173,6 +173,7 @@ a.ui.orange.label{
 .intro.company a{
 	color: #F2721C;
 }
+
 /*css for tablets*/
 @media (max-width: 780px) {
 	.intro img{
@@ -224,3 +225,5 @@ a.ui.orange.label{
 }
 
 /*css for mobiles*/
+
+.ui.mini.modal>.header:not(.ui){font-size:1.3em}@media only screen and (max-width:767px){.ui.mini.modal{width:95%;margin:0 0 0 -47.5%}}@media only screen and (min-width:768px){.ui.mini.modal{width:35.2%;margin:0 0 0 -17.6%}}@media only screen and (min-width:992px){.ui.mini.modal{width:340px;margin:0 0 0 -170px}}@media only screen and (min-width:1200px){.ui.mini.modal{width:360px;margin:0 0 0 -180px}}@media only screen and (min-width:1920px){.ui.mini.modal{width:380px;margin:0 0 0 -190px}}

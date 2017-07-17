@@ -23,23 +23,17 @@ var MatchSchema = mongoose.Schema({
 var PlayerSchema = mongoose.Schema({
 	matchId: { type: String},
 	date:{ type: Date, default: Date.now },
-	team1: { 
-		player1: 
-		{ 
-			name:{type: String}, 
-			type:{type: String}, 
-			runsScored:{type: Number}, 
-			ballsPlayed:{type: Number} 
-		} 
+	team1:{
+		name:{type: String},
+		color:{type: String},
+		batsmen:[ { name:{type:String}, runsScored:{type: Number}, ballsPlayed:{type: Number} } ],
+		bowlers:[ { name:{type:String}, wicketsTaken:{type: Number}, runsConceded:{type: Number} } ]
 	},
-	team2: { 
-		player1: 
-		{ 
-			name:{type: String}, 
-			type:{type: String}, 
-			runsScored:{type: Number}, 
-			ballsPlayed:{type: Number} 
-		} 
+	team2:{
+		name:{type:String},
+		color:{type: String},
+		batsmen:[ { name:{type:String}, runsScored:{type: Number}, ballsPlayed:{type: Number} } ],
+		bowlers:[ { name:{type:String}, wicketsTaken:{type: Number}, runsConceded:{type: Number} } ]
 	}
 });
 
@@ -84,6 +78,12 @@ module.exports.getMatchAllProb = function(match,callback){
 	var query = { 'matchId': match[0].matchId };
 	Match.find(query,'team1.predScore team1.winProb team2.winProb team1.over team2.over team1.name team2.name ').sort({ 'team1.over': 1,'team2.over': 1 }).exec(callback);
 }
+
+module.exports.getMatchFirstProb = function(match,callback){
+	var query = { 'matchId': match[0].matchId };
+	Match.findOne(query,'team1.predScore team2.predScore').sort({'team1.over': 1}).exec(callback);
+}
+
 
 module.exports.getPlayerData = function(match,callback){
 	var query = { 'matchId': match[0].matchId };
