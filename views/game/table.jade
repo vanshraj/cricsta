@@ -112,7 +112,10 @@ block content
 											td
 												img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
-												img(src="/images/bat.png" style="float:right; max-width:25px")
+												if (batsmen.keeper)
+													img(src="/images/keeper.png" style="float:right; max-width:25px")
+												else
+													img(src="/images/bat.png" style="float:right; max-width:25px")
 											td 
 												.ui.button.green.mini.inverted.left.floated.buyButton Buy
 												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored*1.05* 100) / 100} points
@@ -148,7 +151,10 @@ block content
 											td
 												img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
-												img(src="/images/bat.png" style="float:right; max-width:25px")
+												if (batsmen.keeper)
+													img(src="/images/keeper.png" style="float:right; max-width:25px")
+												else
+													img(src="/images/bat.png" style="float:right; max-width:25px")
 											td 
 												.ui.button.green.mini.inverted.left.floated.buyButton Buy
 												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored*1.05* 100) / 100} points
