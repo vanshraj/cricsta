@@ -3,9 +3,9 @@ $('.buyButton').click(function(){
   var content = $(this).parent().parent().children(':first-child').html();
   var points = $(this).next().text();
   points =points.slice(0, -7);
-  var quantity =$('input[name="b-quantity"]').val();
+  $('input[name="b-quantity"]').val(1);
   $('.mini.buying.modal .header').html(content);
-  $('.mini.buying.modal .description1').text('Total Points Needed : '+ (Math.round(points*quantity* 100) / 100) );
+  $('.mini.buying.modal .description1').text('Total Points Needed : '+ (Math.round(points* 100) / 100) );
   $('.mini.buying.modal .bPrice input').val(points);
   $('.mini.buying.modal')
   .modal('show')
@@ -23,9 +23,9 @@ $('.sellButton').click(function(){
   var content = $(this).parent().parent().children(':first-child').html();
   var points = $(this).prev().text();
   points =points.slice(0, -7);
-  var quantity =$('input[name="s-quantity"]').val();
+  $('input[name="s-quantity"]').val(1);
   $('.mini.selling.modal .header').html(content);
-  $('.mini.selling.modal .description1').text('Total Points Needed : '+ (Math.round(points*quantity* 100) / 100) );
+  $('.mini.selling.modal .description1').text('Total Points Needed : '+ (Math.round(points* 100) / 100) );
   $('.mini.selling.modal .sPrice input').val(points);
   $('.modal.selling')
   .modal('show')

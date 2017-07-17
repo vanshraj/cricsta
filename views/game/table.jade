@@ -112,7 +112,7 @@ block content
 											td
 												img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
-												img(src="/images/bat.png" style="float:right; max-width:35px")
+												img(src="/images/bat.png" style="float:right; max-width:25px")
 											td 
 												.ui.button.green.mini.inverted.left.floated.buyButton Buy
 												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored*1.05* 100) / 100} points
@@ -148,7 +148,7 @@ block content
 											td
 												img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
-												img(src="/images/bat.png" style="float:right; max-width:35px")
+												img(src="/images/bat.png" style="float:right; max-width:25px")
 											td 
 												.ui.button.green.mini.inverted.left.floated.buyButton Buy
 												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored*1.05* 100) / 100} points
@@ -172,7 +172,6 @@ block content
 												.ui.button.red.mini.inverted.right.floated.sellButton Sell
 
 	.ui.mini.buying.modal
-		i.close.icon
 		.header
 		.content
 			.description
@@ -202,14 +201,14 @@ block content
 			.ui.divider
 			.description1
 		.actions
-			.ui.negative.button
+			.ui.negative.left.labeled.icon.button
 				| Cancel
+				i.remove.icon
 			.ui.positive.right.labeled.icon.button
 				| Buy
 				i.checkmark.icon
 
 	.ui.mini.selling.modal
-		i.close.icon
 		.header
 		.content
 			.description
@@ -239,8 +238,9 @@ block content
 			.ui.divider
 			.description1
 		.actions
-			.ui.negative.button
+			.ui.negative.left.labeled.icon.button
 				| Cancel
+				i.remove.icon
 			.ui.positive.right.labeled.icon.button
 				| Sell
 				i.checkmark.icon
