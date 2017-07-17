@@ -114,11 +114,12 @@ block content
 												| &nbsp #{batsmen.name}
 												img(src="/images/bat.png" style="float:right; max-width:35px")
 											td 
-												.ui.button.green.mini.inverted.left.floated Buy
-												p.right.floated(style="display:block; float:right;") #{Math.round(batsmen.runsScored*1.05* 100) / 100} points
+												.ui.button.green.mini.inverted.left.floated.buyButton Buy
+												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored*1.05* 100) / 100} points
 												
-											td #{Math.round(batsmen.runsScored*0.95*100) / 100} points
-												.ui.button.red.mini.inverted.right.floated Sell
+											td 
+												p(style="display:block; float:left;") #{Math.round(batsmen.runsScored*0.95*100) / 100} points
+												.ui.button.red.mini.inverted.right.floated.sellButton Sell
 									else
 										tr
 											td
@@ -126,11 +127,12 @@ block content
 												| &nbsp #{batsmen.name}
 												img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
 											td 
-												.ui.button.green.mini.inverted.left.floated Buy
-												p.right.floated(style="display:block; float:right;") #{Math.round(batsmen.wicketsTaken*20*1.05* 100) / 100} points
+												.ui.button.green.mini.inverted.left.floated.buyButton Buy
+												p(style="display:block; float:right;") #{Math.round(batsmen.wicketsTaken*20*1.05* 100) / 100} points
 
-											td #{Math.round(batsmen.wicketsTaken*20*0.95* 100) / 100} points
-												.ui.button.red.mini.inverted.right.floated Sell
+											td 
+												p(style="display:block; float:left;") #{Math.round(batsmen.wicketsTaken*20*0.95* 100) / 100} points
+												.ui.button.red.mini.inverted.right.floated.sellButton Sell
 				.ui.bottom.attached.tab.segment(data-tab='second')
 					table.ui.selectable.celled.table.orange.unstackable.structured.small
 						thead
@@ -148,11 +150,12 @@ block content
 												| &nbsp #{batsmen.name}
 												img(src="/images/bat.png" style="float:right; max-width:35px")
 											td 
-												.ui.button.green.mini.inverted.left.floated Buy
-												p.right.floated(style="display:block; float:right;") #{Math.round(batsmen.runsScored*1.05* 100) / 100} points
+												.ui.button.green.mini.inverted.left.floated.buyButton Buy
+												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored*1.05* 100) / 100} points
 												
-											td #{Math.round(batsmen.runsScored*0.95* 100) / 100} points
-												.ui.button.red.mini.inverted.right.floated Sell
+											td 
+												p(style="display:block; float:left;") #{Math.round(batsmen.runsScored*0.95* 100) / 100} points
+												.ui.button.red.mini.inverted.right.floated.sellButton Sell
 									else
 										tr
 											td
@@ -161,8 +164,85 @@ block content
 												img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
 												| &nbsp
 											td 
-												.ui.button.green.mini.inverted.left.floated Buy
-												p.right.floated(style="display:block; float:right;") #{Math.round(batsmen.wicketsTaken*20*1.05* 100) / 100} points
+												.ui.button.green.mini.inverted.left.floated.buyButton Buy
+												p(style="display:block; float:right;") #{Math.round(batsmen.wicketsTaken*20*1.05* 100) / 100} points
 												
-											td #{Math.round(batsmen.wicketsTaken*20*0.95* 100) / 100} points
-												.ui.button.red.mini.inverted.right.floated Sell
+											td 
+												p(style="display:block; float:left;") #{Math.round(batsmen.wicketsTaken*20*0.95* 100) / 100} points
+												.ui.button.red.mini.inverted.right.floated.sellButton Sell
+
+	.ui.mini.buying.modal
+		i.close.icon
+		.header
+		.content
+			.description
+				| Buying Lots
+			.ui.divider
+			form.ui.form
+				.fields
+					.field
+						label &nbsp
+						input.ui.button.mini.primary.minusButton(type='button',field='b-quantity', value='-')
+					.field
+						label Lots
+						input(type='number', name='b-quantity',value='1' )
+					.field
+						label &nbsp
+						input.ui.button.mini.primary.plusButton(type='button',field='b-quantity', value='+')
+				.fields
+					.field
+						label &nbsp
+						input.ui.button.mini.primary.minusButton(type='button',field='b-price', value='-')
+					.field.bPrice
+						label Points
+						input(type='number', name='b-price')
+					.field
+						label &nbsp
+						input.ui.button.mini.primary.plusButton(type='button',field='b-price', value='+')
+			.ui.divider
+			.description1
+		.actions
+			.ui.negative.button
+				| Cancel
+			.ui.positive.right.labeled.icon.button
+				| Buy
+				i.checkmark.icon
+
+	.ui.mini.selling.modal
+		i.close.icon
+		.header
+		.content
+			.description
+				| Selling Lots
+			.ui.divider
+			form.ui.form
+				.fields
+					.field
+						label &nbsp
+						input.ui.button.mini.primary.minusButton(type='button',field='s-quantity', value='-')
+					.field
+						label Lots
+						input(type='number', name='s-quantity', value='1')
+					.field
+						label &nbsp
+						input.ui.button.mini.primary.plusButton(type='button', field='s-quantity', value='+')
+				.fields
+					.field
+						label &nbsp
+						input.ui.button.mini.primary.minusButton(type='button', field='s-price', value='-')
+					.field.sPrice
+						label Points
+						input(type='number', name='s-price')
+					.field
+						label &nbsp
+						input.ui.button.mini.primary.plusButton(type='button', field='s-price', value='+')
+			.ui.divider
+			.description1
+		.actions
+			.ui.negative.button
+				| Cancel
+			.ui.positive.right.labeled.icon.button
+				| Sell
+				i.checkmark.icon
+block scripts
+	script(src="/javascripts/game.js")
