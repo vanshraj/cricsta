@@ -12,6 +12,13 @@ $('.buyButton').click(function(){
   ;  
 });
 
+$('.mini.buying.modal')
+  .modal({
+    onApprove : function() {
+      window.alert('Bought');
+    }
+  });
+
 $('.sellButton').click(function(){
   var content = $(this).parent().parent().children(':first-child').html();
   var points = $(this).prev().text();
@@ -24,6 +31,13 @@ $('.sellButton').click(function(){
   .modal('show')
   ;  
 });
+
+$('.mini.selling.modal')
+  .modal({
+    onApprove : function() {
+      window.alert('Sold');
+    }
+  });
 
 
 //plus minus in modal
