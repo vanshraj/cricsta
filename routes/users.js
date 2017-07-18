@@ -119,8 +119,7 @@ function isAuthenticated(req, res, next) {
     else{
 	    req.flash('error','Please Login First')
     	res.redirect('/users/login');	
-    }
-    
+    } 
 }
 
 function isAuthenticated2(req, res, next) {

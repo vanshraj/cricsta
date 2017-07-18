@@ -15,9 +15,25 @@ $('.buyButton').click(function(){
 $('.mini.buying.modal')
   .modal({
     onApprove : function() {
-      window.alert('Bought');
-    }
-  });
+      var formData={
+        quantity: $('input[name=b-quantity]').val(),
+        price: $('input[name=b-price]').val(),
+        name: $('.mini.buying.modal .header').text().slice(2)
+      };
+      $.ajax({
+          type: 'POST',
+          url: "/game/buy",
+          data: formData,
+          dataType: 'json'
+        })
+        .done(function(data) {
+          $('.buyTBody').append("<tr><td>"+data.name+"</td><td>"+data.quantity+"</td><td>Something</td><td>"+data.price+"</td><td>Something</td></tr>");
+        })
+        .fail(function() {
+          console.log("Ajax failed to fetch data");
+        });
+      }
+});
 
 $('.sellButton').click(function(){
   var content = $(this).parent().parent().children(':first-child').html();
@@ -35,9 +51,25 @@ $('.sellButton').click(function(){
 $('.mini.selling.modal')
   .modal({
     onApprove : function() {
-      window.alert('Sold');
-    }
-  });
+      var formData={
+        quantity: $('input[name=s-quantity]').val(),
+        price: $('input[name=s-price]').val(),
+        name: $('.mini.selling.modal .header').text().slice(2)
+      };
+      $.ajax({
+          type: 'POST',
+          url: "/game/sell",
+          data: formData,
+          dataType: 'json'
+        })
+        .done(function(data) {
+          $('.sellTBody').append("<tr><td>"+data.name+"</td><td>"+data.quantity+"</td><td>Something</td><td>"+data.price+"</td><td>Something</td></tr>");
+        })
+        .fail(function() {
+          console.log("Ajax failed to fetch data");
+        });
+      }
+});
 
 
 //plus minus in modal

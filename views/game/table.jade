@@ -65,15 +65,17 @@ block content
 						.content
 							.left.floated.header Buying Positions
 							.description
+								br
 								if user_data.buy.length > 0
 									table.ui.very.basic.table
-										tbody
+										thead
 											tr
-												td Players
-												td Lots
-												td Current Position
-												td Bought Position
-												td Profit/Loss
+												th Players
+												th Lots
+												th Current Position
+												th Bought Position
+												th Profit/Loss
+										tbody.buyTBody
 											each buy, i in user_data.buy
 												tr
 													td #{buy.name}
@@ -88,15 +90,17 @@ block content
 						.content
 							.left.floated.header Selling Positions
 							.description
+								br
 								if user_data.buy.length > 0
 									table.ui.very.basic.table
-										tbody
+										thead
 											tr
-												td Players
-												td Lots
-												td Current Position
-												td Selling Position
-												td Profit/Loss
+												th Players
+												th Lots
+												th Current Position
+												th Selling Position
+												th Profit/Loss
+										tbody.sellTBody
 											each sell, i in user_data.sell
 												tr
 													td #{sell.name}
