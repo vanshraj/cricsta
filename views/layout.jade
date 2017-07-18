@@ -33,7 +33,7 @@ html
 			.right.menu
 				if !user
 					a(class=(title==='signup'? 'active item':'item'),href='/users/register')
-						.ui.animated.button(tabindex='0')
+						.ui.animated.black.button(tabindex='0')
 							.visible.content Register
 							.hidden.content
 								i.add.user.icon
@@ -44,7 +44,7 @@ html
 								i.sign.in.icon
 				if user
 					a(class=(title==='Account'? 'active item':'item'),href='/users/account')
-						.ui.animated.button(tabindex='0')
+						.ui.animated.button.black(tabindex='0')
 							.visible.content #{user.name}
 							.hidden.content
 								i.user.icon
