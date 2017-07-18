@@ -4,6 +4,7 @@ block content
 	.ui.centered.grid.center.aligned
 			.column.center.aligned
 				h1 #{data.team1.name} Vs West Indies
+				.ui.divider
 	if !user
 		.ui.grid.tablet.computer.only
 			.ui.container.eight.wide.centered.column.center.aligned
@@ -16,7 +17,7 @@ block content
 					|  or 
 					span
 						a(style="text-decoration:underline" href="/users/login") login
-					|  to play the game.
+					|  to play the game and see your account details.
 				br
 		.ui.mobile.only.grid.center.aligned
 			.ui.container
@@ -29,70 +30,83 @@ block content
 					|  or 
 					span
 						a(style="text-decoration:underline" href="/users/login") login
-					|  to play the game.
+					|  to play the game and see your account details.
 				br
 	.ui.container
 		.ui.equal.width.grid.stackable
-			.column
-				.ui.card.orange(style="width:100%")
-					.content
-						.left.floated.header Account Details
-						.right.floated.author
-							img.ui.avatar.image(src='/images/matt.jpg')
-							|  Vanshaj Behl
-						.left.floated.meta(style="clear:both;")
-							span.category Virtual Money
-						.description
-							table.ui.very.basic.table
-								tbody
-									tr
-										td Balance Points
-										td(colspan="2") 1000 points
-									tr
-										td Stocks
-										td(colspan="2") 150 points
-									tr
-										td Account Value
-										td(colspan="2") 1150 points
-									tr
-										td.positive Profit/Loss
-										td.positive(colspan="2") 15 points
-				.ui.card.orange(style="width:100%")
-					.content
-						.left.floated.header Buying Positions
-						.description
-							table.ui.very.basic.table
-								tbody
-									tr
-										td Players
-										td Lots
-										td Current Position
-										td Bought Position
-										td Profit/Loss
-									tr
-										td Virat Kohli
-										td 15
-										td 38.35
-										td 28.2
-										td.positive 153
-				.ui.card.orange(style="width:100%")
-					.content
-						.left.floated.header Selling Positions
-						.description
-							table.ui.very.basic.table
-								tbody
-									tr
-										td Players
-										td Lots
-										td Current Position
-										td Selling Position
-										td Profit/Loss
-									tr
-										td Mohammed Shami
-										td 11
-										td 22.35
-										td 20.2
-										td.negative 23.65
+			if user
+				.column
+					.ui.card.orange(style="width:100%")
+						.content
+							.left.floated.header Account Details
+							.right.floated.author
+								img.ui.avatar.image(src='/images/matt.jpg')
+								|  #{user.name}
+							.left.floated.meta(style="clear:both;")
+								span.category Virtual Money
+							.description
+								table.ui.very.basic.table
+									tbody
+										- var stocks=0
+											- each buy, i in user_data.buy
+												- stocks += (buy.price*buy.quantity)
+											- each sell, i in user_data.sell
+												- stocks += (sell.price*sell.quantity)
+										tr
+											td Balance Points
+											td(colspan="2") #{user_data.balance - stocks} points
+										tr
+											td Stocks
+											td(colspan="2") #{stocks} points
+										tr
+											td Profit/Loss
+											td(colspan="2")(class= ( user_data.profit > 0 ? 'positive': ( user_data.profit < 0 ? 'negative': '') )) #{user_data.profit} points
+					.ui.card.orange(style="width:100%")
+						.content
+							.left.floated.header Buying Positions
+							.description
+								if user_data.buy.length > 0
+									table.ui.very.basic.table
+										tbody
+											tr
+												td Players
+												td Lots
+												td Current Position
+												td Bought Position
+												td Profit/Loss
+											each buy, i in user_data.buy
+												tr
+													td #{buy.name}
+													td #{buy.quantity}
+													td Something
+													td #{buy.price}
+													td Something
+								else
+									br
+									p No Buying Positions.
+					.ui.card.orange(style="width:100%")
+						.content
+							.left.floated.header Selling Positions
+							.description
+								if user_data.buy.length > 0
+									table.ui.very.basic.table
+										tbody
+											tr
+												td Players
+												td Lots
+												td Current Position
+												td Selling Position
+												td Profit/Loss
+											each sell, i in user_data.sell
+												tr
+													td #{sell.name}
+													td #{sell.quantity}
+													td Something
+													td #{sell.price}
+													td Something
+								else 
+									br
+									p No Selling Positions.
 			.column
 				.ui.top.attached.pointing.menu.stackable
 					a.item.menuTabs.active(data-tab='first') #{data.team1.name} Players

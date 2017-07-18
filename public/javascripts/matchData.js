@@ -124,9 +124,11 @@ function liveFeed(data){
 if($(window).width() >= 1024) {
     var x = Chart.defaults.global.defaultFontSize;
     var labelNum=60;
+    var labelNum2=5;
 }else{
 	var x = 7;
-	var labelNum=0;
+	var labelNum=22;
+	var labelNum2=4;
 }
 var playerOption={
 		"animation": {
@@ -145,7 +147,7 @@ var playerOption={
 								meta.data.forEach(function (bar, index) {
 									var data = dataset.data[index];  
 									if(data!=0)                          
-										ctx.fillText(data+" runs", bar._model.x - labelNum, bar._model.y +5);
+										ctx.fillText(data+" runs", bar._model.x - labelNum, bar._model.y +labelNum2);
 								});
 							});
 						}
