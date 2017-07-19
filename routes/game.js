@@ -25,7 +25,7 @@ router.get('/', function(req, res){
     else{
 	    Match.getMatchLatestData(function(err,match){
 			if(err) throw err;
-			Player.getPlayerData(match,function(err,data){
+			Player.getPlayerData(match, function(err,data){
 				if(err) throw err;
 				var team1players = _.unionBy( data.team1.bowlers,data.team1.batsmen, 'name');
 				team1players = _.sortBy(team1players,'name');
@@ -39,12 +39,24 @@ router.get('/', function(req, res){
 
 //buy players
 router.post('/buy',isAuthenticated, function(req, res, next){
-	res.send(req.body);
+	Match.getMatchLatestData(function(err,match){
+		if(err) throw err;
+		User.buyStock(match, req.user, req.body, function(err, data){
+			if(err) throw err;
+			res.send(data);
+		});
+	});
 });
 
 //sell players
 router.post('/sell',isAuthenticated, function(req, res, next){
-	res.send(req.body);
+	Match.getMatchLatestData(function(err,match){
+		if(err) throw err;
+		User.sellStock(match, req.user, req.body, function(err, data){
+			if(err) throw err;
+			res.send(data);
+		});
+	});
 });
 
 //login middleware

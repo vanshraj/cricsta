@@ -27,7 +27,7 @@ $('.mini.buying.modal')
           dataType: 'json'
         })
         .done(function(data) {
-          $('.buyTBody').append("<tr><td>"+data.name+"</td><td>"+data.quantity+"</td><td>Something</td><td>"+data.price+"</td><td>Something</td></tr>");
+          window.location.reload();
         })
         .fail(function() {
           console.log("Ajax failed to fetch data");
@@ -63,7 +63,7 @@ $('.mini.selling.modal')
           dataType: 'json'
         })
         .done(function(data) {
-          $('.sellTBody').append("<tr><td>"+data.name+"</td><td>"+data.quantity+"</td><td>Something</td><td>"+data.price+"</td><td>Something</td></tr>");
+          window.location.reload();
         })
         .fail(function() {
           console.log("Ajax failed to fetch data");

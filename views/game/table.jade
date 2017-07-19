@@ -54,10 +54,10 @@ block content
 												- stocks += (sell.price*sell.quantity)
 										tr
 											td Balance Points
-											td(colspan="2") #{user_data.balance - stocks} points
+											td(colspan="2") #{Math.round((user_data.balance)* 100) / 100} points
 										tr
 											td Stocks
-											td(colspan="2") #{stocks} points
+											td(colspan="2") #{Math.round(stocks* 100) / 100} points
 										tr
 											td Profit/Loss
 											td(colspan="2")(class= ( user_data.profit > 0 ? 'positive': ( user_data.profit < 0 ? 'negative': '') )) #{user_data.profit} points
@@ -91,7 +91,7 @@ block content
 							.left.floated.header Selling Positions
 							.description
 								br
-								if user_data.buy.length > 0
+								if user_data.sell.length > 0
 									table.ui.very.basic.table
 										thead
 											tr
