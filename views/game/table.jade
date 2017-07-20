@@ -53,17 +53,21 @@ block content
 											- each sell, i in user_data.sell
 												- stocks += (sell.price*sell.quantity)
 										tr
-											td Balance Points
+											td Balance Points 
+												i.info.circle.icon(style="font-size:0.7em", data-variation="wide",data-content="Balance points are your remaining fanatsy points.",data-position="top center")
 											td(colspan="2") #{Math.round((user_data.balance)* 100) / 100} points
 										tr
-											td Stocks
+											td Stocks 
+												i.info.circle.icon(style="font-size:0.7em", data-variation="wide",data-content="Stocks points are the worth of stocks remaining in selling/buying positions.",data-position="top center")
 											td(colspan="2") #{Math.round(stocks* 100) / 100} points
 										tr
-											td Profit/Loss
+											td Profit/Loss 
+												i.info.circle.icon(style="font-size:0.7em", data-variation="wide",data-content="This is the net amount of profit/loss you have made in points.",data-position="top center")
 											td(colspan="2")(class= ( user_data.profit > 0 ? 'positive': ( user_data.profit < 0 ? 'negative': '') )) #{user_data.profit} points
 					.ui.card.orange(style="width:100%")
 						.content
-							.left.floated.header Buying Positions
+							.left.floated.header Buying Positions 
+								i.info.circle.icon(style="font-size:0.7em", data-variation="wide",data-content="All your remaining buying positions with number of lots bought, their average price and profit/loss you can make by selling them right now is diplayed.",data-position="top center")
 							.description
 								br
 								if user_data.buy.length > 0
@@ -88,7 +92,8 @@ block content
 									p No Buying Positions.
 					.ui.card.orange(style="width:100%")
 						.content
-							.left.floated.header Selling Positions
+							.left.floated.header Selling Positions 
+								i.info.circle.icon(style="font-size:0.7em", data-variation="wide",data-content="All your remaining selling positions with number of lots sold, their average price and profit/loss you can make by buying them right now is diplayed.",data-position="top center")
 							.description
 								br
 								if user_data.sell.length > 0
@@ -121,7 +126,9 @@ block content
 							tr
 								th Player Name
 								th Best Buyer 
-								th Best Seller
+									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide",data-content="Price of buying (long) for the player.",data-position="top center")
+								th Best Seller 
+									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide",data-content="Price of selling (short) for the player.",data-position="top center")
 						tbody
 							if data.team1.batsmen
 								each batsmen, i in team1players
@@ -160,7 +167,9 @@ block content
 							tr
 								th Player Name
 								th Best Buyer 
+									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide",data-content="Price of buying (long) for the player.",data-position="top center")
 								th Best Seller 
+									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide",data-content="Price of selling (short) for the player.",data-position="top center") 
 						tbody
 							if data.team2.batsmen
 								each batsmen, i in team2players

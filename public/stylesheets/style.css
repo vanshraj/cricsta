@@ -4,8 +4,12 @@
 }
 body {
   font-family: 'Raleway', sans-serif;
+  background-color: #fbfbfb;
   padding: 0px;
   margin: 0px;
+}
+body.pushable>.pusher {
+  background: #fbfbfb;
 }
 .header{
 	font-family: 'Raleway', sans-serif !important;
@@ -172,6 +176,10 @@ a.ui.orange.label{
 
 .intro.company a{
 	color: #F2721C;
+}
+
+.info.circle.icon, .help.circle.outline.icon{
+	cursor: help;
 }
 
 /*css for tablets*/

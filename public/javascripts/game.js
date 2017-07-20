@@ -118,3 +118,15 @@ $('.minusButton').click(function(e){
               $(this).parent().parent().parent().parent().children('.description1').text('Total Points Needed : '+ (Math.round(price*quantity* 100) / 100) );
             }
         });
+
+//semantic popups
+$('.info.circle.icon')
+  .popup({
+    inline: true,
+  })
+;
+$('.help.circle.outline.icon')
+  .popup({
+    inline: true,
+  })
+;
