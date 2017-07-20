@@ -2,10 +2,43 @@ extends ../layout
 
 block content
 	.ui.container
-		.ui.container(style="margin:5%")
-			.ui.grid.centered.center.aligned
-				.ten.wide.column
-					.five.ui.buttons
-						a.ui.button.primary(href="/admin/prepare") Prepare
-						a.ui.button.green(href="/admin/start") Start
-						a.ui.button.red(href="/admin/stop") Stop
+		.ui.centered.center.aligned.grid.stackable
+			if user
+				.column.ten.wide
+					.ui.card.orange(style="width:100%")
+						.content
+							.left.floated.header Account Details
+							.right.floated.author
+								img.ui.avatar.image(src='/images/matt.jpg')
+								|  #{user.name}
+							.left.floated.meta(style="clear:both;")
+								span.category #{user.type}
+							.description
+								table.ui.very.basic.table
+									tbody
+										tr
+											td Email
+											td.right.aligned #{user.email}
+										tr
+											td Name
+											td.right.aligned #{user.name}
+	.ui.container(style="margin:3% 0%")
+		.ui.grid.centered.center.aligned
+			.column.ui.grid.ten.wide.computer.only.sixteen.wide.mobile.tablet.only
+				h3.ui.block.header.segment.top.attached Prediction Model
+		.ui.grid.centered.center.aligned
+			.column.ui.grid.ten.wide.computer.only.sixteen.wide.mobile.tablet.only
+				.five.ui.buttons
+					a.ui.button.primary(href="/admin/prepare") Prepare Simulation
+					a.ui.button.green(href="/admin/start") Start Prediction
+					a.ui.button.red(href="/admin/stop") Stop Prediction
+	.ui.container(style="margin:3% 0%")
+		.ui.grid.centered.center.aligned
+			.column.ui.grid.ten.wide.computer.only.sixteen.wide.mobile.tablet.only
+				h3.ui.block.header.segment.top.attached Game Model
+		.ui.grid.centered.center.aligned
+			.column.ui.grid.ten.wide.computer.only.sixteen.wide.mobile.tablet.only
+				.five.ui.buttons
+					a.ui.button.primary(href="#") Enter Match Id
+					a.ui.button.green(href="#") Start Game
+					a.ui.button.red(href="#") Stop Game

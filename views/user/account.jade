@@ -1,3 +1,21 @@
 extends ../layout
 
 block content
+	.ui.container
+		.ui.equal.width.grid.stackable
+			if user
+				.column
+					.ui.card.orange(style="width:100%")
+						.content
+							.left.floated.header Account Details
+							.right.floated.author
+								img.ui.avatar.image(src='/images/matt.jpg')
+								|  #{user.name}
+							.left.floated.meta(style="clear:both;")
+								span.category #{user.type}
+							.description
+								table.ui.very.basic.table
+									tbody
+										tr
+											td Email
+											td #{user.email}
