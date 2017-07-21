@@ -2,9 +2,9 @@ extends ../layout
 
 block content
 	.ui.container
-		.ui.equal.width.grid.stackable
+		.ui.centered.center.aligned.grid.stackable
 			if user
-				.column
+				.column.ten.wide
 					.ui.card.orange(style="width:100%")
 						.content
 							.left.floated.header Account Details
@@ -18,4 +18,7 @@ block content
 									tbody
 										tr
 											td Email
-											td #{user.email}
+											td.right.aligned #{user.email}
+										tr
+											td Name
+											td.right.aligned #{user.name}
