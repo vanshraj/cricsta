@@ -3,6 +3,8 @@ var router = express.Router();
 var Match = require('../models/match');
 var Player = require('../models/match');
 var User = require('../models/user');
+var jsonfile = require('jsonfile')
+var file = '../cricbuzz/data.json'
 var _ = require('lodash');
 
 router.get('/', function(req, res){
@@ -57,6 +59,29 @@ router.post('/sell',isAuthenticated, function(req, res, next){
 			res.send(data);
 		});
 	});
+});
+
+//give player data from python file
+// router.get('/player', function(req, res, next){
+// 	jsonfile.readFile(file, function(err, obj){
+// 		res.send(obj);
+// 	});
+// });
+
+//give user specific game data
+router.post('/user', function(req, res, next){
+	if(req.isAuthenticated()){
+		Match.getMatchLatestData(function(err, match){
+			if(err) throw err;
+			User.makeGamingUser(match, req.user, function(err, user_data){
+				if(err) throw err;
+				res.send(user_data);
+			});
+		});
+	}else{
+		var obj = { "name":true};
+		res.send(obj);
+	}
 });
 
 //login middleware

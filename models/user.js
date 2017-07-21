@@ -97,14 +97,14 @@ module.exports.buyStock = function(match, user, stock, callback){
 			stock.quantity=parseInt(stock.quantity);
 			user.game[i].buy[j].quantity += (stock.quantity);
 			user.game[i].buy[j].price = ((quant*user.game[i].buy[j].price)+(stock.price*stock.quantity))/(stock.quantity+quant);
-			user.game[i].balance -= stock.price*stock.quantity;
+			user.game[i].balance -= 100*stock.quantity;
 			user.save(function(err, user){
 				callback(err, stock);
 			});
 		}else{
 			//buying the stock for first time
 			user.game[i].buy.push(stock);
-			user.game[i].balance -= stock.price*stock.quantity; 
+			user.game[i].balance -= 100*stock.quantity; 
 			user.save(function(err, user){
 				callback(err, stock);
 			});
@@ -116,7 +116,7 @@ module.exports.buyStock = function(match, user, stock, callback){
 			stock.quantity=parseInt(stock.quantity);
 			user.game[i].sell[k].quantity -= stock.quantity;
 			user.game[i].profit += (user.game[i].sell[k].price*stock.quantity) - (stock.price*stock.quantity);
-			user.game[i].balance += 2*(user.game[i].sell[k].price*stock.quantity) - (stock.price*stock.quantity); 
+			user.game[i].balance += 100*stock.quantity +(user.game[i].sell[k].price*stock.quantity) - (stock.price*stock.quantity); 
 			user.save(function(err, user){
 				callback(err, stock);
 			});
@@ -125,7 +125,7 @@ module.exports.buyStock = function(match, user, stock, callback){
 			stock.quantity=parseInt(stock.quantity);
 
 			user.game[i].profit += (user.game[i].sell[k].price*user.game[i].sell[k].quantity) - (stock.price*user.game[i].sell[k].quantity);
-			user.game[i].balance += 2*(user.game[i].sell[k].price*user.game[i].sell[k].quantity) - (stock.price*user.game[i].sell[k].quantity);
+			user.game[i].balance += 100*user.game[i].sell[k].quantity+(user.game[i].sell[k].price*user.game[i].sell[k].quantity) - (stock.price*user.game[i].sell[k].quantity);
 			
 			stock.quantity -= user.game[i].sell[k].quantity;
 			user.game[i].balance -= stock.price*stock.quantity; 
@@ -140,7 +140,7 @@ module.exports.buyStock = function(match, user, stock, callback){
 			stock.quantity=parseInt(stock.quantity);
 
 			user.game[i].profit += (user.game[i].sell[k].price*user.game[i].sell[k].quantity) - (stock.price*user.game[i].sell[k].quantity);
-			user.game[i].balance += 2*(user.game[i].sell[k].price*user.game[i].sell[k].quantity) - (stock.price*user.game[i].sell[k].quantity);
+			user.game[i].balance += 100*user.game[i].sell[k].quantity+(user.game[i].sell[k].price*user.game[i].sell[k].quantity) - (stock.price*user.game[i].sell[k].quantity);
 
 			user.game[i].sell.splice(k, 1);
 			user.save(function(err, user){
@@ -163,14 +163,14 @@ module.exports.sellStock = function(match, user, stock, callback){
 			stock.quantity=parseInt(stock.quantity);
 			user.game[i].sell[k].quantity += (stock.quantity);
 			user.game[i].sell[k].price = ((quant*user.game[i].sell[k].price)+(stock.price*stock.quantity))/(stock.quantity+quant);
-			user.game[i].balance -= stock.price*stock.quantity;
+			user.game[i].balance -= 100*stock.quantity;
 			user.save(function(err, user){
 				callback(err, stock);
 			});
 		}else{
 			//selling the stock for first time
 			user.game[i].sell.push(stock);
-			user.game[i].balance -= stock.price*stock.quantity; 
+			user.game[i].balance -= 100*stock.quantity; 
 			user.save(function(err, user){
 				callback(err, stock);
 			});
@@ -183,7 +183,7 @@ module.exports.sellStock = function(match, user, stock, callback){
 			stock.quantity=parseInt(stock.quantity);
 			user.game[i].buy[j].quantity -= stock.quantity;
 			user.game[i].profit += (stock.price*stock.quantity) - (user.game[i].buy[j].price*stock.quantity);
-			user.game[i].balance += (stock.price*stock.quantity); 
+			user.game[i].balance += 100*stock.quantity+(stock.price*stock.quantity) - (user.game[i].buy[j].price*stock.quantity) 
 			user.save(function(err, user){
 				callback(err, stock);
 			});
@@ -192,10 +192,10 @@ module.exports.sellStock = function(match, user, stock, callback){
 			stock.quantity=parseInt(stock.quantity);
 
 			user.game[i].profit += (stock.price*user.game[i].buy[j].quantity) - (user.game[i].buy[j].price*user.game[i].buy[j].quantity);
-			user.game[i].balance += (stock.price*user.game[i].buy[j].quantity);
+			user.game[i].balance += 100*user.game[i].buy[j].quantity+(stock.price*user.game[i].buy[j].quantity) - (user.game[i].buy[j].price*user.game[i].buy[j].quantity);
 			
 			stock.quantity -= user.game[i].buy[j].quantity;
-			user.game[i].balance -= stock.price*stock.quantity; 
+			user.game[i].balance -= 100*stock.quantity; 
 
 			user.game[i].sell.push(stock);
 			user.game[i].buy.splice(j, 1);
@@ -207,7 +207,7 @@ module.exports.sellStock = function(match, user, stock, callback){
 			stock.quantity=parseInt(stock.quantity);
 
 			user.game[i].profit += (stock.price*user.game[i].buy[j].quantity) - (user.game[i].buy[j].price*user.game[i].buy[j].quantity);
-			user.game[i].balance += (stock.price*user.game[i].buy[j].quantity);
+			user.game[i].balance += 100*user.game[i].buy[j].quantity+(stock.price*user.game[i].buy[j].quantity) - (user.game[i].buy[j].price*user.game[i].buy[j].quantity);
 
 			user.game[i].buy.splice(j, 1);
 			user.save(function(err, user){
