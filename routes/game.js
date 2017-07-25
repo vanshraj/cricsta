@@ -61,12 +61,12 @@ router.post('/sell',isAuthenticated, function(req, res, next){
 	});
 });
 
-//give player data from python file
-// router.get('/player', function(req, res, next){
-// 	jsonfile.readFile(file, function(err, obj){
-// 		res.send(obj);
-// 	});
-// });
+// give player data from python file and users buying/selling positions
+router.get('/player', function(req, res, next){
+	jsonfile.readFile(file, function(err, obj){
+		res.send(obj.scorecard[0]);
+	});
+});
 
 //give user specific game data
 router.post('/user', function(req, res, next){

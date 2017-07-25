@@ -4,13 +4,17 @@ var Match = require('../models/match');
 var Post = require('../models/post');
 var Player = require('../models/match');
 
-// GET home page.
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res, next){
+	res.render('index/home', {title: 'Thinkquant'});
+});
+
+// GET prediction page.
+router.get('/prediction', function(req, res, next) {
 	Post.getNFeaturedPosts(2,function(err, featuredPosts){
 		if(err) throw err;
 		Post.getAllPosts(function(err, posts){
 			if(err) throw err;
-			res.render('index/index', { title: 'ThinkQuant', posts:posts ,featuredPosts: featuredPosts });
+			res.render('index/index', { title: 'Prediction', posts:posts ,featuredPosts: featuredPosts });
 		});
 	});
 });
@@ -20,9 +24,9 @@ router.get('/about/model',function(req, res){
 	res.render('index/about',{title: 'About Model'});
 });
 
-router.get('/about/company',function(req, res){
-	res.render('index/company',{title:'About Company'});
-});
+// router.get('/about/company',function(req, res){
+// 	res.render('index/company',{title:'About Company'});
+// });
 
 router.get('/services',function(req, res){
 	res.render('index/services',{title:'Services'});
