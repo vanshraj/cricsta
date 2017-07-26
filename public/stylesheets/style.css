@@ -117,11 +117,11 @@ a.ui.orange.label{
 .intro, .team, .intro1{
 	color: #1b1c1d;
 	background-color: #fbfbfb;
-	text-align: center;
+	justify-content: center;
 	padding-bottom: 10%; 
 	/*text-align: center;*/
 	padding-top:5%; 
-	margin-top: -65px;
+	/*margin-top: -65px;*/
 }
 .intro1{
 	color: white;
@@ -138,16 +138,34 @@ a.ui.orange.label{
 }
 #fantasy, #auction{
 	margin:0;
-	padding: 7.5%;
-	background-color: #1b1c1d;
+	padding: 5%;
+	color:#fbfbfb !important;
+	background: #f4873e; 
+    background: -webkit-linear-gradient(left top, #f4873e, #c1540b); 
+    background: -o-linear-gradient(bottom right, #f4873e, #c1540b);  
+    background: -moz-linear-gradient(bottom right, #f4873e, #c1540b);
+    background: linear-gradient(to bottom right, #f4873e, #c1540b);
 }
 #evaluation, #prediction{
 	margin: 0;
-	padding: 7.5%;
+	padding: 5%;
 	/*background-color: #f4873e;*/
 }
+#evaluation .content, #prediction .content{
+	margin-top: 120px;
+}
 .ui.items > .item > :not(.ui).image{
-	width: 40%;
+	width: 60%;
+}
+#fantasy .header, #fantasy .meta, #fantasy .description, #fantasy .extra, #auction .header, #auction .meta, #auction .description, #auction .extra{
+	color: #fbfbfb !important;
+}
+.ui.items > .item > .content > :not(.ui).header{
+	font-size: 4em;
+}
+.ui.items > .item > .content > :not(.ui).description{
+	font-size: 1.3em;
+	opacity: 0.8;
 }
 /*.intro.company, .intro.services{
 	color: #1b1c1d;
@@ -191,7 +209,13 @@ a.ui.orange.label{
 	margin:0% 20%;
 	line-height: 2em;
 }
-
+.intro h5{
+	font-weight: 100 !important;
+	letter-spacing: 2px;
+	opacity: .9;
+	justify-content: center;
+	line-height: 2em;	
+}
 .intro li, .intro ul, .intro p{
 	font-weight: 100 !important;
 	font-size: 15px;
@@ -211,6 +235,43 @@ a.ui.orange.label{
 .info.circle.icon, .help.circle.outline.icon{
 	cursor: help;
 }
+
+.pulsate {
+color:red;
+-webkit-animation: pulsate 2s ease-out;
+-webkit-animation-iteration-count: infinite; 
+opacity: 0.2;
+}
+@-webkit-keyframes pulsate {
+    0% { 
+        opacity: 0.2;
+    }
+    50% { 
+        opacity: 1.0;
+        font-size: 1.2em;
+    }
+    100% { 
+        opacity: 0.2;
+    }
+}
+
+@keyframes wobble {
+  0% {transform: translateX(0%);}
+  15% {transform: translateX(-25%) rotate(-5deg);}
+  30% {transform: translateX(20%) rotate(3deg);}
+  45% {transform: translateX(-15%) rotate(-3deg);}
+  60% {transform: translateX(10%) rotate(2deg);}
+  75% {transform: translateX(-5%) rotate(-1deg);}
+  100% {transform: translateX(0%);}
+}
+.wobble {
+  animation-duration: 2.5s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  color: #f4873e;
+  animation-name: wobble;
+}
+
 
 /*css for tablets*/
 @media (max-width: 767px) {
@@ -260,9 +321,16 @@ a.ui.orange.label{
    .menuTabs{
    	font-size: 12px;
    }
-   .ui.stackable.cards > .card{ margin:1em 5em; width:calc(100% - 10em) !important; }
+   .ui.items > .item > .content > :not(.ui).header{
+		font-size: 2em;
+	}
+	.ui.items > .item > .content > :not(.ui).description{
+		font-size: 0.9em;
+		opacity: 0.8;
+	}
+   .ui.stackable.cards > .card{ margin:1em 3em; width:calc(100% - 6em) !important; }
 }
 
 /*css for mobiles*/
-
+.ui.card > :not(.ui).image > img, .ui.cards > .card > :not(.ui).image > img{ border:70px solid rgba(0,0,0,0); border-radius: 50% }
 .ui.mini.modal>.header:not(.ui){font-size:1.3em}@media only screen and (max-width:767px){.ui.mini.modal{width:95%;margin:0 0 0 -47.5%}}@media only screen and (min-width:768px){.ui.mini.modal{width:35.2%;margin:0 0 0 -17.6%}}@media only screen and (min-width:992px){.ui.mini.modal{width:340px;margin:0 0 0 -170px}}@media only screen and (min-width:1200px){.ui.mini.modal{width:360px;margin:0 0 0 -180px}}@media only screen and (min-width:1920px){.ui.mini.modal{width:380px;margin:0 0 0 -190px}}

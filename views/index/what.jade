@@ -13,86 +13,83 @@ block free
 					.four.wide.column
 						a(href="#fantasy")
 							h3.ui.center.aligned.icon.header
-								i.bordered.orange.inverted.game.icon
+								i.bordered.orange.game.icon
 								|   Fantasy Gaming
+								.wobble Beta
 					.four.wide.column
 						a(href="#prediction")
 							h3.ui.center.aligned.icon.header
-								i.bordered.orange.inverted.line.chart.icon
-								|   Match Prediction
+								i.bordered.orange.line.chart.icon
+								|   Match Prediction Model
+								.pulsate Live
 					.four.wide.column
 						a(href="#auction")
 							h3.ui.center.aligned.icon.header
-								i.bordered.orange.inverted.legal.icon
-								|   Team Auctions
+								i.bordered.orange.legal.icon
+								|   Auction Model
+								.wobble Available
 					.four.wide.column
 						a(href="#evaluation")
 							h3.ui.center.aligned.icon.header
-								i.bordered.orange.inverted.dashboard.icon
+								i.bordered.orange.dashboard.icon
 								|   Player Evaluation
 				.ui.grid.centered.mobile.tablet.only
 					.four.wide.column
 						a(href="#fantasy")
-							h3.ui.center.aligned.icon.header
-								i.bordered.orange.inverted.game.icon
+							h5.ui.center.aligned.icon.header
+								i.bordered.orange.game.icon
 								|   Fantasy Gaming
+								.wobble Beta
 					.four.wide.column
 						a(href="#prediction")
-							h3.ui.center.aligned.icon.header
-								i.bordered.orange.inverted.line.chart.icon
-								|   Match Prediction
+							h5.ui.center.aligned.icon.header
+								i.bordered.orange.line.chart.icon
+								|   Match Prediction Model
+								.pulsate Live
 					.four.wide.column
 						a(href="#auction")
-							h3.ui.center.aligned.icon.header
-								i.bordered.orange.inverted.legal.icon
-								|   Team Auctions
+							h5.ui.center.aligned.icon.header
+								i.bordered.orange.legal.icon
+								|   Auction Model
+								.wobble Available
 					.four.wide.column
 						a(href="#evaluation")
-							h3.ui.center.aligned.icon.header
-								i.bordered.orange.inverted.dashboard.icon
+							h5.ui.center.aligned.icon.header
+								i.bordered.orange.dashboard.icon
 								|   Player Evaluation
 	.ui.items
 		.item#fantasy
 			.image
 				img(src='/images/game-proto.png')
-			.content
-				a.header Header
-				.meta
-					span Description
+			.content.middle.aligned
+				.header Fantasy Gaming
 				.description
-					p
+					p Super Selector : Create fantasy dream teams than compete with other teams. 
+					br
+					p Player markets : Go long & short the points a player will score, a la the derivative market.
 				.extra
-					| Additional Details
+					a(style="color:white",href="/game") Beta
 		.item#prediction
-			.content
-				a.header Header
-				.meta
-					span Description
+			.content.middle.aligned
+				.header Match Prediction
 				.description
-					p
+					p Predictive modelling : Create quant models that predict sports match results, team scores and individual scores. 
 				.extra
-					| Additional Details
+					a.pulsate(href="/prediction") Live
 			.image
-				img(src='/images/game-proto.png')
+				img(src='/images/prediction-proto.png')
 		.item#auction
 			.image
-				img(src='/images/game-proto.png')
-			.content
-				a.header Header
-				.meta
-					span Description
+				img(src='/images/auction-proto.png')
+			.content.middle.aligned
+				.header Team Auction
 				.description
-					p
-				.extra
-					| Additional Details
+					p Auction model : Create a model that will assist franchise teams bid in player auctions.
 		.item#evaluation
-			.content
-				a.header Header
-				.meta
-					span Description
+			.content.middle.aligned
+				.header Player Evaluation
 				.description
-					p
+					p Player Evaluation Matrix : Create Model for individual player statistics and behaviour.
 				.extra
-					| Additional Details
 			.image
-				img(src='/images/game-proto.png')
+				img(src='/images/evaluation-proto.png')
