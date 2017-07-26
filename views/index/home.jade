@@ -49,9 +49,9 @@ html
 					img(src="/images/logo.png" style=" width:14.8em")
 				a(class=(title==='Blog'? 'active item':'item'),href='/blog')
 					| Blog
-				a(class=(title==='About Model'? 'active item':'item'),href='/about/model')
+				a(class=(title==='About Us'? 'active item':'item'),href='/about')
 					| About Us
-				a(class=(title==='What We Do'? 'active item':'item'),href='/services')
+				a(class=(title==='What We Do'? 'active item':'item'),href='/what_we_do')
 					| What We Do
 				if user
 					if user.type == 'admin'
@@ -86,9 +86,9 @@ html
 				img(src="/images/logo.png" style=" width:12.8em")
 			a(class=(title==='Blog'? 'active item':'item'),href='/blog')
 				| Blog
-			a(class=(title==='About Model'? 'active item':'item'),href='/about/model')
+			a(class=(title==='About Us'? 'active item':'item'),href='/about')
 					| About Us
-			a(class=(title==='What We Do'? 'active item':'item'),href='/services')
+			a(class=(title==='What We Do'? 'active item':'item'),href='/what_we_do')
 				| What We Do
 			if user
 				if user.type == 'admin'
@@ -115,9 +115,9 @@ html
 							| Home
 						a(class=(title==='Blog'? 'active item':'item'),href='/blog')
 							| Blog
-						a(class=(title==='About Model'? 'active item':'item'),href='/about/model')
+						a(class=(title==='About Us'? 'active item':'item'),href='/about')
 							| About Us
-						a(class=(title==='What We Do'? 'active item':'item'),href='/services')
+						a(class=(title==='What We Do'? 'active item':'item'),href='/what_we_do')
 							| What We Do
 						if user
 							if user.type == 'admin'

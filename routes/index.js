@@ -14,22 +14,22 @@ router.get('/prediction', function(req, res, next) {
 		if(err) throw err;
 		Post.getAllPosts(function(err, posts){
 			if(err) throw err;
-			res.render('index/index', { title: 'Prediction', posts:posts ,featuredPosts: featuredPosts });
+			res.render('index/prediction', { title: 'Prediction', posts:posts ,featuredPosts: featuredPosts });
 		});
 	});
 });
 
 //about pages
-router.get('/about/model',function(req, res){
-	res.render('index/about',{title: 'About Model'});
-});
-
-// router.get('/about/company',function(req, res){
-// 	res.render('index/company',{title:'About Company'});
+// router.get('/about/model',function(req, res){
+// 	res.render('index/about',{title: 'About Model'});
 // });
 
-router.get('/services',function(req, res){
-	res.render('index/services',{title:'Services'});
+router.get('/about',function(req, res){
+	res.render('index/about',{title:'About Us'});
+});
+
+router.get('/what_we_do',function(req, res){
+	res.render('index/what',{title:'What We Do'});
 });
 
 //ajax routes for json response

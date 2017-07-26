@@ -3,16 +3,56 @@ extends ../layout
 block free
 	style.
 		body,html{
-			background-color:#1b1c1d !important;
+			background-color: #fbfbfb !important;
 		}
 		.pusher{
-			background-color:#1b1c1d !important;
+			background-color:#fbfbfb !important;
 		}
 	.intro
 		.ui.container
 			h1 
-				span Cricket 
-				|  Odds Prediction Model
+				span About Us
 			br
-			h3 The ThinkQuant model is a bottom up model, where we take individual player (batsman and bowler) attributes plus ground attributes as inputs. Our model is a simulation of 600 (for 50 over matches) interactions between a batsman and a bowler in those specific conditions. 
-			h3 Our outputs are in-play, not just pre-match. Currently we price match winning probabilities, team score projections,probabilities of reaching a particular score and top scorer / top wicket taker predictions for limited overs matches.
+			h3 Thinkquant is a sports-focused content and technology solutions company based out of Gurgaon with a vision to revolutionize the sports fan experience by creating best-in-class products.
+	.intro1
+		.ui.container
+			h1 
+				span Our Vision
+			br
+			h3 Quantitative Analytics in Sports.
+	.team
+		.ui.container
+			h1 
+				span Our Team 
+			br
+		.ui.container
+			.ui.grid
+				.column
+					.ui.stackable.centered.cards
+						.ui.raised.link.card
+							.image
+								img(src='/images/matt.png')
+							.content
+								.header Alok Noronha
+								.meta
+									p CEO
+								.description
+									| Alok is a MBA graduate from IIM Lucknow with 9 years of financial markets experience. He has worked with Edelweiss Securities in Mumbai for 4 years as a fixed income and currency quant trader. He then founded his own start-up fund QTS Capital LLP in Gurgaon, were he traded quantitative algorithms.
+						.ui.raised.link.card
+							.image
+								img(src='/images/matt.png')
+							.content
+								.header Ajay Kumar
+								.meta
+									p Founder
+								.description
+									| Ajay is a MBA graduate from IIM Calcutta with 8 years of Quant trading & HFT modeling experience. He has worked with Edelweiss Securities in Mumbai for 7 years as part of the Quant team where he was a fund manager for the last 4 years of his tenure.
+						.ui.raised.link.card 
+							.image
+								img(src='/images/matt.png')
+							.content
+								.header Avinash Teethla
+								.meta
+									p Founder
+								.description
+									| Avinash is a Computer Science graduate from IIT Bombay with 4 years of low latency technology & research infra development. He has worked with Edelweiss Securities in Mumbai for 3 years as HFT programmer.

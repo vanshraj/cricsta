@@ -1,0 +1,98 @@
+extends ../layout
+
+block free
+	.intro
+		.ui.container
+			h1 
+				span What We Do
+		br
+		br
+		.ui.contianer
+			.ui.container
+				.ui.grid.centered.computer.only
+					.four.wide.column
+						a(href="#fantasy")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.inverted.game.icon
+								|   Fantasy Gaming
+					.four.wide.column
+						a(href="#prediction")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.inverted.line.chart.icon
+								|   Match Prediction
+					.four.wide.column
+						a(href="#auction")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.inverted.legal.icon
+								|   Team Auctions
+					.four.wide.column
+						a(href="#evaluation")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.inverted.dashboard.icon
+								|   Player Evaluation
+				.ui.grid.centered.mobile.tablet.only
+					.four.wide.column
+						a(href="#fantasy")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.inverted.game.icon
+								|   Fantasy Gaming
+					.four.wide.column
+						a(href="#prediction")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.inverted.line.chart.icon
+								|   Match Prediction
+					.four.wide.column
+						a(href="#auction")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.inverted.legal.icon
+								|   Team Auctions
+					.four.wide.column
+						a(href="#evaluation")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.inverted.dashboard.icon
+								|   Player Evaluation
+	.ui.items
+		.item#fantasy
+			.image
+				img(src='/images/game-proto.png')
+			.content
+				a.header Header
+				.meta
+					span Description
+				.description
+					p
+				.extra
+					| Additional Details
+		.item#prediction
+			.content
+				a.header Header
+				.meta
+					span Description
+				.description
+					p
+				.extra
+					| Additional Details
+			.image
+				img(src='/images/game-proto.png')
+		.item#auction
+			.image
+				img(src='/images/game-proto.png')
+			.content
+				a.header Header
+				.meta
+					span Description
+				.description
+					p
+				.extra
+					| Additional Details
+		.item#evaluation
+			.content
+				a.header Header
+				.meta
+					span Description
+				.description
+					p
+				.extra
+					| Additional Details
+			.image
+				img(src='/images/game-proto.png')

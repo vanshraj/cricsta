@@ -81,6 +81,7 @@
   }
 }
 .ui.inverted.vertical.masthead.center.aligned.segment{
+  background-color: #1b1c1d;
   background:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)),url("/images/master.jpg");
   background-position: bottom center;
   background-size: cover;
