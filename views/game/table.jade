@@ -53,28 +53,28 @@ block content
 											- each sell, i in user_data.sell
 												- stocks += (sell.quantity)
 										tr
-											td Account Balance  
+											td Cash Balance  
 												i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="Total money in your account.",data-position="top center")
 											td.UserBalance(colspan="2") #{Math.round((user_data.balance)* 100) / 100} Inr
 										tr
-											td In Play 
-												i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="Money that is active supporting your inplay positions.",data-position="top center")
+											td Stocks 
+												i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="Money that is active supporting your holdings.",data-position="top center")
 											td.UserStock(colspan="2") #{Math.round(stocks*100* 100) / 100} Inr
 										tr
 											td Profit/Loss 
 												i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="This is the net amount of profit/loss you have made in this match.",data-position="top center")
-											td.UserProfit(colspan="2")(class= ( user_data.profit > 0 ? 'positive': ( user_data.profit < 0 ? 'negative': '') )) #{user_data.profit} Inr
+											td.UserProfit(colspan="2")(class= ( user_data.profit > 0 ? 'positive': ( user_data.profit < 0 ? 'negative': '') )) #{Math.round(user_data.profit* 100) / 100} Inr
 					.ui.card.orange(style="width:100%")
 						.content
-							.left.floated.header Buying Positions 
-								i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="All your remaining buying positions.",data-position="top center")
+							.left.floated.header Holdings 
+								i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="All your open positions.",data-position="top center")
 							.description
 								br
 								table.ui.very.basic.table.BuyPositionTable
 									thead
 										tr
 											th Players
-											th Lots
+											th Stocks
 											th Current Position
 											th Bought Position
 											th Profit/Loss
@@ -82,26 +82,26 @@ block content
 										each buy, i in user_data.buy
 											tr
 												td #{buy.name}
-												td #{buy.quantity}
-												td Something
-												td #{buy.price}
-												td Something
+												td.boughtQty #{buy.quantity}
+												td.currentPosition Something
+												td.boughtPrice #{Math.round(buy.price* 100) / 100}
+												td.currentProfit Something
 								.NoBuyPosition
 									br
-									p No Buying Positions.
+									p No Open Positions.
 					.ui.card.orange(style="width:100%")
 						.content
-							.left.floated.header Selling Positions 
-								i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="All your remaining selling positions.",data-position="top center")
+							.left.floated.header Closed Positions 
+								i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="All your closed positions.",data-position="top center")
 							.description
 								br
 								table.ui.very.basic.table.SellPositionTable
 									thead
 										tr
 											th Players
-											th Lots
-											th Current Position
+											th Stocks
 											th Selling Position
+											th Baught Position
 											th Profit/Loss
 									tbody.sellTBody
 										each sell, i in user_data.sell
@@ -109,11 +109,11 @@ block content
 												td #{sell.name}
 												td #{sell.quantity}
 												td Something
-												td #{sell.price}
+												td #{Math.round(sell.price* 100) / 100}
 												td Something
 								.NoSellPosition
 									br
-									p No Selling Positions.
+									p No Closed Positions.
 			.column
 				.ui.top.attached.pointing.menu.stackable
 					a.item.menuTabs.active(data-tab='first') #{data.team1.name} Players
@@ -123,15 +123,13 @@ block content
 						thead
 							tr
 								th Player Name
-								th Best Seller 
-									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Minimum Price of buying (long) the player.",data-position="top center")
-								th Best Buyer 
-									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Maximum Price of selling (short) the player.",data-position="top center")
+								th(colspan="2") Current Position 
+									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Price of buying the player.",data-position="top center")
 						tbody
 							if data.team1.batsmen
 								each batsmen, i in team1players
 									if (batsmen.runsScored)
-										tr
+										tr(p-name="#{batsmen.name}")
 											td
 												img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
@@ -139,40 +137,36 @@ block content
 													img(src="/images/keeper.png" style="float:right; max-width:25px")
 												else
 													img(src="/images/bat.png" style="float:right; max-width:25px")
-											td 
-												.ui.button.green.mini.inverted.left.floated.buyButton Buy
-												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored*1.05* 100) / 100} Points
+											td.currentPoints 
+												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored* 100) / 100} Points
 												
 											td 
-												p(style="display:block; float:left;") #{Math.round(batsmen.runsScored*0.95*100) / 100} Points
+												.ui.button.green.mini.inverted.left.floated.buyButton Buy
 												.ui.button.red.mini.inverted.right.floated.sellButton Sell
 									else
-										tr
+										tr(p-name="#{batsmen.name}")
 											td
 												img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
 												img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
-											td 
-												.ui.button.green.mini.inverted.left.floated.buyButton Buy
-												p(style="display:block; float:right;") #{Math.round(batsmen.wicketsTaken*20*1.05* 100) / 100} Points
+											td.currentPoints 
+												p(style="display:block; float:right;") #{Math.round(batsmen.wicketsTaken*20* 100) / 100} Points
 
 											td 
-												p(style="display:block; float:left;") #{Math.round(batsmen.wicketsTaken*20*0.95* 100) / 100} Points
+												.ui.button.green.mini.inverted.left.floated.buyButton Buy
 												.ui.button.red.mini.inverted.right.floated.sellButton Sell
 				.ui.bottom.attached.tab.segment(data-tab='second')
 					table.ui.selectable.celled.table.orange.unstackable.structured.small
 						thead
 							tr
 								th Player Name
-								th Best Seller 
-									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Minimum Price of buying (long) the player.",data-position="top center")
-								th Best Buyer 
-									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Maximum Price of selling (short) the player.",data-position="top center") 
+								th(colspan="2") Current Position 
+									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Price of buying the player.",data-position="top center") 
 						tbody
 							if data.team2.batsmen
 								each batsmen, i in team2players
 									if batsmen.runsScored
-										tr
+										tr(p-name="#{batsmen.name}")
 											td
 												img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
@@ -180,55 +174,44 @@ block content
 													img(src="/images/keeper.png" style="float:right; max-width:25px")
 												else
 													img(src="/images/bat.png" style="float:right; max-width:25px")
-											td 
-												.ui.button.green.mini.inverted.left.floated.buyButton Buy
-												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored*1.05* 100) / 100} Points
+											td.currentPoints 
+												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored* 100) / 100} Points
 												
 											td 
-												p(style="display:block; float:left;") #{Math.round(batsmen.runsScored*0.95* 100) / 100} Points
+												.ui.button.green.mini.inverted.left.floated.buyButton Buy
 												.ui.button.red.mini.inverted.right.floated.sellButton Sell
 									else
-										tr
+										tr(p-name="#{batsmen.name}")
 											td
 												img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
 												img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
 												| &nbsp
-											td 
-												.ui.button.green.mini.inverted.left.floated.buyButton Buy
-												p(style="display:block; float:right;") #{Math.round(batsmen.wicketsTaken*20*1.05* 100) / 100} Points
+											td.currentPoints 
+												p(style="display:block; float:right;") #{Math.round(batsmen.wicketsTaken*20* 100) / 100} Points
 												
 											td 
-												p(style="display:block; float:left;") #{Math.round(batsmen.wicketsTaken*20*0.95* 100) / 100} Points
+												.ui.button.green.mini.inverted.left.floated.buyButton Buy
 												.ui.button.red.mini.inverted.right.floated.sellButton Sell
 
 	.ui.mini.buying.modal
 		.header
 		.content
 			.description
-				| Buying Lots
+				| Buying Stocks
 			.ui.divider
 			form.ui.form
 				.fields
 					.field
-						label &nbsp
-						input.ui.button.mini.primary.minusButton(type='button',field='b-quantity', value='-')
-					.field
-						label Lots
-						input(type='number', name='b-quantity',value='1' )
+						label Stocks
+						input(type='number', name='b-quantity',value='1',min='1' max='2' )
 					.field
 						label &nbsp
-						input.ui.button.mini.primary.plusButton(type='button',field='b-quantity', value='+')
+						input.ui.button.mini.primary.twiceButton(type='button',field='b-quantity', value='x2')
 				.fields
-					.field
-						label &nbsp
-						input.ui.button.mini.primary.minusButton(type='button',field='b-price', value='-')
 					.field.bPrice
 						label Price
-						input(type='number', name='b-price')
-					.field
-						label &nbsp
-						input.ui.button.mini.primary.plusButton(type='button',field='b-price', value='+')
+						input(type='number', name='b-price', disabled)
 			.ui.divider
 			.description1
 		.actions
@@ -243,29 +226,20 @@ block content
 		.header
 		.content
 			.description
-				| Selling Lots
+				| Selling Stocks
 			.ui.divider
 			form.ui.form
 				.fields
 					.field
-						label &nbsp
-						input.ui.button.mini.primary.minusButton(type='button',field='s-quantity', value='-')
-					.field
-						label Lots
+						label Stocks
 						input(type='number', name='s-quantity', value='1')
 					.field
 						label &nbsp
-						input.ui.button.mini.primary.plusButton(type='button', field='s-quantity', value='+')
+						input.ui.button.mini.primary.twiceButton(type='button',field='s-quantity', value='x2')
 				.fields
-					.field
-						label &nbsp
-						input.ui.button.mini.primary.minusButton(type='button', field='s-price', value='-')
 					.field.sPrice
 						label Points
-						input(type='number', name='s-price')
-					.field
-						label &nbsp
-						input.ui.button.mini.primary.plusButton(type='button', field='s-price', value='+')
+						input(type='number', name='s-price', disabled )
 			.ui.divider
 			.description1
 		.actions

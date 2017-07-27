@@ -1,33 +1,50 @@
  $(window).on('load', function () {
   UserData();
-  // PlayerData();
+  PlayerData();
  });
 
 //ajax calls
 function PlayerData() {
     // run your ajax call here
-    $.ajax({
-  type: 'POST',
-  url: "/game/player",
-  dataType: 'json'
-  })
-    .done(function(data) {
-      updatePlayers(data);
-      setTimeout(PlayerData, 1000);
-    })
-    .fail(function() {
-      console.log("Ajax failed to fetch data ");
-      // window.location.reload();
-    });
+  $('.buyTBody tr').each(function(){
+
+    var pname=$(this).children().html();
+    var querystring ='tr[p-name="'+pname+'"] .currentPoints p';
+    var currentVal = $(querystring).text();
+
+    currentVal =currentVal.slice(0, -7);
+    $(this).children('.currentPosition').text(currentVal);
+
+    var boughtPrice=$(this).children('.boughtPrice').text();
+    var boughtQty=$(this).children('.boughtQty').text();
+    var currentProfit = currentVal - boughtPrice;
+    currentProfit *= boughtQty;
+    $(this).children('.currentProfit').text(currentProfit);
+    
+  });
+  setTimeout(PlayerData, 1000);
+  // $.ajax({
+  // type: 'POST',
+  // url: "/game/player",
+  // dataType: 'json'
+  // })
+  //   .done(function(data) {
+  //     updatePlayers(data);
+  //     setTimeout(PlayerData, 1000);
+  //   })
+  //   .fail(function() {
+  //     console.log("Ajax failed to fetch data ");
+  //     // window.location.reload();
+  //   });
 }
 
 function UserData() {
     // run your ajax call here
-    $.ajax({
-  type: 'POST',
-  url: "/game/user",
-  dataType: 'json'
-  })
+  $.ajax({
+    type: 'POST',
+    url: "/game/user",
+    dataType: 'json'
+    })
     .done(function(user_data) {
       UpdateUser(user_data);
       // setTimeout(UserData, 1000);
@@ -54,11 +71,11 @@ function UpdateUser(user_data){
     var sellstring="";
 
     user_data.buy.forEach(function(buy){
-      buystring += "<tr><td>"+buy.name+"</td><td>"+buy.quantity+"</td><td>Something</td><td>"+buy.price+"</td><td>Something</td></tr>";
+      buystring += "<tr player-name='"+buy.name+"'><td>"+buy.name+"</td><td class='boughtQty'>"+buy.quantity+"</td><td class='currentPosition'>Something</td><td class='boughtPrice'>"+(Math.round(buy.price* 100) / 100)+"</td><td class='currentProfit'>Something</td></tr>";
     });
 
     user_data.sell.forEach(function(sell){
-      sellstring += "<tr><td>"+sell.name+"</td><td>"+sell.quantity+"</td><td>Something</td><td>"+sell.price+"</td><td>Something</td></tr>";
+      sellstring += "<tr><td>"+sell.name+"</td><td>"+sell.quantity+"</td><td>"+(Math.round(sell.price* 100) / 100)+"</td><td>"+(Math.round(sell.buyprice* 100) / 100)+"</td><td>"+(Math.round(sell.quantity*(sell.price-sell.buyprice)* 100) / 100)+"</td></tr>";
     });
 
     $('.sellTBody').html(sellstring);
@@ -74,11 +91,11 @@ function UpdateUser(user_data){
 
     var stocks=0
     user_data.buy.forEach(function(buy) {
-      stocks += (100*buy.quantity)
+      stocks += (buy.price*buy.quantity)
     });
-    user_data.sell.forEach(function(sell) {
-      stocks += (100*sell.quantity)
-    });   
+    // user_data.sell.forEach(function(sell) {
+    //   stocks += (*sell.quantity)
+    // });   
 
     $('.UserBalance').text((Math.round((user_data.balance)* 100) / 100) +" Inr");
     $('.UserProfit').text((Math.round((user_data.profit)*100) / 100) +" Inr");
@@ -103,12 +120,12 @@ function UpdateUser(user_data){
 //modal open
 $('.buyButton').click(function(){
   var content = $(this).parent().parent().children(':first-child').html();
-  var points = $(this).next().text();
+  var points = $(this).parent().prev().text();
   points =points.slice(0, -7);
   $('input[name="b-quantity"]').val(1);
   $('.mini.buying.modal .header').html(content);
-  $('.mini.buying.modal .description1').text('Total Margin Needed : '+ (Math.round(100*100) / 100)+' Inr' );
-  $('.mini.buying.modal .bPrice input').val(points);
+  $('.mini.buying.modal .description1').text('Total Cash Needed : '+ (Math.round(points*100) / 100)+' Inr' );
+  $('.mini.buying.modal .bPrice input').val((Math.round(points*100) / 100));
   $('.mini.buying.modal')
   .modal('show')
   ;  
@@ -140,12 +157,12 @@ $('.mini.buying.modal')
 
 $('.sellButton').click(function(){
   var content = $(this).parent().parent().children(':first-child').html();
-  var points = $(this).prev().text();
+  var points = $(this).parent().prev().text();
   points =points.slice(0, -7);
   $('input[name="s-quantity"]').val(1);
   $('.mini.selling.modal .header').html(content);
-  $('.mini.selling.modal .description1').text('Total Margin Needed : '+ (Math.round(100*100) / 100) +' Inr');
-  $('.mini.selling.modal .sPrice input').val(points);
+  $('.mini.selling.modal .description1').text('Total Cash Returning : '+ (Math.round(points*100) / 100) +' Inr');
+  $('.mini.selling.modal .sPrice input').val((Math.round(points*100) / 100));
   $('.modal.selling')
   .modal('show')
   ;  
@@ -154,10 +171,13 @@ $('.sellButton').click(function(){
 $('.mini.selling.modal')
   .modal({
     onApprove : function() {
+      var pname = $('.mini.selling.modal .header').text().slice(2)
+      var querystring ='tr[player-name="'+pname+'"]';
       var formData={
         quantity: $('input[name=s-quantity]').val(),
         price: $('input[name=s-price]').val(),
-        name: $('.mini.selling.modal .header').text().slice(2)
+        name: $('.mini.selling.modal .header').text().slice(2),
+        buyprice: $(querystring).children().next().next().next().html()
       };
       $.ajax({
           type: 'POST',
@@ -176,8 +196,8 @@ $('.mini.selling.modal')
 });
 
 
-//plus minus in modal
-$('.plusButton').click(function(e){
+//twice button
+$('.twiceButton').click(function(e){
             e.preventDefault();
             fieldName = $(this).attr('field');
 
@@ -185,41 +205,18 @@ $('.plusButton').click(function(e){
 
             var currentVal = parseInt($('input[name='+fieldName+']').val());
             if (!isNaN(currentVal)) {
-
-              $('input[name='+fieldName+']').val(currentVal + 1);
+              $('input[name='+fieldName+']').val(2);
 
               var quantity =$('input[name='+category+'quantity'+']').val();
               var price =$('input[name='+category+'price'+']').val();
-              $(this).parent().parent().parent().parent().children('.description1').text('Total Margin Needed : '+ (Math.round(quantity* 100*100) / 100)+' Inr' );
+              $(this).parent().parent().parent().parent().children('.description1').text('Total Cash : '+ (Math.round(quantity* price*100) / 100)+' Inr' );
 
             } else {
               $('input[name='+fieldName+']').val(1);
 
               var quantity =$('input[name='+category+'quantity'+']').val();
               var price =$('input[name='+category+'price'+']').val();
-              $(this).parent().parent().parent().parent().children('.description1').text('Total Margin Needed : '+ (Math.round(quantity* 100*100) / 100)+' Inr' );
-            }
-        });
-$('.minusButton').click(function(e){
-            e.preventDefault();
-            fieldName = $(this).attr('field');
-
-            var category = fieldName.slice(0,2);
-
-            var currentVal = parseInt($('input[name='+fieldName+']').val());
-            if (!isNaN(currentVal)) {
-              $('input[name='+fieldName+']').val(currentVal - 1);
-
-              var quantity =$('input[name='+category+'quantity'+']').val();
-              var price =$('input[name='+category+'price'+']').val();
-              $(this).parent().parent().parent().parent().children('.description1').text('Total Margin Needed : '+ (Math.round(quantity* 100*100) / 100)+' Inr' );
-
-            } else {
-              $('input[name='+fieldName+']').val(1);
-
-              var quantity =$('input[name='+category+'quantity'+']').val();
-              var price =$('input[name='+category+'price'+']').val();
-              $(this).parent().parent().parent().parent().children('.description1').text('Total Margin Needed : '+ (Math.round(quantity* 100) / 100) );
+              $(this).parent().parent().parent().parent().children('.description1').text('Total Cash : '+ (Math.round(quantity* price*100) / 100) );
             }
         });
 
