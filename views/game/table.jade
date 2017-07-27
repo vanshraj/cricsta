@@ -124,9 +124,9 @@ block content
 							tr
 								th Player Name
 								th Best Seller 
-									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Price of buying (long) the player.",data-position="top center")
+									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Minimum Price of buying (long) the player.",data-position="top center")
 								th Best Buyer 
-									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Price of selling (short) the player.",data-position="top center")
+									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Maximum Price of selling (short) the player.",data-position="top center")
 						tbody
 							if data.team1.batsmen
 								each batsmen, i in team1players
@@ -164,10 +164,10 @@ block content
 						thead
 							tr
 								th Player Name
-								th Best Buyer 
-									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Price of buying (long) the player.",data-position="top center")
 								th Best Seller 
-									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Price of selling (short) the player.",data-position="top center") 
+									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Minimum Price of buying (long) the player.",data-position="top center")
+								th Best Buyer 
+									i.help.circle.outline.icon(style="font-size:0.9em", data-variation="wide inverted",data-content="Maximum Price of selling (short) the player.",data-position="top center") 
 						tbody
 							if data.team2.batsmen
 								each batsmen, i in team2players

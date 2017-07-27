@@ -1,0 +1,97 @@
+extends ../layout
+
+block free
+	.intro
+		.ui.container
+			h1 
+				span What We Do
+		br
+		br
+		.ui.contianer
+			.ui.container
+				.ui.grid.centered.computer.only
+					.four.wide.column
+						a(href="#fantasy")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.game.icon
+								|   Fantasy Gaming
+								.wobble Beta
+					.four.wide.column
+						a(href="#prediction")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.line.chart.icon
+								|   Match Prediction Model
+								.pulsate Live
+					.four.wide.column
+						a(href="#auction")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.legal.icon
+								|   Auction Model
+								.wobble Available
+					.four.wide.column
+						a(href="#evaluation")
+							h3.ui.center.aligned.icon.header
+								i.bordered.orange.dashboard.icon
+								|   Player Evaluation
+				.ui.grid.centered.mobile.tablet.only
+					.four.wide.column
+						a(href="#fantasy")
+							h6.ui.center.aligned.icon.header
+								i.bordered.orange.game.icon
+								|   Fantasy Gaming
+								.wobble Beta
+					.four.wide.column
+						a(href="#prediction")
+							h6.ui.center.aligned.icon.header
+								i.bordered.orange.line.chart.icon
+								|   Match Prediction Model
+								.pulsate Live
+					.four.wide.column
+						a(href="#auction")
+							h6.ui.center.aligned.icon.header
+								i.bordered.orange.legal.icon
+								|   Auction Model
+								.wobble Available
+					.four.wide.column
+						a(href="#evaluation")
+							h6.ui.center.aligned.icon.header
+								i.bordered.orange.dashboard.icon
+								|   Player Evaluation
+	.ui.items
+		.item#fantasy
+			.image.module
+				img(src='/images/game-proto.png')
+			.content.middle.aligned
+				.header.module Fantasy Gaming
+				.description.module
+					p Super Selector : Create fantasy dream teams than compete with other teams. 
+					br
+					p Player markets : Go long & short the points a player will score, a la the derivative market.
+				.extra.module
+					a(style="color:white",href="/game") Beta
+		.item#prediction
+			.content.middle.aligned
+				.header.module Match Prediction
+				.description.module
+					p Predictive modelling : Create quant models that predict sports match results, team scores and individual scores. 
+				.extra.module
+					a.pulsate(href="/prediction") Live
+			.image.module
+				img(src='/images/prediction-proto.png')
+		.item#auction
+			.image.module
+				img(src='/images/auction-proto.png')
+			.content.middle.aligned
+				.header.module Team Auction
+				.description.module
+					p Auction model : Create a model that will assist franchise teams bid in player auctions.
+		.item#evaluation
+			.content.middle.aligned
+				.header.module Player Evaluation
+				.description.module
+					p Player Evaluation Matrix : Create Model for individual player statistics and behaviour.
+				.extra.module
+			.image.module
+				img(src='/images/evaluation-proto.png')
+block scripts
+	script(src="/javascripts/what.js")

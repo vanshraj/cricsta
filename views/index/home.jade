@@ -1,0 +1,245 @@
+html
+	head
+		// Standard Meta
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
+		meta(name="google-site-verification" content="LXsJWKc4kL1lFlkEdfoAtyl2tsZlX4-lVEu5LkMBcsI")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(name="format-detection" content="telephone=no")
+		meta(name="title" content="Thinkquant: Analytics Website Of Cricket Prediction For Trading")
+		meta(name="description" content="Cricket Trading Odds")
+		meta(name="keywords" content="cricket, trading, analytics, thinkquant, cricket blog, sports market odds, cricket market, betting odds, cricket odds, sports betting")
+		title= title
+		link(rel="icon" href="/images/favicon.ico")
+		link(href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet")
+		link(rel="stylesheet", type="text/css", href="/semantic/dist/semantic.min.css")
+		link(rel="stylesheet", href='/stylesheets/style.css')
+		link(rel="stylesheet", href='/stylesheets/landing.css')
+		script( src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" )
+		script( src="/semantic/dist/semantic.min.js" )
+		script( src="/javascripts/scripts.js" )
+		script( src="/javascripts/landing.js" )
+		script.
+			$(document)
+				.ready(function() {
+					// fix menu when passed
+					$('.masthead')
+						.visibility({
+							once: false,
+							onBottomPassed: function() {
+								$('.fixed.menu').transition('fade in');
+							},
+							onBottomPassedReverse: function() {
+								$('.fixed.menu').transition('fade out');
+							}
+						})
+						;
+					// create sidebar and attach to menu open
+					$('.ui.sidebar')
+						.sidebar('attach events', '.toc.item')
+					;
+				})
+			;
+	body.pushable
+		// Following Menu
+		.ui.large.top.fixed.menu.transition.hidden.inverted
+			.ui.container
+				a.item(href='/')
+					img(src="/images/logo.png" style=" width:14.8em")
+				a(class=(title==='Blog'? 'active item':'item'),href='/blog')
+					| Blog
+				a(class=(title==='About Us'? 'active item':'item'),href='/about')
+					| About Us
+				a(class=(title==='What We Do'? 'active item':'item'),href='/what_we_do')
+					| What We Do
+				if user
+					if user.type == 'admin'
+						a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')
+							| Add Blog
+				.right.menu
+					if !user
+						a(class=(title==='signup'? 'active item':'item'),href='/users/register')
+							.ui.animated.black.button.inverted(tabindex='0')
+								.visible.content Register
+								.hidden.content
+									i.add.user.icon
+						a(class=(title==='login'? 'active item':'item'),href='/users/login')
+							.ui.animated.orange.button(tabindex='0')
+								.visible.content Sign In
+								.hidden.content
+									i.sign.in.icon
+					if user
+						a(class=(title==='Account'? 'active item':'item'),href='/users/account')
+							.ui.animated.button.black.inverted(tabindex='0')
+								.visible.content #{user.name}
+								.hidden.content
+									i.user.icon
+						a.item(href='/users/logout')
+							.ui.animated.orange.button(tabindex='0')
+								.visible.content Sign Out
+								.hidden.content
+									i.sign.out.icon
+		// Sidebar Menu
+		.ui.vertical.inverted.sidebar.menu.left
+			a.item(href='/')
+				img(src="/images/logo.png" style=" width:12.8em")
+			a(class=(title==='Blog'? 'active item':'item'),href='/blog')
+				| Blog
+			a(class=(title==='About Us'? 'active item':'item'),href='/about')
+					| About Us
+			a(class=(title==='What We Do'? 'active item':'item'),href='/what_we_do')
+				| What We Do
+			if user
+				if user.type == 'admin'
+					a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')
+						| Add Blog
+			if !user
+					a(class=(title==='signup'? 'active item':'item'),href='/users/register')
+						| Register
+					a(class=(title==='login'? 'active item':'item'),href='/users/login')
+						| Sign In
+			if user
+					a(class=(title==='Account'? 'active item':'item'),href='/users/account')
+						| #{user.name}
+					a.item(href='/users/logout')
+						| Logout
+		// Page Contents
+		.pusher
+			.ui.inverted.vertical.masthead.center.aligned.segment
+				.ui.container
+					.ui.large.secondary.inverted.pointing.menu
+						a.toc.item
+							i.sidebar.icon
+						a(class=(title==='Thinkquant'? 'active item':'item'),href='/')
+							| Home
+						a(class=(title==='Blog'? 'active item':'item'),href='/blog')
+							| Blog
+						a(class=(title==='About Us'? 'active item':'item'),href='/about')
+							| About Us
+						a(class=(title==='What We Do'? 'active item':'item'),href='/what_we_do')
+							| What We Do
+						if user
+							if user.type == 'admin'
+								a(class=(title==='Add Blog'? 'active item':'item'),href='/blog/add')
+									| Add Blog
+
+						.right.menu
+							if !user
+								a(class=(title==='signup'? 'active item':'item'),href='/users/register')
+									.ui.animated.button.inverted(tabindex='0')
+										.visible.content Register
+										.hidden.content
+											i.add.user.icon
+								a(class=(title==='login'? 'active item':'item'),href='/users/login')
+									.ui.animated.orange.button(tabindex='0')
+										.visible.content Sign In
+										.hidden.content
+											i.sign.in.icon
+							if user
+								a(class=(title==='Account'? 'active item':'item'),href='/users/account')
+									.ui.animated.button.inverted(tabindex='0')
+										.visible.content #{user.name}
+										.hidden.content
+											i.user.icon
+								a.item(href='/users/logout')
+									.ui.animated.orange.button(tabindex='0')
+										.visible.content Sign Out
+										.hidden.content
+											i.sign.out.icon
+				section
+					.title
+						span Thinkquant
+						span
+							| Sports Gaming and
+							a(href='/prediction') Analytics			
+			.intro
+				.ui.container
+					h1 
+						span About Us
+					br
+					h3 Thinkquant is a sports-focused content and technology solutions company based out of Gurgaon with a vision to revolutionize the sports fan experience by creating best-in-class products. 
+						a(style="color:#f4873e" href="/about")
+							br
+							| Read More ..
+			.ui.container
+				.ui.divider		
+			.intro
+				.ui.container
+					h1 
+						span What We Do
+				br
+				br
+				.ui.contianer
+					.ui.container
+						.ui.grid.centered.computer.only
+							.four.wide.column
+								a(href="/game")
+									h3.ui.center.aligned.icon.header
+										i.bordered.orange.game.icon
+										|   Fantasy Gaming
+										.wobble Beta
+							.four.wide.column
+								a(href="/prediction")
+									h3.ui.center.aligned.icon.header
+										i.bordered.orange.line.chart.icon
+										|   Match Prediction Model
+										.pulsate Live
+							.four.wide.column
+								a(href="/what_we_do/#auction")
+									h3.ui.center.aligned.icon.header
+										i.bordered.orange.legal.icon
+										|   Auction Model
+										.wobble Available
+							.four.wide.column
+								a(href="/prediction#evaluation")
+									h3.ui.center.aligned.icon.header
+										i.bordered.orange.dashboard.icon
+										|   Player Evaluation
+						.ui.grid.centered.mobile.tablet.only
+							.four.wide.column
+								a(href="/game")
+									h6.ui.center.aligned.icon.header
+										i.bordered.orange.game.icon
+										|   Fantasy Gaming
+										.wobble Beta
+							.four.wide.column
+								a(href="/prediction")
+									h6.ui.center.aligned.icon.header
+										i.bordered.orange.line.chart.icon
+										|   Match Prediction Model
+										.pulsate Live
+							.four.wide.column
+								a(href="/what_we_do#auction")
+									h6.ui.center.aligned.icon.header
+										i.bordered.orange.legal.icon
+										|   Auction Model
+										.wobble Available
+							.four.wide.column
+								a(href="/prediction#evaluation")
+									h6.ui.center.aligned.icon.header
+										i.bordered.orange.dashboard.icon
+										|   Player Evaluation
+			.ui.inverted.vertical.footer.segment
+				.ui.center.aligned.container
+					.ui.stackable.inverted.divided.grid
+						.eight.wide.column
+							h3.ui.inverted.header About ThinkQuant
+							p ThinkQuant is an analytics firm based out of Gurgaon, India. We specialize in making predictive models, with a rich history in the financial markets. Our predictive model for cricket ThinkQuant is live, and can work in-play during a cricket match.
+						.eight.wide.column
+							h3.ui.inverted.header Contact Us
+							i.mail.icon
+							| services@thinkquant.in 
+							i.phone.icon
+							| Alok Noronha (CEO) at 9953916443.
+							br
+							i.building.icon
+							| 326, Star Tower, Sector 30, Gurgaon
+							br
+							a(href="https://twitter.com/quant_think")
+								i.twitter.icon
+								| Twitter/quant_think
+					.ui.inverted.section.divider
+					img.ui.centered.small.image(src='/images/logo.png')
+					.ui.horizontal.inverted.small.divided.link.list
+						p.item &copy; 2017, All Rights Reserved

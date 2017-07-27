@@ -86,7 +86,7 @@ ul.error li{
 }
 .ui.footer.segment {
 	background-color: #1b1c1d;
-	background:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), rgba(242, 113, 28, 0.2)),url("/images/footer-bg.jpg");
+	/*background:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), rgba(242, 113, 28, 0.2)),url("/images/footer-bg.jpg");*/
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -114,45 +114,93 @@ a.ui.orange.label{
     height: 130px !important;
 }
 
-.intro{
-	color: white;
-	background-color:#1b1c1d;
+.intro, .team, .intro1{
+	color: #1b1c1d;
+	background-color: #fbfbfb;
 	justify-content: center;
 	padding-bottom: 10%; 
 	/*text-align: center;*/
 	padding-top:5%; 
+	/*margin-top: -65px;*/
 }
-.intro.company, .intro.services{
+.intro1{
+	color: white;
+	text-align: center;
+	background-color: #1b1c1d;
+}
+.team{
+	margin-top: 20px;
+	margin-bottom: -80px;
+	/*background-color: #f4873e;*/
+}
+.intro1{
+	margin-top: 20px;
+}
+#fantasy, #auction{
+	margin:0;
+	padding: 5%;
+	color:#fbfbfb !important;
+	background: #f4873e; 
+    background: -webkit-linear-gradient(left top, #f4873e, #c1540b); 
+    background: -o-linear-gradient(bottom right, #f4873e, #c1540b);  
+    background: -moz-linear-gradient(bottom right, #f4873e, #c1540b);
+    background: linear-gradient(to bottom right, #f4873e, #c1540b);
+}
+#evaluation, #prediction{
+	margin: 0;
+	padding: 5%;
+	/*background-color: #f4873e;*/
+}
+#evaluation .content, #prediction .content{
+	margin-top: 150px;
+}
+.ui.items > .item > :not(.ui).image{
+	width: 60%;
+}
+#fantasy .header, #fantasy .meta, #fantasy .description, #fantasy .extra, #auction .header, #auction .meta, #auction .description, #auction .extra{
+	color: #fbfbfb !important;
+}
+.ui.items > .item > .content > :not(.ui).header{
+	font-size: 4em;
+}
+.ui.items > .item > .content > :not(.ui).description{
+	font-size: 1.3em;
+	opacity: 0.8;
+}
+/*.intro.company, .intro.services{
 	color: #1b1c1d;
 	background-color:#fff;
 	justify-content: center;
 	padding-bottom: 10%; 
-	/*text-align: center;*/
+	text-align: center;
 	padding-top:5%; 
 }
 .intro.services p strong{
 	text-transform: uppercase;
-}
-.intro h1{
+}*/
+.intro h1, .team h1, .intro1 h1{
 	font-weight: 100 !important;
 	margin: 2% 7%;
-	border-bottom: 10px solid #F2721C;
+	border-bottom: 10px solid #f4873e;
 	font-size: 26px;
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: 5px;
 	/*opacity: .4;*/
 }
+.team h1{
+	/*border-bottom: 10px solid #1b1c1d;*/
+}
 .intro img{
 	margin-top: 2%;
 	margin-left: 25%;
 	max-width: 50%;	
 }
-.intro h1 span{
+.intro h1 span, .team h1 span, .intro1 h1 span{
   font-family: handwritten, 'Raleway', sans-serif;
   font-size: 50px;
 }
-.intro h3{
+.intro h3, .intro1 h3{
 	font-weight: 100 !important;
 	font-size: 18px;
 	letter-spacing: 2px;
@@ -161,7 +209,13 @@ a.ui.orange.label{
 	margin:0% 20%;
 	line-height: 2em;
 }
-
+.intro h6{
+	font-weight: 100 !important;
+	letter-spacing: 2px;
+	opacity: .9;
+	justify-content: center;
+	line-height: 2em;	
+}
 .intro li, .intro ul, .intro p{
 	font-weight: 100 !important;
 	font-size: 15px;
@@ -175,25 +229,80 @@ a.ui.orange.label{
 }
 
 .intro.company a{
-	color: #F2721C;
+	color: #f4873e;
 }
 
 .info.circle.icon, .help.circle.outline.icon{
 	cursor: help;
 }
 
+.pulsate {
+color:red;
+-webkit-animation: pulsate 2s ease-out;
+-webkit-animation-iteration-count: infinite; 
+opacity: 0.2;
+}
+@-webkit-keyframes pulsate {
+    0% { 
+        opacity: 0.2;
+    }
+    50% { 
+        opacity: 1.0;
+        font-size: 1.2em;
+    }
+    100% { 
+        opacity: 0.2;
+    }
+}
+
+@keyframes wobble {
+  0% {transform: translateX(0%);}
+  15% {transform: translateX(-25%) rotate(-5deg);}
+  30% {transform: translateX(20%) rotate(3deg);}
+  45% {transform: translateX(-15%) rotate(-3deg);}
+  60% {transform: translateX(10%) rotate(2deg);}
+  75% {transform: translateX(-5%) rotate(-1deg);}
+  100% {transform: translateX(0%);}
+}
+.wobble {
+  animation-duration: 2.5s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  color: #f4873e;
+  animation-name: wobble;
+}
+.module{
+	transform: translateY(150px);
+}
+.come-in {
+  
+  animation: come-in 0.8s ease forwards;
+}
+.come-in:nth-child(odd) {
+  animation-duration: 0.6s; /* So they look staggered */
+}
+
+@keyframes come-in {
+  to { transform: translateY(0); }
+}
+
+.already-visible {
+  transform: translateY(0);
+  animation: none;
+}
+
 /*css for tablets*/
-@media (max-width: 780px) {
+@media (max-width: 767px) {
 	.intro img{
 		margin-left: 1%;
 		max-width: 98%;	
 	}
-	.intro h1{
+	.intro h1, .team h1, .intro1 h1{
 		/*margin-right: 2%;*/
 		margin: 2% 1%;
 		font-size: 22px;
 	}
-	.intro h1 span{
+	.intro h1 span, .team h1 span, .intro1 h1 span{
 		font-size: 30px;
 	}
 	.intro.company h1 {
@@ -201,7 +310,7 @@ a.ui.orange.label{
 		letter-spacing: 2px;
 		text-transform: none;
 	}
-	.intro h3, .intro li, .intro ul, .intro p{
+	.intro h3, .intro li, .intro ul, .intro p, .intro1 h3{
 		font-size: 14px;
 		margin: 2% 1%;
 		justify-content: center;
@@ -230,8 +339,32 @@ a.ui.orange.label{
    .menuTabs{
    	font-size: 12px;
    }
+   .ui.items > .item > .content > :not(.ui).header{
+		font-size: 2em;
+	}
+	.ui.items > .item > .content > :not(.ui).description{
+		font-size: 0.9em;
+		opacity: 0.8;
+	}
+	#evaluation .content, #prediction .content{
+		margin-top: 50px;
+	}
+   .ui.stackable.cards > .card{ margin:1em 3em; width:calc(100% - 6em) !important; }
+   @-webkit-keyframes pulsate {
+	    0% { 
+	        opacity: 0.2;
+	    }
+	    50% { 
+	        opacity: 1.0;
+	        /*font-size: 1.2em;*/
+	    }
+	    100% { 
+	        opacity: 0.2;
+	    }
+	}
+
 }
 
 /*css for mobiles*/
-
+.ui.card > :not(.ui).image > img, .ui.cards > .card > :not(.ui).image > img{ border:70px solid rgba(0,0,0,0); border-radius: 50% }
 .ui.mini.modal>.header:not(.ui){font-size:1.3em}@media only screen and (max-width:767px){.ui.mini.modal{width:95%;margin:0 0 0 -47.5%}}@media only screen and (min-width:768px){.ui.mini.modal{width:35.2%;margin:0 0 0 -17.6%}}@media only screen and (min-width:992px){.ui.mini.modal{width:340px;margin:0 0 0 -170px}}@media only screen and (min-width:1200px){.ui.mini.modal{width:360px;margin:0 0 0 -180px}}@media only screen and (min-width:1920px){.ui.mini.modal{width:380px;margin:0 0 0 -190px}}
