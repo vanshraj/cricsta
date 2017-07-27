@@ -273,6 +273,7 @@ opacity: 0.2;
 }
 .module{
 	transform: translateY(150px);
+	opacity: 0;
 }
 .come-in {
   
@@ -283,11 +284,12 @@ opacity: 0.2;
 }
 
 @keyframes come-in {
-  to { transform: translateY(0); }
+  to { transform: translateY(0); opacity: 1;}
 }
 
 .already-visible {
   transform: translateY(0);
+  opacity: 1;
   animation: none;
 }
 
