@@ -17,7 +17,7 @@ function PlayerData() {
     .fail(function() {
       console.log("Ajax failed to fetch data ");
       // setTimeout(PlayerData, 1000);
-      // window.location.reload();
+      window.location.reload();
     });
 }
 
@@ -35,7 +35,7 @@ function UserData() {
     })
     .fail(function() {
       console.log("Ajax failed to fetch data ");
-      // window.location.reload();
+      window.location.reload();
     });
 }
 //table changes
