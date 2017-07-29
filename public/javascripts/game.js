@@ -1,11 +1,60 @@
  $(window).on('load', function () {
   UserData();
-  PlayerData();
  });
 
 //ajax calls
 function PlayerData() {
     // run your ajax call here
+  $.ajax({
+  type: 'GET',
+  url: "/game/player",
+  dataType: 'json'
+  })
+    .done(function(data) {
+      updatePlayers(data);
+      setTimeout(PlayerData, 1000);
+    })
+    .fail(function() {
+      console.log("Ajax failed to fetch data ");
+      // setTimeout(PlayerData, 1000);
+      // window.location.reload();
+    });
+}
+
+function UserData() {
+    // run your ajax call here
+  $.ajax({
+    type: 'POST',
+    url: "/game/user",
+    dataType: 'json'
+    })
+    .done(function(user_data) {
+      UpdateUser(user_data);
+      PlayerData();
+      // setTimeout(UserData, 1000);
+    })
+    .fail(function() {
+      console.log("Ajax failed to fetch data ");
+      // window.location.reload();
+    });
+}
+//table changes
+function updatePlayers(data){
+
+  $.each( data.team1players, function(index, player){
+    var pname = player.name;
+    var querystring ='tr[p-name="'+pname+'"] .currentPoints p';
+    var points = (Math.round(player.points* 100) / 100)
+    $(querystring).text(points+' Points');
+  });
+
+  $.each( data.team2players, function(index, player){
+    var pname = player.name;
+    var querystring ='tr[p-name="'+pname+'"] .currentPoints p';
+    var points = (Math.round(player.points* 100) / 100)
+    $(querystring).text(points+ ' Points');
+  });
+
   $('.buyTBody tr').each(function(){
 
     var pname=$(this).children().html();
@@ -20,41 +69,21 @@ function PlayerData() {
     var currentProfit = currentVal - boughtPrice;
     currentProfit *= boughtQty;
     $(this).children('.currentProfit').text(currentProfit);
+
+    if(currentProfit > 0){
+      $('.currentProfit').addClass('positive');
+      $('.currentProfit').removeClass('negative');
+    }else if(currentProfit < 0){
+      $('.currentProfit').removeClass('positive');
+      $('.currentProfit').addClass('negative');
+    }else{
+      $('.currentProfit').removeClass('positive');
+      $('.currentProfit').removeClass('negative');
+    }
     
   });
-  setTimeout(PlayerData, 1000);
-  // $.ajax({
-  // type: 'POST',
-  // url: "/game/player",
-  // dataType: 'json'
-  // })
-  //   .done(function(data) {
-  //     updatePlayers(data);
-  //     setTimeout(PlayerData, 1000);
-  //   })
-  //   .fail(function() {
-  //     console.log("Ajax failed to fetch data ");
-  //     // window.location.reload();
-  //   });
+  
 }
-
-function UserData() {
-    // run your ajax call here
-  $.ajax({
-    type: 'POST',
-    url: "/game/user",
-    dataType: 'json'
-    })
-    .done(function(user_data) {
-      UpdateUser(user_data);
-      // setTimeout(UserData, 1000);
-    })
-    .fail(function() {
-      console.log("Ajax failed to fetch data ");
-      // window.location.reload();
-    });
-}
-
 //ui changes
 function UpdateUser(user_data){
 
@@ -75,7 +104,14 @@ function UpdateUser(user_data){
     });
 
     user_data.sell.forEach(function(sell){
-      sellstring += "<tr><td>"+sell.name+"</td><td>"+sell.quantity+"</td><td>"+(Math.round(sell.price* 100) / 100)+"</td><td>"+(Math.round(sell.buyprice* 100) / 100)+"</td><td>"+(Math.round(sell.quantity*(sell.price-sell.buyprice)* 100) / 100)+"</td></tr>";
+      var closedProfit =(Math.round(sell.quantity*(sell.price-sell.buyprice)* 100) / 100);
+      var theclass='';
+      if(closedProfit > 0){
+        theclass='positive';
+      }else if(closedProfit < 0){
+        theclass='negative'; 
+      }
+      sellstring += "<tr><td>"+sell.name+"</td><td>"+sell.quantity+"</td><td>"+(Math.round(sell.price* 100) / 100)+"</td><td>"+(Math.round(sell.buyprice* 100) / 100)+"</td><td class='"+theclass+"'>"+closedProfit+"</td></tr>";
     });
 
     $('.sellTBody').html(sellstring);
@@ -134,25 +170,35 @@ $('.buyButton').click(function(){
 $('.mini.buying.modal')
   .modal({
     onApprove : function() {
-      var formData={
-        quantity: $('input[name=b-quantity]').val(),
-        price: $('input[name=b-price]').val(),
-        name: $('.mini.buying.modal .header').text().slice(2)
-      };
-      $.ajax({
-          type: 'POST',
-          url: "/game/buy",
-          data: formData,
-          dataType: 'json'
-        })
-        .done(function(data) {
-          UserData();
-          // window.location.reload();
-        })
-        .fail(function() {
-          console.log("Ajax failed to fetch data");
-        });
+      var bquantity= $('input[name=b-quantity]').val();
+      var bprice= $('input[name=b-price]').val();
+      var ubalance= $('.UserBalance').text();
+      ubalance = ubalance.slice(0, -4);
+      ubalance -= bquantity*bprice;
+      if(ubalance<0){
+        window.alert("You don't have the required balance.");
+      }else{
+        var formData={
+          quantity: $('input[name=b-quantity]').val(),
+          price: $('input[name=b-price]').val(),
+          name: $('.mini.buying.modal .header').text().slice(2)
+        };
+        $.ajax({
+            type: 'POST',
+            url: "/game/buy",
+            data: formData,
+            dataType: 'json'
+          })
+          .done(function(data) {
+            UserData();
+            // window.location.reload();
+          })
+          .fail(function() {
+            console.log("Ajax failed to fetch data");
+          });
+        }  
       }
+      
 });
 
 $('.sellButton').click(function(){

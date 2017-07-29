@@ -26,14 +26,14 @@ var PlayerSchema = mongoose.Schema({
 	team1:{
 		name:{type: String},
 		color:{type: String},
-		batsmen:[ { name:{type:String}, runsScored:{type: Number}, ballsPlayed:{type: Number}, keeper:{type: Boolean} } ],
-		bowlers:[ { name:{type:String}, wicketsTaken:{type: Number}, runsConceded:{type: Number} } ]
+		batsmen:[ { name:{type:String}, points:{type: Number}, runsScored:{type: Number}, ballsPlayed:{type: Number}, keeper:{type: Boolean} } ],
+		bowlers:[ { name:{type:String}, points:{type: Number}, wicketsTaken:{type: Number}, runsConceded:{type: Number} } ]
 	},
 	team2:{
 		name:{type:String},
 		color:{type: String},
-		batsmen:[ { name:{type:String}, runsScored:{type: Number}, ballsPlayed:{type: Number}, keeper:{type: Boolean} } ],
-		bowlers:[ { name:{type:String}, wicketsTaken:{type: Number}, runsConceded:{type: Number} } ]
+		batsmen:[ { name:{type:String}, points:{type: Number}, runsScored:{type: Number}, ballsPlayed:{type: Number}, keeper:{type: Boolean} } ],
+		bowlers:[ { name:{type:String}, points:{type: Number}, wicketsTaken:{type: Number}, runsConceded:{type: Number} } ]
 	}
 });
 

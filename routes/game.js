@@ -48,8 +48,17 @@ router.post('/sell',isAuthenticated, function(req, res, next){
 
 // give player data from python file and users buying/selling positions
 router.get('/player', function(req, res, next){
-	jsonfile.readFile(file, function(err, obj){
-		res.send(obj.scorecard[0]);
+	Match.getMatchLatestData(function(err, match){
+		if(err) throw err;
+		Player.getPlayerData(match, function(err, data){
+			if(err) throw err;
+			var team1players = _.unionBy( data.team1.bowlers,data.team1.batsmen, 'name');
+			team1players = _.sortBy(team1players,'name');
+			var team2players = _.unionBy( data.team2.bowlers,data.team2.batsmen,'name');
+			team2players = _.sortBy(team2players,'name');
+			var data ={ team2players:team2players, team1players:team1players };
+			res.send(data);
+		});
 	});
 });
 

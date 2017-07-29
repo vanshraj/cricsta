@@ -3,7 +3,7 @@ extends ../layout
 block content
 	.ui.centered.grid.center.aligned
 			.column.center.aligned
-				h1 #{data.team1.name} v/s West Indies
+				h1 #{data.team1.name} v/s #{data.team2.name}
 				.ui.divider
 	if !user
 		.ui.grid.tablet.computer.only
@@ -48,10 +48,6 @@ block content
 								table.ui.very.basic.table
 									tbody
 										- var stocks=0
-											- each buy, i in user_data.buy
-												- stocks += (buy.quantity)
-											- each sell, i in user_data.sell
-												- stocks += (sell.quantity)
 										tr
 											td Cash Balance  
 												i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="Total money in your account.",data-position="top center")
@@ -138,7 +134,7 @@ block content
 												else
 													img(src="/images/bat.png" style="float:right; max-width:25px")
 											td.currentPoints 
-												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored* 100) / 100} Points
+												p(style="display:block; float:right;") #{Math.round(batsmen.points* 100) / 100} Points
 												
 											td 
 												.ui.button.green.mini.inverted.left.floated.buyButton Buy
@@ -150,7 +146,7 @@ block content
 												| &nbsp #{batsmen.name}
 												img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
 											td.currentPoints 
-												p(style="display:block; float:right;") #{Math.round(batsmen.wicketsTaken*20* 100) / 100} Points
+												p(style="display:block; float:right;") #{Math.round(batsmen.points* 100) / 100} Points
 
 											td 
 												.ui.button.green.mini.inverted.left.floated.buyButton Buy
@@ -175,7 +171,7 @@ block content
 												else
 													img(src="/images/bat.png" style="float:right; max-width:25px")
 											td.currentPoints 
-												p(style="display:block; float:right;") #{Math.round(batsmen.runsScored* 100) / 100} Points
+												p(style="display:block; float:right;") #{Math.round(batsmen.points* 100) / 100} Points
 												
 											td 
 												.ui.button.green.mini.inverted.left.floated.buyButton Buy
@@ -188,7 +184,7 @@ block content
 												img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
 												| &nbsp
 											td.currentPoints 
-												p(style="display:block; float:right;") #{Math.round(batsmen.wicketsTaken*20* 100) / 100} Points
+												p(style="display:block; float:right;") #{Math.round(batsmen.points* 100) / 100} Points
 												
 											td 
 												.ui.button.green.mini.inverted.left.floated.buyButton Buy
