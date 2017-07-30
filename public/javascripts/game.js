@@ -68,8 +68,7 @@ function updatePlayers(data){
     var boughtQty=$(this).children('.boughtQty').text();
     var currentProfit = currentVal - boughtPrice;
     currentProfit *= boughtQty;
-    currentProfit = (Math.round(currentProfit* 100) / 100)
-
+    currentProfit = (Math.round(currentProfit* 100) / 100);
     $(this).children('.currentProfit').text(currentProfit);
 
     if(currentProfit > 0){
