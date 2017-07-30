@@ -84,6 +84,10 @@ module.exports.makeGamingUser = function( match, user, callback){
 	}
 }
 
+// module.exports.getTopPlayers = function(match, callback){
+// 	var query ={}
+// }
+
 module.exports.buyStock = function(match, user, stock, callback){
 	//buying stocks calculating balance and remaining stocks and profit/loss
 	var i= _.findIndex(user.game, { "gameId": match[0].matchId });

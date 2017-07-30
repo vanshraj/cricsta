@@ -62,6 +62,7 @@ function updatePlayers(data){
     var currentVal = $(querystring).text();
 
     currentVal =currentVal.slice(0, -7);
+    console.log(currentVal);
     $(this).children('.currentPosition').text(currentVal);
 
     var boughtPrice=$(this).children('.boughtPrice').text();
@@ -72,14 +73,14 @@ function updatePlayers(data){
     $(this).children('.currentProfit').text(currentProfit);
 
     if(currentProfit > 0){
-      $('.currentProfit').addClass('positive');
-      $('.currentProfit').removeClass('negative');
+      $(this).children('.currentProfit').addClass('positive');
+      $(this).children('.currentProfit').removeClass('negative');
     }else if(currentProfit < 0){
-      $('.currentProfit').removeClass('positive');
-      $('.currentProfit').addClass('negative');
+      $(this).children('.currentProfit').removeClass('positive');
+      $(this).children('.currentProfit').addClass('negative');
     }else{
-      $('.currentProfit').removeClass('positive');
-      $('.currentProfit').removeClass('negative');
+      $(this).children('.currentProfit').removeClass('positive');
+      $(this).children('.currentProfit').removeClass('negative');
     }
     
   });
