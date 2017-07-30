@@ -127,7 +127,8 @@ block content
 									if (batsmen.runsScored)
 										tr(p-name="#{batsmen.name}")
 											td
-												img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
+												-var team1uri= encodeURIComponent(data.team1.name.trim())
+												img(src="/images/#{team1uri}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
 												if (batsmen.keeper)
 													img(src="/images/keeper.png" style="float:right; max-width:25px")
@@ -142,7 +143,8 @@ block content
 									else
 										tr(p-name="#{batsmen.name}")
 											td
-												img(src="/images/#{data.team1.name}.png" style="vertical-align:middle; max-width:35px")
+												-var team1uri= encodeURIComponent(data.team1.name.trim())
+												img(src="/images/#{team1uri}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
 												img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
 											td.currentPoints 
@@ -164,7 +166,8 @@ block content
 									if batsmen.runsScored
 										tr(p-name="#{batsmen.name}")
 											td
-												img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
+												-var team2uri= encodeURIComponent(data.team2.name.trim())
+												img(src="/images/#{team2uri}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
 												if (batsmen.keeper)
 													img(src="/images/keeper.png" style="float:right; max-width:25px")
@@ -179,7 +182,8 @@ block content
 									else
 										tr(p-name="#{batsmen.name}")
 											td
-												img(src="/images/#{data.team2.name}.png" style="vertical-align:middle; max-width:35px")
+												-var team2uri= encodeURIComponent(data.team2.name.trim())
+												img(src="/images/#{team2uri}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
 												img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
 												| &nbsp
