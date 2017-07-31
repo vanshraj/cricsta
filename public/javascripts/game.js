@@ -41,17 +41,20 @@ function UserData() {
 //table changes
 function updatePlayers(data){
 
+  var stocks=0;
+  var userprofit=0;
+
   $.each( data.team1players, function(index, player){
     var pname = player.name;
     var querystring ='tr[p-name="'+pname+'"] .currentPoints p';
-    var points = (Math.round(player.points* 100) / 100)
+    var points = (Math.round(player.points));
     $(querystring).text(points+' Points');
   });
 
   $.each( data.team2players, function(index, player){
     var pname = player.name;
     var querystring ='tr[p-name="'+pname+'"] .currentPoints p';
-    var points = (Math.round(player.points* 100) / 100)
+    var points = (Math.round(player.points));
     $(querystring).text(points+ ' Points');
   });
 
@@ -62,16 +65,19 @@ function updatePlayers(data){
     var currentVal = $(querystring).text();
 
     currentVal =currentVal.slice(0, -7);
-    console.log(currentVal);
+    // console.log(currentVal);
+
     $(this).children('.currentPosition').text(currentVal);
 
     var boughtPrice=$(this).children('.boughtPrice').text();
     var boughtQty=$(this).children('.boughtQty').text();
+    stocks+=currentVal*boughtQty;
     var currentProfit = currentVal - boughtPrice;
     currentProfit *= boughtQty;
-    currentProfit = (Math.round(currentProfit* 100) / 100);
+    currentProfit = (Math.round(currentProfit));
     $(this).children('.currentProfit').text(currentProfit);
 
+    userprofit+=currentProfit;
     if(currentProfit > 0){
       $(this).children('.currentProfit').addClass('positive');
       $(this).children('.currentProfit').removeClass('negative');
@@ -84,6 +90,24 @@ function updatePlayers(data){
     }
     
   });
+
+  $('.sellTBody tr').each(function(){
+    userprofit+=parseInt($(this).children('.closedProfit').text());
+  });
+
+  $('.UserStock').text((Math.round(stocks))+ " Inr");
+  $('.UserProfit').text((Math.round((userprofit))) +" Inr");
+    
+    if(userprofit > 0){
+      $('.UserProfit').addClass('positive');
+      $('.UserProfit').removeClass('negative');
+    }else if(userprofit < 0){
+      $('.UserProfit').removeClass('positive');
+      $('.UserProfit').addClass('negative');
+    }else{
+      $('.UserProfit').removeClass('positive');
+      $('.UserProfit').removeClass('negative');
+    }
   
 }
 //ui changes
@@ -102,18 +126,20 @@ function UpdateUser(user_data){
     var sellstring="";
 
     user_data.buy.forEach(function(buy){
-      buystring += "<tr player-name='"+buy.name+"'><td>"+buy.name+"</td><td class='boughtQty'>"+buy.quantity+"</td><td class='currentPosition'>Something</td><td class='boughtPrice'>"+(Math.round(buy.price* 100) / 100)+"</td><td class='currentProfit'>Something</td></tr>";
+      buystring += "<tr player-name='"+buy.name+"'><td>"+buy.name+"</td><td class='boughtQty'>"+buy.quantity+"</td><td class='currentPosition'>Something</td><td class='boughtPrice'>"+(Math.round(buy.price))+"</td><td class='currentProfit'>Something</td></tr>";
     });
 
     user_data.sell.forEach(function(sell){
-      var closedProfit =(Math.round(sell.quantity*(sell.price-sell.buyprice)* 100) / 100);
+      var closedProfit =(Math.round(sell.quantity*(sell.price-sell.buyprice)));
       var theclass='';
       if(closedProfit > 0){
-        theclass='positive';
+        theclass='positive closedProfit';
       }else if(closedProfit < 0){
-        theclass='negative'; 
+        theclass='negative closedProfit'; 
+      }else{
+        theclass='closedProfit';
       }
-      sellstring += "<tr><td>"+sell.name+"</td><td>"+sell.quantity+"</td><td>"+(Math.round(sell.price* 100) / 100)+"</td><td>"+(Math.round(sell.buyprice* 100) / 100)+"</td><td class='"+theclass+"'>"+closedProfit+"</td></tr>";
+      sellstring += "<tr><td>"+sell.name+"</td><td>"+sell.quantity+"</td><td>"+(Math.round(sell.price))+"</td><td>"+(Math.round(sell.buyprice))+"</td><td class='"+theclass+"'>"+closedProfit+"</td></tr>";
     });
 
     $('.sellTBody').html(sellstring);
@@ -127,28 +153,7 @@ function UpdateUser(user_data){
       $('.NoSellPosition').show();
     }
 
-    var stocks=0
-    user_data.buy.forEach(function(buy) {
-      stocks += (buy.price*buy.quantity)
-    });
-    // user_data.sell.forEach(function(sell) {
-    //   stocks += (*sell.quantity)
-    // });   
-
-    $('.UserBalance').text((Math.round((user_data.balance)* 100) / 100) +" Inr");
-    $('.UserProfit').text((Math.round((user_data.profit)*100) / 100) +" Inr");
-    $('.UserStock').text((Math.round(stocks*100) / 100)+ " Inr");
-
-    if(user_data.profit > 0){
-      $('.UserProfit').addClass('positive');
-      $('.UserProfit').removeClass('negative');
-    }else if(user_data.profit < 0){
-      $('.UserProfit').removeClass('positive');
-      $('.UserProfit').addClass('negative');
-    }else{
-      $('.UserProfit').removeClass('positive');
-      $('.UserProfit').removeClass('negative');
-    }
+    $('.UserBalance').text((Math.round((user_data.balance))) +" Inr");
 
   }
 }
@@ -162,11 +167,22 @@ $('.buyButton').click(function(){
   points =points.slice(0, -7);
   $('input[name="b-quantity"]').val(1);
   $('.mini.buying.modal .header').html(content);
-  $('.mini.buying.modal .description1').text('Total Cash Needed : '+ (Math.round(points*100) / 100)+' Inr' );
-  $('.mini.buying.modal .bPrice input').val((Math.round(points*100) / 100));
+  $('.mini.buying.modal .description1').text('Total Cash Needed : '+ (Math.round(points))+' Inr' );
+  $('.mini.buying.modal .bPrice input').val((Math.round(points)));
   $('.mini.buying.modal')
   .modal('show')
   ;  
+});
+
+$('.odipoint').click(function(){
+  $('.odi.modal')
+  .modal('show')
+  ;
+});
+$('.t20point').click(function(){
+  $('.t20.modal')
+  .modal('show')
+  ;
 });
 
 $('.mini.buying.modal')
@@ -209,8 +225,8 @@ $('.sellButton').click(function(){
   points =points.slice(0, -7);
   $('input[name="s-quantity"]').val(1);
   $('.mini.selling.modal .header').html(content);
-  $('.mini.selling.modal .description1').text('Total Cash Returning : '+ (Math.round(points*100) / 100) +' Inr');
-  $('.mini.selling.modal .sPrice input').val((Math.round(points*100) / 100));
+  $('.mini.selling.modal .description1').text('Total Cash Returning : '+ (Math.round(points)) +' Inr');
+  $('.mini.selling.modal .sPrice input').val((Math.round(points)));
   $('.modal.selling')
   .modal('show')
   ;  
@@ -257,14 +273,14 @@ $('.twiceButton').click(function(e){
 
               var quantity =$('input[name='+category+'quantity'+']').val();
               var price =$('input[name='+category+'price'+']').val();
-              $(this).parent().parent().parent().parent().children('.description1').text('Total Cash : '+ (Math.round(quantity* price*100) / 100)+' Inr' );
+              $(this).parent().parent().parent().parent().children('.description1').text('Total Cash : '+ (Math.round(quantity* price))+' Inr' );
 
             } else {
               $('input[name='+fieldName+']').val(1);
 
               var quantity =$('input[name='+category+'quantity'+']').val();
               var price =$('input[name='+category+'price'+']').val();
-              $(this).parent().parent().parent().parent().children('.description1').text('Total Cash : '+ (Math.round(quantity* price*100) / 100) );
+              $(this).parent().parent().parent().parent().children('.description1').text('Total Cash : '+ (Math.round(quantity* price)) );
             }
         });
 

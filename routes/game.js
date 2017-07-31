@@ -10,7 +10,7 @@ var _ = require('lodash');
 router.get('/',isAuthenticated, function(req, res){
 	Match.getMatchLatestData(function(err, match){
 		if(err) throw err;
-		User.makeGamingUser(match, req.user, function(err, user_data){
+		User.makeGamingUser(match, req.user, function(err, user_data, alluser){
 			if(err) throw err;
 			Player.getPlayerData(match, function(err, data){
 				if(err) throw err;
@@ -18,7 +18,20 @@ router.get('/',isAuthenticated, function(req, res){
 				team1players = _.sortBy(team1players,'name');
 				var team2players = _.unionBy( data.team2.bowlers,data.team2.batsmen,'name');
 				team2players = _.sortBy(team2players,'name');
-				res.render('game/table',{ user_data:user_data, data:data, team2players:team2players, team1players:team1players, title:"Game"});
+				var tenuser=[];
+				for(var i=0;i<alluser.length;i++){
+					if(_.findIndex(alluser[i].game, { "gameId": match[0].matchId })!= -1){
+
+						var j=_.findIndex(alluser[i].game, { "gameId": match[0].matchId });
+
+						tenuser.push({"name":alluser[i].name,"score":alluser[i].game[j].profit});
+					}
+				}
+				tenuser = _.sortBy(tenuser,'score');
+				tenuser = _.reverse(tenuser);
+				tenuser = _.slice(tenuser,0,10);
+				// res.send(tenuser);
+				res.render('game/table',{ alluser: tenuser, user_data:user_data, data:data, team2players:team2players, team1players:team1players, title:"Game"});
 			});
 		});
     });

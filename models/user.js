@@ -73,14 +73,18 @@ module.exports.makeGamingUser = function( match, user, callback){
 		user.game.push(game_obj);
 		user.save( function(err, user){
 			var i= _.findIndex(user.game, { "gameId": match[0].matchId });
-			callback(err, user.game[i]);
+			User.find({}, function(err, alluser){
+				callback(null, user.game[i], alluser);
+			});
 		});
 	}
 	else
 	{
 		//showing user game account details
 		var i= _.findIndex(user.game, { "gameId": match[0].matchId });
-		callback(null, user.game[i]);	
+		User.find({}, function(err, alluser){
+			callback(null, user.game[i], alluser);
+		});
 	}
 }
 
