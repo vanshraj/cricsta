@@ -24,7 +24,7 @@ router.get('/',isAuthenticated, function(req, res){
 
 						var j=_.findIndex(alluser[i].game, { "gameId": match[0].matchId });
 
-						tenuser.push({"name":alluser[i].name,"score":alluser[i].game[j].profit});
+						tenuser.push({"name":alluser[i].name,"score":alluser[i].game[j].profit+1000});
 					}
 				}
 				tenuser = _.sortBy(tenuser,'score');
