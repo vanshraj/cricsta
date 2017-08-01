@@ -22,6 +22,22 @@ block content
 										tr
 											td Name
 											td.right.aligned #{user.name}
+				.column.ten.wide
+					table.table.ui.selectable.celled.table.orange.unstackable.structured
+						thead
+							th Games Played
+							th Balance
+							th Profit/Loss
+						tbody
+							each game, i in user.game
+								- var stocks=0
+								- each stock, j in game.buy
+									- stocks+=stock.price*stock.quantity
+								tr
+									td #{game.gameId}
+									td #{Math.round(game.balance+stocks)}
+									td(class= ( game.profit > 0 ? 'positive': ( game.profit < 0 ? 'negative': '') )) #{Math.round(game.profit)}
+
 	.ui.container(style="margin:3% 0%")
 		.ui.grid.centered.center.aligned
 			.column.ui.grid.ten.wide.computer.only.sixteen.wide.mobile.tablet.only

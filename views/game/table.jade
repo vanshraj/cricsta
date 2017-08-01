@@ -41,8 +41,9 @@ block content
 							.content
 								.left.floated.header Account Details
 								.right.floated.author
-									img.ui.avatar.image(src='/images/matt.jpg')
-									|  #{user.name}
+									a(href='/users/account')
+										img.ui.avatar.image(src='/images/matt.jpg')
+										|  #{user.name}
 								.left.floated.meta(style="clear:both;")
 									span.category Virtual Money
 								.description
