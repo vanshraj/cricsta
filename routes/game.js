@@ -24,12 +24,12 @@ router.get('/',isAuthenticated, function(req, res){
 
 						var j=_.findIndex(alluser[i].game, { "gameId": match[0].matchId });
 
-						tenuser.push({"name":alluser[i].name,"score":alluser[i].game[j].profit+1000});
+						tenuser.push({"name":alluser[i].name, "balance": alluser[i].game[j].balance,"buy":alluser[i].game[j].buy});
 					}
 				}
-				tenuser = _.sortBy(tenuser,'score');
-				tenuser = _.reverse(tenuser);
-				tenuser = _.slice(tenuser,0,10);
+				// tenuser = _.sortBy(tenuser,'score');
+				// tenuser = _.reverse(tenuser);
+				// tenuser = _.slice(tenuser,0,10);
 				// res.send(tenuser);
 				res.render('game/table',{ alluser: tenuser, user_data:user_data, data:data, team2players:team2players, team1players:team1players, title:"Game"});
 			});

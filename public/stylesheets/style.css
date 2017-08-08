@@ -235,6 +235,9 @@ a.ui.orange.label{
 .info.circle.icon, .help.circle.outline.icon{
 	cursor: help;
 }
+.sellButton{
+	z-index:10000;
+}
 
 .pulsate {
 color:red;

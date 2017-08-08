@@ -69,7 +69,7 @@ module.exports.findOrCreate = function( socialUser, callback){
 module.exports.makeGamingUser = function( match, user, callback){
 	if( _.findIndex(user.game, { "gameId": match[0].matchId })== -1){
 		//adding todays game in user account
-		var game_obj = { "gameId": match[0].matchId, "balance": 1000, "profit": 0, "buy":[], "sell":[] };
+		var game_obj = { "gameId": match[0].matchId, "balance": 500, "profit": 0, "buy":[], "sell":[] };
 		user.game.push(game_obj);
 		user.save( function(err, user){
 			var i= _.findIndex(user.game, { "gameId": match[0].matchId });

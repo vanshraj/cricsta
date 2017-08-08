@@ -58,6 +58,36 @@ function updatePlayers(data){
     $(querystring).text(points+ ' Points');
   });
 
+
+
+  var toptenplayer=[];
+  $('.userplayers').each(function(){
+    var val=0;
+    var name=$(this).children('.userplayername').text();
+    val += parseInt($(this).children('.userbalance').text());
+    $(this).children('.userbuyname').each(function(){
+      var pname=$(this).attr('p');
+      var qty=$(this).attr('q');
+      var querystring ='tr[p-name="'+pname+'"] .currentPoints p';
+      var currentVal = $(querystring).text();
+      currentVal =currentVal.slice(0, -7);
+      val +=parseInt(currentVal*qty);
+    });
+    toptenplayer.push({"name":name, "points":val})
+  });
+
+  toptenplayer = _.sortBy(toptenplayer,'points');
+  toptenplayer = _.reverse(toptenplayer);
+  toptenplayer = _.slice(toptenplayer,0,10);
+  leaderstring="";
+  toptenplayer.forEach(function(player,i){
+      leaderstring += "<tr><td>"+parseInt(i+1)+"</td><td>"+player.name+"</td><td>"+player.points+"</td></tr>";
+  });
+  $('.leaderbody').html(leaderstring);
+
+
+
+
   $('.buyTBody tr').each(function(){
 
     var pname=$(this).children().html();
@@ -95,8 +125,8 @@ function updatePlayers(data){
     userprofit+=parseInt($(this).children('.closedProfit').text());
   });
 
-  $('.UserStock').text((Math.round(stocks))+ " Inr");
-  $('.UserProfit').text((Math.round((userprofit))) +" Inr");
+  $('.UserStock').text((Math.round(stocks))+ " Tokens");
+  $('.UserProfit').text((Math.round((userprofit))) +" Tokens");
     
     if(userprofit > 0){
       $('.UserProfit').addClass('positive');
@@ -126,7 +156,7 @@ function UpdateUser(user_data){
     var sellstring="";
 
     user_data.buy.forEach(function(buy){
-      buystring += "<tr player-name='"+buy.name+"'><td>"+buy.name+"</td><td class='boughtQty'>"+buy.quantity+"</td><td class='currentPosition'>Something</td><td class='boughtPrice'>"+(Math.round(buy.price))+"</td><td class='currentProfit'>Something</td></tr>";
+      buystring += "<tr player-name='"+buy.name+"'><td>"+buy.name+"</td><td><div onclick='sellButtonFun(this)', class='ui button red mini inverted sellButton'>Sell</div></td><td class='boughtQty'>"+buy.quantity+"</td><td class='currentPosition'>-</td><td class='boughtPrice'>"+(Math.round(buy.price))+"</td><td class='currentProfit'>-</td></tr>";
     });
 
     user_data.sell.forEach(function(sell){
@@ -153,7 +183,7 @@ function UpdateUser(user_data){
       $('.NoSellPosition').show();
     }
 
-    $('.UserBalance').text((Math.round((user_data.balance))) +" Inr");
+    $('.UserBalance').text((Math.round((user_data.balance))) +" Tokens");
 
   }
 }
@@ -167,12 +197,25 @@ $('.buyButton').click(function(){
   points =points.slice(0, -7);
   $('input[name="b-quantity"]').val(1);
   $('.mini.buying.modal .header').html(content);
-  $('.mini.buying.modal .description1').text('Total Cash Needed : '+ (Math.round(points))+' Inr' );
+  $('.mini.buying.modal .description1').text('Total Cash Needed : '+ (Math.round(points))+' Tokens' );
   $('.mini.buying.modal .bPrice input').val((Math.round(points)));
   $('.mini.buying.modal')
   .modal('show')
   ;  
 });
+
+function sellButtonFun(element){
+  var content = $(element).parent().parent();
+  var points = content.children('.currentPosition').text();
+  content = content.attr('player-name');
+  $('input[name="s-quantity"]').val(1);
+  $('.mini.selling.modal .header').text(content);
+  $('.mini.selling.modal .description1').text('Total Cash Returning : '+ (Math.round(points)) +' Tokens');
+  $('.mini.selling.modal .sPrice input').val((Math.round(points)));
+  $('.modal.selling')
+  .modal('show')
+  ;  
+}
 
 $('.odipoint').click(function(){
   $('.odi.modal')
@@ -219,29 +262,16 @@ $('.mini.buying.modal')
       
 });
 
-$('.sellButton').click(function(){
-  var content = $(this).parent().parent().children(':first-child').html();
-  var points = $(this).parent().prev().text();
-  points =points.slice(0, -7);
-  $('input[name="s-quantity"]').val(1);
-  $('.mini.selling.modal .header').html(content);
-  $('.mini.selling.modal .description1').text('Total Cash Returning : '+ (Math.round(points)) +' Inr');
-  $('.mini.selling.modal .sPrice input').val((Math.round(points)));
-  $('.modal.selling')
-  .modal('show')
-  ;  
-});
-
 $('.mini.selling.modal')
   .modal({
     onApprove : function() {
-      var pname = $('.mini.selling.modal .header').text().slice(2)
+      var pname = $('.mini.selling.modal .header').text();
       var querystring ='tr[player-name="'+pname+'"]';
       var formData={
         quantity: $('input[name=s-quantity]').val(),
         price: $('input[name=s-price]').val(),
-        name: $('.mini.selling.modal .header').text().slice(2),
-        buyprice: $(querystring).children().next().next().next().html()
+        name: $('.mini.selling.modal .header').text(),
+        buyprice: $(querystring).children('.boughtPrice').text()
       };
       $.ajax({
           type: 'POST',
@@ -273,7 +303,7 @@ $('.twiceButton').click(function(e){
 
               var quantity =$('input[name='+category+'quantity'+']').val();
               var price =$('input[name='+category+'price'+']').val();
-              $(this).parent().parent().parent().parent().children('.description1').text('Total Cash : '+ (Math.round(quantity* price))+' Inr' );
+              $(this).parent().parent().parent().parent().children('.description1').text('Total Cash : '+ (Math.round(quantity* price))+' Tokens' );
 
             } else {
               $('input[name='+fieldName+']').val(1);
