@@ -10,6 +10,7 @@ var UserSchema = mongoose.Schema({
 	email: {type: String, index:true},
 	name: {type: String},
 	type: {type: String},
+	balance:{type: Number, default: 200},
 	game: [ { gameId: {type: String}, balance: {type: Number}, profit: {type: Number}, buy:[ { name:{ type: String}, price:{ type: Number}, quantity:{ type: Number} } ], sell:[ { name:{ type: String}, price:{ type: Number}, quantity:{ type: Number}, buyprice:{ type: Number} } ] } ]
 });
 
@@ -69,6 +70,8 @@ module.exports.findOrCreate = function( socialUser, callback){
 module.exports.makeGamingUser = function( match, user, callback){
 	if( _.findIndex(user.game, { "gameId": match[0].matchId })== -1){
 		//adding todays game in user account
+		if(user.type!='premium'&&user.type!='admin')
+			user.balance-=100;
 		var game_obj = { "gameId": match[0].matchId, "balance": 500, "profit": 0, "buy":[], "sell":[] };
 		user.game.push(game_obj);
 		user.save( function(err, user){
@@ -87,10 +90,6 @@ module.exports.makeGamingUser = function( match, user, callback){
 		});
 	}
 }
-
-// module.exports.getTopPlayers = function(match, callback){
-// 	var query ={}
-// }
 
 module.exports.buyStock = function(match, user, stock, callback){
 	//buying stocks calculating balance and remaining stocks and profit/loss

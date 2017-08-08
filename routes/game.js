@@ -10,30 +10,67 @@ var _ = require('lodash');
 router.get('/',isAuthenticated, function(req, res){
 	Match.getMatchLatestData(function(err, match){
 		if(err) throw err;
-		User.makeGamingUser(match, req.user, function(err, user_data, alluser){
+		if( _.findIndex(req.user.game, { "gameId": match[0].matchId })== -1){
+			res.redirect('/game/account');
+		}
+		else{
+			User.makeGamingUser(match, req.user, function(err, user_data, alluser){
 			if(err) throw err;
+				Player.getPlayerData(match, function(err, data){
+					if(err) throw err;
+					var team1players = _.unionBy( data.team1.bowlers,data.team1.batsmen, 'name');
+					team1players = _.sortBy(team1players,'name');
+					var team2players = _.unionBy( data.team2.bowlers,data.team2.batsmen,'name');
+					team2players = _.sortBy(team2players,'name');
+					var tenuser=[];
+					for(var i=0;i<alluser.length;i++){
+						if(_.findIndex(alluser[i].game, { "gameId": match[0].matchId })!= -1){
+
+							var j=_.findIndex(alluser[i].game, { "gameId": match[0].matchId });
+
+							tenuser.push({"name":alluser[i].name, "balance": alluser[i].game[j].balance,"buy":alluser[i].game[j].buy});
+						}
+					}
+					res.render('game/table',{ alluser: tenuser, user_data:user_data, data:data, team2players:team2players, team1players:team1players, title:"Game"});
+				});
+			});	
+		}	
+    });
+});
+
+router.get('/account',isAuthenticated, function(req, res){
+	Match.getMatchLatestData(function(err, match){
+		if(err) throw err;
+		if( _.findIndex(req.user.game, { "gameId": match[0].matchId })!= -1){
+			res.redirect('/game');
+		}
+		else{
 			Player.getPlayerData(match, function(err, data){
 				if(err) throw err;
-				var team1players = _.unionBy( data.team1.bowlers,data.team1.batsmen, 'name');
-				team1players = _.sortBy(team1players,'name');
-				var team2players = _.unionBy( data.team2.bowlers,data.team2.batsmen,'name');
-				team2players = _.sortBy(team2players,'name');
-				var tenuser=[];
-				for(var i=0;i<alluser.length;i++){
-					if(_.findIndex(alluser[i].game, { "gameId": match[0].matchId })!= -1){
-
-						var j=_.findIndex(alluser[i].game, { "gameId": match[0].matchId });
-
-						tenuser.push({"name":alluser[i].name, "balance": alluser[i].game[j].balance,"buy":alluser[i].game[j].buy});
-					}
-				}
-				// tenuser = _.sortBy(tenuser,'score');
-				// tenuser = _.reverse(tenuser);
-				// tenuser = _.slice(tenuser,0,10);
-				// res.send(tenuser);
-				res.render('game/table',{ alluser: tenuser, user_data:user_data, data:data, team2players:team2players, team1players:team1players, title:"Game"});
+				res.render('game/game_account',{ data:data});
 			});
-		});
+		}	
+    });
+});
+
+router.post('/',isAuthenticated, function(req, res){
+	Match.getMatchLatestData(function(err, match){
+		if(err) throw err;
+		if( _.findIndex(req.user.game, { "gameId": match[0].matchId })!= -1){
+			res.redirect('/game');
+		}else if(req.user.type!="premium"&&req.user.type!="admin"&&req.user.balance<100){
+			req.flash('error',"You don't have the required balance!");
+			res.location('/game/account');
+			res.redirect('/game/account');
+		}
+		else{
+			User.makeGamingUser(match, req.user, function(err, user_data, alluser){
+				if(err) throw err;
+			});
+			req.flash('success','You have successfully joined this contest!');
+			res.location('/game');
+			res.redirect('/game');	
+		}	
     });
 });
 
