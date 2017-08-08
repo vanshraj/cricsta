@@ -41,15 +41,10 @@ router.get('/',isAuthenticated, function(req, res){
 router.get('/account',isAuthenticated, function(req, res){
 	Match.getMatchLatestData(function(err, match){
 		if(err) throw err;
-		if( _.findIndex(req.user.game, { "gameId": match[0].matchId })!= -1){
-			res.redirect('/game');
-		}
-		else{
-			Player.getPlayerData(match, function(err, data){
-				if(err) throw err;
-				res.render('game/game_account',{ data:data});
-			});
-		}	
+		Player.getPlayerData(match, function(err, data){
+			if(err) throw err;
+			res.render('game/game_account',{ data:data});
+		});
     });
 });
 
@@ -57,6 +52,8 @@ router.post('/',isAuthenticated, function(req, res){
 	Match.getMatchLatestData(function(err, match){
 		if(err) throw err;
 		if( _.findIndex(req.user.game, { "gameId": match[0].matchId })!= -1){
+			req.flash('success','You are already playing this contest!');
+			res.location('/game');
 			res.redirect('/game');
 		}else if(req.user.type!="premium"&&req.user.type!="admin"&&req.user.balance<100){
 			req.flash('error',"You don't have the required balance!");
