@@ -31,7 +31,12 @@ block content
 										th(colspan="2") Funds Required
 									tbody
 										tr
-											td #{data.team1.name} v/s #{data.team2.name}
+											td 
+												-var team1uri= encodeURIComponent(data.team1.name.trim())
+												img(src="/images/#{team1uri}.png" style="vertical-align:middle; max-width:35px")
+												|  #{data.team1.name} v/s #{data.team2.name} 
+												-var team2uri= encodeURIComponent(data.team2.name.trim())
+												img(src="/images/#{team2uri}.png" style="vertical-align:middle; max-width:35px")
 											td 100
 											td
 												a(href="" ,onclick="$('#addgameform').submit(); return false;")
