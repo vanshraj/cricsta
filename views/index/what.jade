@@ -11,13 +11,13 @@ block free
 			.ui.container
 				.ui.grid.centered.computer.only
 					.four.wide.column
-						a(href="/game/account")
+						a(href="#fantasy")
 							h3.ui.center.aligned.icon.header
 								i.bordered.orange.game.icon
 								|   Fantasy Gaming
 								.wobble Beta
 					.four.wide.column
-						a(href="/prediction")
+						a(href="#prediction")
 							h3.ui.center.aligned.icon.header
 								i.bordered.orange.line.chart.icon
 								|   Match Prediction Model
@@ -36,13 +36,13 @@ block free
 								.wobble Coming Soon
 				.ui.grid.centered.mobile.tablet.only
 					.four.wide.column
-						a(href="/game/account")
+						a(href="#fantasy")
 							h6.ui.center.aligned.icon.header
 								i.bordered.orange.game.icon
 								|   Fantasy Gaming
 								.wobble Beta
 					.four.wide.column
-						a(href="/prediction")
+						a(href="#prediction")
 							h6.ui.center.aligned.icon.header
 								i.bordered.orange.line.chart.icon
 								|   Match Prediction Model
@@ -68,14 +68,16 @@ block free
 				.description.module
 					p Buy and sell the points  a player will score, just like stocks. The only fantasy game that can be played during the match.
 				.extra.module
-					a(style="color:white",href="/game") Beta
+					a(style="color:white",href="/game/account") Click here to check the beta game.
 		.item#prediction
 			.content.middle.aligned
 				.header.module Match Prediction
 				.description.module
 					p The ThinkQuant model is a bottom up model where we translate individual player and pitch attributes into live winning probabilities and predicted scores. The outputs are live and in-play, not just pre-match. The latest analytical techniques are used to create this model. 
 				.extra.module
-					a.pulsate(href="/prediction") Live
+					a(href="/prediction") Click here to check the 
+						span.pulsate Live
+						|  prediction model.
 			.image.module
 				img(src='/images/prediction-proto.png')
 		.item#auction

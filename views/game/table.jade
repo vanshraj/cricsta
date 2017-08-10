@@ -49,17 +49,17 @@ block content
 										tbody
 											- var stocks=0
 											tr
-												td Tokens In Hand  
-													i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="Total tokens remaining for this match.",data-position="top center")
-												td.UserBalance(colspan="2") #{Math.round((user_data.balance))} Tokens
+												td Chips In Hand  
+													i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="Total Chips remaining for this match.",data-position="top center")
+												td.right.aligned.UserBalance(colspan="2") #{Math.round((user_data.balance))} Chips
 											tr
 												td Player Holdings 
 													i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="Money that is active supporting your holdings.",data-position="top center")
-												td.UserStock(colspan="2") #{Math.round(stocks*100)} Tokens
+												td.right.aligned.UserStock(colspan="2") #{Math.round(stocks*100)} Chips
 											tr
 												td Profit/Loss 
 													i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="This is the net amount of profit/loss you have made in this match.",data-position="top center")
-												td.UserProfit(colspan="2")(class= ( user_data.profit > 0 ? 'positive': ( user_data.profit < 0 ? 'negative': '') )) #{Math.round(user_data.profit)} Tokens
+												td.right.aligned.UserProfit(colspan="2")(class= ( user_data.profit > 0 ? 'positive': ( user_data.profit < 0 ? 'negative': '') )) #{Math.round(user_data.profit)} Chips
 						.ui.button.orange.mini.inverted.odipoint ODI points system
 						.ui.button.orange.mini.inverted.t20point T20 points system
 					.column.nine.wide

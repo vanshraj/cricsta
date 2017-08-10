@@ -80,11 +80,4 @@ router.post('/playerData',function(req, res){
 	});
 });
 
-// router.get('/changeData',function(req,res){
-// 	Match.updateId(function(err,match){
-// 		if(err) throw err;
-// 		res.send(match);
-// 	});
-// })
-
 module.exports = router;

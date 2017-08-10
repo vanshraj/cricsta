@@ -125,8 +125,8 @@ function updatePlayers(data){
     userprofit+=parseInt($(this).children('.closedProfit').text());
   });
 
-  $('.UserStock').text((Math.round(stocks))+ " Tokens");
-  $('.UserProfit').text((Math.round((userprofit))) +" Tokens");
+  $('.UserStock').text((Math.round(stocks))+ " Chips");
+  $('.UserProfit').text((Math.round((userprofit))) +" Chips");
     
     if(userprofit > 0){
       $('.UserProfit').addClass('positive');
@@ -183,7 +183,7 @@ function UpdateUser(user_data){
       $('.NoSellPosition').show();
     }
 
-    $('.UserBalance').text((Math.round((user_data.balance))) +" Tokens");
+    $('.UserBalance').text((Math.round((user_data.balance))) +" Chips");
 
   }
 }
@@ -197,7 +197,7 @@ $('.buyButton').click(function(){
   points =points.slice(0, -7);
   $('input[name="b-quantity"]').val(1);
   $('.mini.buying.modal .header').html(content);
-  $('.mini.buying.modal .description1').text('Total Cash Needed : '+ (Math.round(points))+' Tokens' );
+  $('.mini.buying.modal .description1').text('Total Cash Needed : '+ (Math.round(points))+' Chips' );
   $('.mini.buying.modal .bPrice input').val((Math.round(points)));
   $('.mini.buying.modal')
   .modal('show')
@@ -210,23 +210,14 @@ function sellButtonFun(element){
   content = content.attr('player-name');
   $('input[name="s-quantity"]').val(1);
   $('.mini.selling.modal .header').text(content);
-  $('.mini.selling.modal .description1').text('Total Cash Returning : '+ (Math.round(points)) +' Tokens');
+  $('.mini.selling.modal .description1').text('Total Cash Returning : '+ (Math.round(points)) +' Chips');
   $('.mini.selling.modal .sPrice input').val((Math.round(points)));
   $('.modal.selling')
   .modal('show')
   ;  
 }
 
-$('.odipoint').click(function(){
-  $('.odi.modal')
-  .modal('show')
-  ;
-});
-$('.t20point').click(function(){
-  $('.t20.modal')
-  .modal('show')
-  ;
-});
+
 
 $('.mini.buying.modal')
   .modal({
@@ -303,7 +294,7 @@ $('.twiceButton').click(function(e){
 
               var quantity =$('input[name='+category+'quantity'+']').val();
               var price =$('input[name='+category+'price'+']').val();
-              $(this).parent().parent().parent().parent().children('.description1').text('Total Cash : '+ (Math.round(quantity* price))+' Tokens' );
+              $(this).parent().parent().parent().parent().children('.description1').text('Total Cash : '+ (Math.round(quantity* price))+' Chips' );
 
             } else {
               $('input[name='+fieldName+']').val(1);

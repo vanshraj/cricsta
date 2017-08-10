@@ -134,7 +134,7 @@ router.post('/deleteComment',isAuthenticated, function(req,res,next){
 function isAuthenticated(req, res, next) {
 	if(req.isAuthenticated())
         return next();
-
+    req.session.redirectTo = "/blog"+req.url;
     req.flash('error','Please Login First')
     res.redirect('/users/login');
 }
@@ -143,7 +143,7 @@ function isAdmin(req, res, next){
 	if(req.user.type=='admin')
 		return next();
 	req.flash('error','You cannot add blogs.')
-    res.redirect('/');
+    res.redirect(req.url);
 }
 
 module.exports = router;

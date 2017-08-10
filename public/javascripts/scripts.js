@@ -10,6 +10,32 @@
 
 //semantic scripts
 
+//modals
+$('.odipoint').click(function(){
+  $('.odi.modal')
+  .modal('show')
+  ;
+});
+
+$('.t20point').click(function(){
+  $('.t20.modal')
+  .modal('show')
+  ;
+});
+$('.howtoplaybtn').click(function(){
+  $('.howtoplay.modal')
+  .modal('show')
+  ;
+});
+
+$('.faqbtn').click(function(){
+  $('.faq.modal')
+  .modal('show')
+  ;
+});
+
+
+
 //mobile menu
 $('.menuToggle').on('click',function(){
     $('.left.sidebar')

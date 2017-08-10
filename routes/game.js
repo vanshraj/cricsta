@@ -125,21 +125,13 @@ router.post('/user', function(req, res, next){
 	}
 });
 
-// router.get('/leader',function(req, res){
-// 	Match.getMatchLatestData(function(err, match){
-// 		if(err) throw err;
-// 		User.getTopPlayers(match, function(err, top){
-// 			if(err) throw err;
-// 			res.send(top);
-// 		});
-// 	});
-// });
 
 //login middleware
 function isAuthenticated(req, res, next) {
 	if(req.isAuthenticated())
         return next();
     else{
+    	req.session.redirectTo ="/game"+ req.url;
 	    req.flash('error','Please Login First')
     	res.redirect('/users/login');	
     }

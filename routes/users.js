@@ -68,8 +68,9 @@ router.get('/login',isAuthenticated2, function(req, res, next) {
 
 router.post('/login',isAuthenticated2, passport.authenticate('local',{failureRedirect:'/users/login', failureFlash:'Invalid Email Id or Password'}),function(req,res){
 	console.log('Authentication Successful');
-	// req.flash('success','You are logged in.');
-	res.redirect('/');
+	var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/';
+	delete req.session.redirectTo;
+	res.redirect(redirectTo);
 });
 
 router.get('/auth/google',isAuthenticated2,passport.authenticate('google', { scope: ['email profile'] }));
@@ -78,9 +79,10 @@ router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: 'users/login', failureFlash:'Authentication Unsuccessful.' }),
   function(req, res) {
     console.log('Authentication Successful');
-	// req.flash('success','You are logged in.');
-	res.redirect('/');
-  });
+	var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/';
+	delete req.session.redirectTo;
+	res.redirect(redirectTo);
+ });
 
 router.get('/auth/facebook',isAuthenticated2,passport.authenticate('facebook', {scope: 'email'}));
 
@@ -88,14 +90,17 @@ router.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: 'users/login', failureFlash:'Authentication Unsuccessful.' }),
   function(req, res) {
     console.log('Authentication Successful');
-	// req.flash('success','You are logged in.');
-	res.redirect('/');
-  });
+	var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/';
+	delete req.session.redirectTo;
+	res.redirect(redirectTo);
+ });
 
 //logout route
 router.get('/logout',isAuthenticated,function(req,res){
+	var redirectTo = req.session.redirectTo ? req.session.redirectTo : '/';
+	delete req.session.redirectTo;
 	req.session.destroy(function (err) {
-		res.redirect('/');
+		res.redirect(redirectTo);
 	});
 });
 
@@ -117,14 +122,15 @@ function isAuthenticated(req, res, next) {
 	if(req.isAuthenticated())
         return next();
     else{
-	    req.flash('error','Please Login First')
+    	req.session.redirectTo = "/users"+req.url;
+	    req.flash('error','Please Login First');
     	res.redirect('/users/login');	
     } 
 }
 
 function isAuthenticated2(req, res, next) {
 	if(req.isAuthenticated()){
-    	req.flash('info','You are already logged in.')
+    	req.flash('info','You are already logged in.');
 		res.redirect('/');	
 	}
 	else
