@@ -225,7 +225,7 @@ $('.mini.buying.modal')
       var bquantity= $('input[name=b-quantity]').val();
       var bprice= $('input[name=b-price]').val();
       var ubalance= $('.UserBalance').text();
-      ubalance = ubalance.slice(0, -4);
+      ubalance = ubalance.slice(0, -6);
       ubalance -= bquantity*bprice;
       if(ubalance<0){
         window.alert("You don't have the required balance.");
