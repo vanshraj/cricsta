@@ -1,6 +1,9 @@
  $(window).on('load', function () {
   UserData();
+  PlayerData();
  });
+
+var userG;
 
 //ajax calls
 function PlayerData() {
@@ -29,8 +32,8 @@ function UserData() {
     dataType: 'json'
     })
     .done(function(user_data) {
+      userG=user_data;
       UpdateUser(user_data);
-      PlayerData();
       // setTimeout(UserData, 1000);
     })
     .fail(function() {
@@ -224,10 +227,25 @@ $('.mini.buying.modal')
     onApprove : function() {
       var bquantity= $('input[name=b-quantity]').val();
       var bprice= $('input[name=b-price]').val();
+      var bname= $('.mini.buying.modal .header').text().slice(2);
       var ubalance= $('.UserBalance').text();
       ubalance = ubalance.slice(0, -6);
       ubalance -= bquantity*bprice;
-      if(ubalance<0){
+      
+      var flag=0;
+      userG.buy.forEach(function(buy){
+        if(buy.name==bname){
+          if((parseInt(buy.quantity)+parseInt(bquantity))>2){
+            flag=1;
+          }
+        }
+      });
+
+
+      if(flag||bquantity>2||bquantity<0){
+        window.alert("You can only hold atmost 2 stocks of a player.");
+      }
+      else if(ubalance<0){
         window.alert("You don't have the required balance.");
       }else{
         var formData={
