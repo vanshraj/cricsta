@@ -97,13 +97,24 @@ router.post('/sell',isAuthenticated, function(req, res, next){
 router.get('/player', function(req, res, next){
 	Match.getMatchLatestData(function(err, match){
 		if(err) throw err;
+		var transfer;
+		if(match[0].team2.over<0.1)
+			if(match[0].team1.over%1!=0)
+				transfer=false;
+			else
+				transfer=true;
+		else
+			if(match[0].team2.over%1!=0)
+				transfer=false;
+			else
+				transfer=true;
 		Player.getPlayerData(match, function(err, data){
 			if(err) throw err;
 			var team1players = _.unionBy( data.team1.bowlers,data.team1.batsmen, 'name');
 			team1players = _.sortBy(team1players,'name');
 			var team2players = _.unionBy( data.team2.bowlers,data.team2.batsmen,'name');
 			team2players = _.sortBy(team2players,'name');
-			var data ={ team2players:team2players, team1players:team1players };
+			var data ={ team2players:team2players, team1players:team1players, transfer:transfer };
 			res.send(data);
 		});
 	});

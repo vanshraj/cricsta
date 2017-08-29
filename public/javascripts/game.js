@@ -44,6 +44,26 @@ function UserData() {
 //table changes
 function updatePlayers(data){
 
+  if(data.transfer){
+    //enable buttons
+    $('.buyButton').each(function(){
+      $(this).removeClass('disabled');
+    });
+    $('.sellButton').each(function(){
+      $(this).removeClass('disabled');
+    });
+  }
+  else{
+    //disable buttons
+    $('.buyButton').each(function(){
+      $(this).addClass('disabled');
+    });
+    $('.sellButton').each(function(){
+      $(this).addClass('disabled');
+    });
+  }
+
+
   var stocks=0;
   var userprofit=0;
 
@@ -159,7 +179,7 @@ function UpdateUser(user_data){
     var sellstring="";
 
     user_data.buy.forEach(function(buy){
-      buystring += "<tr player-name='"+buy.name+"'><td>"+buy.name+"</td><td><div onclick='sellButtonFun(this)', class='ui button red mini inverted sellButton'>Sell</div></td><td class='boughtQty'>"+buy.quantity+"</td><td class='currentPosition'>-</td><td class='boughtPrice'>"+(Math.round(buy.price))+"</td><td class='currentProfit'>-</td></tr>";
+      buystring += "<tr player-name='"+buy.name+"'><td>"+buy.name+"</td><td><div onclick='sellButtonFun(this)', class='ui button red mini inverted sellButton disabled'>Sell</div></td><td class='boughtQty'>"+buy.quantity+"</td><td class='currentPosition'>-</td><td class='boughtPrice'>"+(Math.round(buy.price))+"</td><td class='currentProfit'>-</td></tr>";
     });
 
     user_data.sell.forEach(function(sell){
