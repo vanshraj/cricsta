@@ -52,6 +52,12 @@ function updatePlayers(data){
     $('.sellButton').each(function(){
       $(this).removeClass('disabled');
     });
+
+    $('.transferRed').addClass('transferGreen').removeClass('transferRed');
+
+    $('.ui.positive.right.labeled.icon.button').each(function(){
+      $(this).removeClass('disabled');
+    });
   }
   else{
     //disable buttons
@@ -61,6 +67,10 @@ function updatePlayers(data){
     $('.sellButton').each(function(){
       $(this).addClass('disabled');
     });
+    $('.ui.positive.right.labeled.icon.button').each(function(){
+      $(this).addClass('disabled');
+    });
+    $('.transferGreen').addClass('transferRed').removeClass('transferGreen');
   }
 
 

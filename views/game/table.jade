@@ -4,6 +4,7 @@ block content
 	.ui.centered.grid.center.aligned
 			.column.center.aligned
 				h1 #{data.team1.name} v/s #{data.team2.name}
+					span.transferRed
 				.ui.divider
 	if !user
 		.ui.grid.tablet.computer.only
@@ -167,7 +168,10 @@ block content
 												-var team1uri= encodeURIComponent(data.team1.name.trim())
 												img(src="/images/#{team1uri}.png" style="vertical-align:middle; max-width:35px")
 												| &nbsp #{batsmen.name}
-												img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
+												if (batsmen.keeper)
+													img(src="/images/keeper.png" style="float:right; max-width:25px")
+												else
+													img(src="/images/ball.png" style="float:right; margin-top:10px; max-width:15px")
 											td.currentPoints
 												p(style="display:block; float:right;") #{Math.round(batsmen.points)} Points
 											td 
