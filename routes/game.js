@@ -99,7 +99,7 @@ router.get('/player', function(req, res, next){
 		if(err) throw err;
 		var transfer;
 		if(match[0].team2.over<0.1)
-			if(match[0].team1.over%1!=0)
+			if(match[0].team1.over%1!=0&&match[0].team1.wickets!=10)
 				transfer=false;
 			else
 				transfer=true;
