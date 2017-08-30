@@ -4,24 +4,13 @@
 function ajaxSingleCall(){
 	$.ajax({
 		type: 'POST',
-		url: "/playerData",
-		dataType: 'json'
-		})
-		.done(function(data) {
-			staticFeed(data);
-		})
-		.fail(function() {
-			console.log("Ajax failed to fetch data");
-		});
-
-	$.ajax({
-		type: 'POST',
 		url: "/matchDataProb",
 		dataType: 'json'
 		})
 		.done(function(data) {
 			data.forEach(addWinProb1Canvas);
 			ajaxCalls();
+			ajaxCalls2();
 		})
 		.fail(function() {
 			console.log("Ajax failed to fetch data");
@@ -42,6 +31,22 @@ function ajaxCalls() {
 		.fail(function() {
 			console.log("Ajax failed to fetch data ");
 			window.location.reload();
+		});
+}
+function ajaxCalls2() {
+    // run your ajax call here
+    
+	$.ajax({
+		type: 'POST',
+		url: "/playerData",
+		dataType: 'json'
+		})
+		.done(function(data) {
+			staticFeed(data);
+			setTimeout(ajaxCalls2, 2000);
+		})
+		.fail(function() {
+			console.log("Ajax failed to fetch data");
 		});
 }
 
@@ -72,6 +77,14 @@ function staticFeed(data){
 	$('.team1namebowler').text(data.team1.name +" Bowlers");
 	$('.team2namebatsmen').text(data.team2.name+" Batsmen");
 	$('.team2namebowler').text(data.team2.name+ " Bowlers");
+	batsmenConfig1.data.labels=[];
+	batsmenConfig1.data.datasets[0].data=[];
+	batsmenConfig2.data.labels=[];
+	batsmenConfig2.data.datasets[0].data=[];
+	bowlerConfig1.data.labels=[];
+	bowlerConfig1.data.datasets[0].data=[];
+	bowlerConfig2.data.labels=[];
+	bowlerConfig2.data.datasets[0].data=[];
 	data.team1.batsmen.forEach(addPlayer1Canvas);
 	data.team2.batsmen.forEach(addPlayer2Canvas);
 	data.team1.bowlers.forEach(addPlayer3Canvas);
