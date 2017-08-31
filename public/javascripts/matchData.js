@@ -26,6 +26,8 @@ function ajaxCalls() {
 	})
 		.done(function(data) {
 			liveFeed(data);
+
+			console.log("Ajax");
 			setTimeout(ajaxCalls, 1000);
 		})
 		.fail(function() {
@@ -62,7 +64,6 @@ var yellowcol= 'rgba(252, 209, 22, 0.8)';
 var blackcol= 'rgba(0, 0, 0, 0.8)';
 
 //declare global variable
-var prevWinProb;
 var team1name;
 var team1score;
 var team2name;
@@ -93,7 +94,6 @@ function staticFeed(data){
 
 function liveFeed(data){
 	//if new value updated then change table
-	if(data.team1.winProb!=prevWinProb){
 		$('.computer .matchHeader').html("<h3 class='ui horizontal divider header'><i class='line chart icon'></i>"+"Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name+"</h3>");
 		$('.mobile .matchHeader h5').text("Live - Today's Match Prediction - "+data.team1.name+" vs "+data.team2.name);
 		prevWinProb = data.team1.winProb;
@@ -134,7 +134,6 @@ function liveFeed(data){
 		$('.prob5percent').text(data.prob5.percentage+"%");
 		$('.prob6percent').text(data.prob6.percentage+"%");
 		$('.prob7percent').text(data.prob7.percentage+"%");	
-	}
 }
 
 //for mobile responsive player stats
