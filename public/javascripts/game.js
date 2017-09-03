@@ -1,6 +1,10 @@
  $(window).on('load', function () {
   UserData();
   PlayerData();
+  $('.ui.hidden.divider').hide();
+  $('.ui.small.menu').each(function(){
+    $(this).removeClass('fixed');
+  });
  });
 
 var userG;
