@@ -106,7 +106,7 @@ function liveFeed(data){
 		else
 			$('.firstInningsProb').fadeIn();
 		if(team1over<=data.team1.over)
-			if(team2over<data.team2.over)
+			if(team2over<=data.team2.over)
 				addWinProb1Canvas(data);
 		addWinProbCanvas(data);
 		addPredScoreCanvas(data);
