@@ -19,7 +19,7 @@ function PlayerData() {
   })
     .done(function(data) {
       updatePlayers(data);
-      setTimeout(PlayerData, 1000);
+      setTimeout(PlayerData, 500);
     })
     .fail(function() {
       console.log("Ajax failed to fetch data ");
@@ -50,18 +50,50 @@ function updatePlayers(data){
 
   if(data.transfer){
     //enable buttons
-    $('.buyButton').each(function(){
-      $(this).removeClass('disabled');
-    });
-    $('.sellButton').each(function(){
-      $(this).removeClass('disabled');
-    });
+    var countDownDate = new Date(data.timestamp).getTime();
+    countDownDate+=60*1000;
 
-    $('.transferRed').addClass('transferGreen').removeClass('transferRed');
+    // Get todays date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // If the count down is over, write some text 
+    if (distance < 0) {
+      //disable buttons
+      $('.buyButton').each(function(){
+        $(this).addClass('disabled');
+      });
+      $('.sellButton').each(function(){
+        $(this).addClass('disabled');
+      });
+      $('.ui.positive.right.labeled.icon.button').each(function(){
+        $(this).addClass('disabled');
+      });
+      $('.transferGreen').addClass('transferRed').removeClass('transferGreen');
+      //although green but time over show balls
+      $('.countdown').text(Math.round(data.balls) + " balls remaining");
+    }else{
 
-    $('.ui.positive.right.labeled.icon.button').each(function(){
-      $(this).removeClass('disabled');
-    });
+      $('.buyButton').each(function(){
+        $(this).removeClass('disabled');
+      });
+      $('.sellButton').each(function(){
+        $(this).removeClass('disabled');
+      });
+
+      $('.transferRed').addClass('transferGreen').removeClass('transferRed');
+
+      $('.ui.positive.right.labeled.icon.button').each(function(){
+        $(this).removeClass('disabled');
+      });
+      //show time remaining
+      $('.countdown').text(minutes + "m " + seconds + "s ");
+    }
   }
   else{
     //disable buttons
@@ -75,8 +107,8 @@ function updatePlayers(data){
       $(this).addClass('disabled');
     });
     $('.transferGreen').addClass('transferRed').removeClass('transferGreen');
+    $('.countdown').text(Math.round(data.balls) +" balls remaining.");
   }
-
 
   var stocks=0;
   var userprofit=0;
@@ -193,7 +225,7 @@ function UpdateUser(user_data){
     var sellstring="";
 
     user_data.buy.forEach(function(buy){
-      buystring += "<tr player-name='"+buy.name+"'><td>"+buy.name+"</td><td><div onclick='sellButtonFun(this)', class='ui button red mini inverted sellButton disabled'>Sell</div></td><td class='boughtQty'>"+buy.quantity+"</td><td class='currentPosition'>-</td><td class='boughtPrice'>"+(Math.round(buy.price))+"</td><td class='currentProfit'>-</td></tr>";
+      buystring += "<tr player-name='"+buy.name+"'><td>"+buy.name+"</td><td><div onclick='sellButtonFun(this)', class='ui button red mini inverted sellButton disabled'>Sell</div></td><td class='boughtQty'>"+buy.quantity+"</td><td class='currentPosition'>"+buy.price+"</td><td class='boughtPrice'>"+(Math.round(buy.price))+"</td><td class='currentProfit'>"+0+"</td></tr>";
     });
 
     user_data.sell.forEach(function(sell){
