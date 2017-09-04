@@ -322,7 +322,14 @@ opacity: 0.2;
 .ui.grid + .grid {
     margin-top: 0rem;
 }
-
+.detail.negative{
+	color:rgb(240,40,30);
+	background-color: rgba(240,40,30,0.1);
+}
+.detail.positive{
+	color:rgb(40,240,30);
+	background-color: rgba(40,240,30,0.1);
+}
 
 @-webkit-keyframes transferRed {
   0% {

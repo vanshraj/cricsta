@@ -24,7 +24,7 @@ block free
 								td
 									a.ui.basic.large.label
 										|	Profit/Loss
-										.detail.UserProfit(colspan="2")(class= ( user_data.profit > 0 ? 'green': ( user_data.profit < 0 ? 'red': '') )) #{Math.round(user_data.profit)} Chips
+										.detail.UserProfit(colspan="2")(class= ( user_data.profit > 0 ? 'positive': ( user_data.profit < 0 ? 'negative': '') )) #{Math.round(user_data.profit)} Chips
 								td
 									a.ui.basic.large.image.label
 										img(src="/images/#{data.team1.name}.png")
