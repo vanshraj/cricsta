@@ -4,6 +4,7 @@ block free
 	a.ui.basic.large.label.remainWidget
 		i.wait.icon
 		span.countdown
+		span.transferRed
 	.div(style="margin:0px 15px")
 		.ui.equal.width.grid.stackable.centered(style="margin-top:0px")
 			.row.ui.grid.computer.tablet.only
@@ -39,7 +40,6 @@ block free
 										.detail(style="margin-left:.5em; margin-right:.5em;") V/S 
 										|	#{data.team2.name}
 										img(style="margin:-.5833em -.5em -.5833em .5em",src="/images/#{data.team2.name}.png")
-									span.transferRed
 		.ui.equal.width.grid.stackable
 			.row
 				.column.six.wide
@@ -103,11 +103,11 @@ block free
 										each buyname, j in player.buy
 											td.userbuyname(q='#{buyname.quantity}',p='#{buyname.name}')
 					if (overs!=20)
-						.ui.button.orange.mini.inverted.odipoint ODI points system
+						.ui.button.orange.mini.inverte.dodipoint(style="float:right") ODI points system
 					else
-						.ui.button.orange.mini.inverted.t20point T20 points system
-					.ui.button.orange.mini.inverted.howtoplaybtn How to play
-					.ui.button.orange.mini.inverted.faqbtn FAQs
+						.ui.button.orange.mini.inverted.t20point(style="float:right") T20 points system
+					.ui.button.orange.mini.inverted.howtoplaybtn(style="float:right") How to play
+					.ui.button.orange.mini.inverted.faqbtn(style="float:right") FAQs
 				.column.five.wide
 					table.ui.stripped.celled.compact.table.orange.unstackable.structured.small
 						thead

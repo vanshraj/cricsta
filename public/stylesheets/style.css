@@ -297,7 +297,8 @@ opacity: 0.2;
 }
 
 .transferRed {
-  margin-left:10px;
+  vertical-align: middle;
+  margin-left:5px;
   display: inline-block;
   width: 14px;
   height: 14px;
@@ -377,7 +378,8 @@ opacity: 0.2;
 }
 
 .transferGreen {
-  margin-left:10px;
+  margin-left:5px;
+  vertical-align: middle;
   display: inline-block;
   width: 14px;
   height: 14px;
