@@ -46,7 +46,7 @@ block content
 												a(href="" ,onclick="$('#addgameform').submit(); return false;")
 													.ui.button.orange.mini.right.floated.inverted Get Started 
 					if user.game.length
-						.column.eight.wide
+						.column.eight.wide(style="max-height:310px; overflow-y:auto")
 							table.table.ui.selectable.celled.table.orange.unstackable.structured
 								thead
 									th Games Played
@@ -203,13 +203,19 @@ block content
 				p
 					| An intuitive game for all, being a cricket fan is a plus! Follow these simple steps to play along with the stars!
 				p  
-					strong 1 Create your account
+					strong 1 Game objective
 				p
-					| Just register and create your account. We are giving you some free credits so you can play today's game.
+					| The objective of the game is to 
+					strong maximise the number of tokens
+					|  you have at the end of the match.
 				p
 					strong 2 Understand the points system
 				p
-					| The points system is a critical element of the game. We use junior school level math to convert player scores to points. Click on the icons below to have a look at the points system.
+					| The points system is a critical element of the game. At the end of the match, for every player will be marked 
+					strong at the actual points 
+					| scored by the particular player in the match.
+				p
+					| Click on the icons below to have a look at the points system.
 
 				.ui.button.orange.mini.inverted.odipoint ODI points system
 				.ui.button.orange.mini.inverted.t20point T20 points system
@@ -217,40 +223,38 @@ block content
 				p
 					| As can be seen, we use only four variables. The runs scored by the batsmen, wickets taken by the bowler, batsman's strike rate (after minimum balls are faced by him) and bowler's economy rate (after minimum overs are bowled by him).
 				p
-					strong 3 Game Objective 
-				p
-					| The objective of the game is to 
-					strong maximise the number of tokens
-					|  you have at the end of the match.
-				p
-					| At the end of the match, for every player will be marked 
-					strong at the actual points
-					|  scored by the particular player in the match.
-				p
-					strong 4 Estimate and invest
+					strong 3 Estimate and invest
 				p
 					| At any point in the game our Cricsta model will give the number of points it thinks the player will score by the end of the match.
 				ul
 					li
 						| You buy a player if you think he will score more points than the Cricsta model estimates.
-					li Each point of a player is worth 1 token. You start the game with 500 tokens.
+					li 
+						| Each point of a player is worth 1 token. You start the game with 500 tokens.
 					li
 						| The Cricsta model will update after every ball. So the price you buy your player will differ ball to ball.
 					li
 						| You can buy a player for two shares instead of 1. For example, if you buy a player worth 35 points, you will use 35 of your 500 tokens to buy him once, 70 tokens to buy him twice and so on.
 					li
 						| You can also sell a player you have bought. You will do this when you now think the Cricsta model is giving points as per your estimates or you see a greater opportunity elsewhere.
-					li You can buy and sell players multiple times during a match.
+					li 
+						| You can buy and sell players multiple times during a match.
 					li
 						| The maximum invested at any time is 500 tokens. However, if 10 tokens of profit have already been booked, then those 10 tokens can be re-invested on another player. Conversely, if 10 tokens of loss booked, then the total investment value becomes 490 tokens.
 				p
-					strong 5 Game Objective 
+					strong 4 Transfer Window 
 				p
-					| At the end of the match, for every player holding that is unsold, we will sell them at the actual points scored by the particular player in the match.
+					| You can buy and sell a player only when the transfer window is open. This is signified by the green button on top of the screen. 
 				p
-					| The objective of the game is to maximise the number of tokens you have at the end of the match.
-				p
-					| We will create a leader board as per the number of tokens each contestant has. Winners will be given prizes as announced before the game.
+					| The transfer window is open during the following times – 
+				ul
+					li
+						| After the playing XIs are announced in the toss, till the 1st ball is bowled
+					li 
+						| After the last ball of an over, for a time period of 60 seconds. A countdown timer will appear on the screen to show the time you have left to transfer.
+					li
+						| In the innings break till the 1st ball of the 2nd innings is bowled. 
+
 
 	.ui.faq.modal
 		i.close.icon
@@ -260,17 +264,16 @@ block content
 				p
 					strong How do I play on Prosportsleague?
 				p
-					| 1  Register / login on 
-					a(href='http://www.prosportsleague.com') www.prosportsleague.com
-					| 
+					| 1 Register / login on 
+					a(href='http://www.prosportsleague.com') www.prosportsleague.com?
 				p
-					| 2  Add money to account for a money game. Or use free credits given for virtual game
+					| 2 Add money to account for a money game. Or use free credits given for virtual game
 				p
-					| 3  Choose your game. For every match there are several choices, based on the buy-in you are comfortable with, or if the game is virtual or real.
+					| 3 Choose your game. For every match there are several choices, based on the buy-in you are comfortable with, or if the game is virtual or real, plus if you want to choose a dynamic intra-match game or a static pre-match one.
 				p
 					strong When does the game start?
 				p
-					| This game starts 15 minutes before the first ball is scheduled to be bowled. You can start buying and selling players at any time up to the last ball of the match.
+					| This game starts around 15 minutes before the first ball is scheduled to be bowled. You can start buying and selling players at any time up to the last ball of the match when the transfer window is open.
 				p
 					strong Who wins the game?
 				p
@@ -278,22 +281,36 @@ block content
 				p
 					strong How do I take positions?
 				p
-					| Buy a player who you think will score more than the Cricsta model. If you feel strongly about any player, you can buy more than just one share.
+					| Buy a player who you think will score more than the Cricsta model. If you feel strongly about any player, you can buy two shares.
 				p
 					| However, you can buy only up to the total tokens available. In the start of the game, each player has 500 tokens.
 				p
 					strong Does the price of each player change during the match?
 				p
-					| Yes! Our Cricsta model will update its estimates of every player's points at every ball. Therefore, the price each player is available at will change accordingly. At the end of the match, all players will be marked on the actual points they score. 
+					| Yes! Our Cricsta model will update its estimates of every player's points at every ball. Therefore, the price each player is available at will change accordingly. At the end of the match, all players will be marked on the actual points they score.
+				p
+					strong When is the transfer window open?
+				ul
+					li
+						| After the playing XIs are announced in the toss, till the 1
+						sup st
+						|  ball is bowled
+					li
+						| After the last ball of an over, for a time period of 60 seconds. A countdown timer will appear on the screen to show the time you have left to transfer.
+					li
+						| In the innings break till the 1
+						sup st
+						|  ball of the 2
+						sup nd
+						|  innings is bowled.
 				p
 					strong Will my holdings be live for subsequent matches?
 				p
 					| No! Every new match is a fresh game. Your holdings are netted off at the end of the match against the actual points scored by the player.
 				p
 					strong What if a player in my holding does not play?
-				ul
-					li
-						| This is not possible as we start the game after the toss only. So the 22 players on your game screen are playing the match.
+				p
+					| This is not possible as we start the game after the toss only. So the 22 players on your game screen are playing the match.
 				p
 					strong Is there a limit on the number for players in my holdings?
 				p
@@ -310,9 +327,8 @@ block content
 				p It will be instantaneous.
 				p
 					strong Can I change my holdings during the match?
-				ul
-					li
-						| Yes! You can buy and sell players while the match is on
+				p
+					| Yes! You can buy and sell players while the match is on, as long as the transfer window is open.
 				p
 					strong How can I see my rank?
 				p

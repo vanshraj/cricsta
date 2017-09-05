@@ -31,7 +31,7 @@ router.get('/',isAuthenticated, function(req, res){
 							tenuser.push({"name":alluser[i].name, "balance": alluser[i].game[j].balance,"buy":alluser[i].game[j].buy});
 						}
 					}
-					res.render('game/table',{ alluser: tenuser, user_data:user_data, data:data, team2players:team2players, team1players:team1players, title:"Game"});
+					res.render('game/table',{ alluser: tenuser, user_data:user_data, data:data, team2players:team2players, team1players:team1players, title:"Game", overs:match[0].totalOver});
 				});
 			});	
 		}	
