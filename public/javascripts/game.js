@@ -165,7 +165,8 @@ function updatePlayers(data){
 
   toptenplayer = _.sortBy(toptenplayer,'points');
   toptenplayer = _.reverse(toptenplayer);
-  toptenplayer = _.slice(toptenplayer,0,10);
+  // console.log(toptenplayer.length);
+  // toptenplayer = _.slice(toptenplayer,0,10);
   leaderstring="";
   toptenplayer.forEach(function(player,i){
       leaderstring += "<tr><td>"+parseInt(i+1)+"</td><td>"+player.name+"</td><td>"+player.points+"</td></tr>";
