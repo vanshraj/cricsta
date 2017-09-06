@@ -72,7 +72,10 @@ module.exports.makeGamingUser = function( match, user, callback){
 		//adding todays game in user account
 		if(user.type!='premium'&&user.type!='admin')
 			user.balance-=100;
-		var game_obj = { "gameId": match[0].matchId, "balance": 500, "profit": 0, "buy":[], "sell":[] };
+		if(match[0].totalOver==20)
+			var game_obj = { "gameId": match[0].matchId, "balance": 300, "profit": 0, "buy":[], "sell":[] };
+		else
+			var game_obj = { "gameId": match[0].matchId, "balance": 500, "profit": 0, "buy":[], "sell":[] };
 		user.game.push(game_obj);
 		user.save( function(err, user){
 			var i= _.findIndex(user.game, { "gameId": match[0].matchId });

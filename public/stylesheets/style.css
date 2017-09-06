@@ -8,6 +8,8 @@ body {
   padding: 0px;
   margin: 0px;
 }
+/*rgba(255, 130, 45)*/
+/*#f4873e*/
 body.pushable>.pusher {
   background: #fbfbfb;
 }
@@ -338,6 +340,9 @@ opacity: 0.2;
 	bottom: 20px;
 	left: 20px;
 }
+.shadow{
+	box-shadow: 8px 7px 20px -9px #777 !important;
+}
 
 
 @-webkit-keyframes transferRed {
@@ -369,12 +374,22 @@ opacity: 0.2;
 .handwritten{
 	font-family: handwritten, 'Raleway', sans-serif;
 }
+.hovertext{
+	padding-bottom: 5px;
+	border-bottom: solid 5px #f4873e;
+	letter-spacing: 1.2px;
+	text-shadow: 0px 3px 3px rgba(0,0,0,0.8), 0px 10px 30px rgba(0,0,0,0.1);
+	text-shadow: 0px 1px 3px rgba(0,0,0,0.2),
+             0px 1px 13px rgba(0,0,0,0.1);
+}
 .cursive{
+	padding-bottom: 5px;
+	border-bottom: solid 5px #f4873e;
 	font-style:italic;
 	font-weight: lighter; 
 	letter-spacing: 1.2px;
 	text-shadow: 0px 1px 3px rgba(0,0,0,0.2),
-             0px 1px 13px rgba(0,0,0,0.1)
+             0px 1px 13px rgba(0,0,0,0.1);
 }
 
 .transferGreen {
