@@ -158,7 +158,7 @@ router.post('/user', function(req, res, next){
 router.post('/feedback',isAuthenticated,function(req, res, next){
 	var mailOptions = {
 	  from: req.user.email,
-	  to: 'vanshajbehl96@gmail.com',
+	  to: 'alok.noronha@gmail.com',
 	  subject: 'Pro Sports League Feedback',
 	  text: req.body.feed
 	};
