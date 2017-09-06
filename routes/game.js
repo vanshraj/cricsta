@@ -108,24 +108,33 @@ router.post('/sell',isAuthenticated, function(req, res, next){
 router.get('/player', function(req, res, next){
 	Match.getMatchLatestData(function(err, match){
 		if(err) throw err;
-		var transfer,balls;
+		var transfer,balls,notstart=false,end1=false,end2=false;
+		
 		if(match[0].team2.over<0.1){
 			balls=6-(match[0].team1.over%1)*10;
 			if(match[0].team1.over%1!=0&&match[0].team1.wickets!=10){
 				transfer=false;
 			}
 			else{
+				if(match[0].team1.over==match[0].totalOver||match[0].team1.wickets==10)
+					end1=true;
 				transfer=true;
 			}
 		}
 		else{
+			if(match[0].team2.over==match[0].totalOver||match[0].team2.wickets==10||match[0].team2.actualScore>match[0].team1.actualScore)
+				end2=true;
 			balls=6-(match[0].team2.over%1)*10;
-			if(match[0].team2.over%1!=0){
+			if(match[0].team2.over%1!=0||end2){
 				transfer=false;
 			}
 			else{
 				transfer=true;
 			}
+		}
+		if(match[0].team1.over<0.1){
+			notstart=true;
+			transfer=true;
 		}
 		Player.getPlayerData(match, function(err, data){
 			if(err) throw err;
@@ -133,7 +142,7 @@ router.get('/player', function(req, res, next){
 			team1players = _.sortBy(team1players,'name');
 			var team2players = _.unionBy( data.team2.bowlers,data.team2.batsmen,'name');
 			team2players = _.sortBy(team2players,'name');
-			var data ={ team2players:team2players, team1players:team1players, transfer:transfer, timestamp:match[0].date, balls:balls };
+			var data ={ team2players:team2players, team1players:team1players, transfer:transfer, timestamp:match[0].date, balls:balls,notstart:notstart,end2:end2,end1:end1 };
 			res.send(data);
 		});
 	});

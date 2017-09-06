@@ -62,6 +62,16 @@ function updatePlayers(data){
     // Time calculations for days, hours, minutes and seconds
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    var y=minutes + "m " + seconds + "s ";
+    if(data.end1){
+      y="First Innings Over";
+      distance=1;
+    }
+    if(data.notstart){
+      y="Match Not Started";
+      distance=1;
+    }
+
     // If the count down is over, write some text 
     if (distance < 0) {
       //disable buttons
@@ -76,7 +86,11 @@ function updatePlayers(data){
       });
       $('.transferGreen').addClass('transferRed').removeClass('transferGreen');
       //although green but time over show balls
-      $('.countdown').text(Math.round(data.balls) + " balls remaining");
+      if(data.end2){
+        $('.countdown').text("Match Over");
+      }else{
+        $('.countdown').text(Math.round(data.balls) + " balls remaining"); 
+      }
     }else{
 
       $('.buyButton').each(function(){
@@ -92,7 +106,7 @@ function updatePlayers(data){
         $(this).removeClass('disabled');
       });
       //show time remaining
-      $('.countdown').text(minutes + "m " + seconds + "s ");
+      $('.countdown').text(y);
     }
   }
   else{
@@ -107,7 +121,11 @@ function updatePlayers(data){
       $(this).addClass('disabled');
     });
     $('.transferGreen').addClass('transferRed').removeClass('transferGreen');
-    $('.countdown').text(Math.round(data.balls) +" balls remaining.");
+    if(data.end2){
+      $('.countdown').text("Match Over");
+    }else{
+      $('.countdown').text(Math.round(data.balls) + " balls remaining"); 
+    }
   }
 
   var stocks=0;
