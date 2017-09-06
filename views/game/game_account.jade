@@ -22,10 +22,10 @@ block content
 													tr
 														td Funds Remaining
 														td.right.aligned(colspan="2") #{Math.round((user.balance))} Inr
-								.ui.button.orange.mini.inverted.odipoint ODI points system
-								.ui.button.orange.mini.inverted.t20point T20 points system
-								.ui.button.orange.mini.inverted.howtoplaybtn How to play
-								.ui.button.orange.mini.inverted.faqbtn FAQs
+								.ui.button.orange.inverted.tiny.odipoint ODI points system
+								.ui.button.orange.inverted.tiny.t20point T20 points system
+								.ui.button.orange.inverted.tiny.howtoplaybtn How to play
+								.ui.button.orange.inverted.tiny.faqbtn FAQs
 							br
 							br
 							.column.sixteen.wide
@@ -43,8 +43,8 @@ block content
 												img(src="/images/#{team2uri}.png" style="vertical-align:middle; max-width:35px")
 											td 100
 											td
-												a(href="" ,onclick="$('#addgameform').submit(); return false;")
-													.ui.button.orange.mini.right.floated.inverted Get Started 
+												//- a(href="" ,onclick="$('#addgameform').submit(); return false;")
+												.ui.button.orange.tiny.right.floated.inverted Will Start at 6:40PM 
 					if user.game.length
 						.column.eight.wide(style="max-height:310px; overflow-y:auto")
 							table.table.ui.selectable.celled.table.orange.unstackable.structured

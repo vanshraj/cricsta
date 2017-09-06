@@ -10,7 +10,7 @@ var UserSchema = mongoose.Schema({
 	email: {type: String, index:true},
 	name: {type: String},
 	type: {type: String},
-	balance:{type: Number, default: 200},
+	balance:{type: Number, default: 500},
 	game: [ { gameId: {type: String}, balance: {type: Number}, profit: {type: Number}, buy:[ { name:{ type: String}, price:{ type: Number}, quantity:{ type: Number} } ], sell:[ { name:{ type: String}, price:{ type: Number}, quantity:{ type: Number}, buyprice:{ type: Number} } ] } ]
 });
 

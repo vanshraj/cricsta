@@ -103,11 +103,11 @@ block free
 										each buyname, j in player.buy
 											td.userbuyname(q='#{buyname.quantity}',p='#{buyname.name}')
 					if (overs!=20)
-						.ui.button.orange.mini.inverte.dodipoint(style="float:right") ODI points system
+						.ui.button.orange.tiny.inverted.odipoint(style="float:right") ODI points system
 					else
-						.ui.button.orange.mini.inverted.t20point(style="float:right") T20 points system
-					.ui.button.orange.mini.inverted.howtoplaybtn(style="float:right") How to play
-					.ui.button.orange.mini.inverted.faqbtn(style="float:right") FAQs
+						.ui.button.orange.tiny.inverted.t20point(style="float:right") T20 points system
+					.ui.button.orange.tiny.inverted.howtoplaybtn(style="float:right") How to play
+					.ui.button.orange.tiny.inverted.faqbtn(style="float:right") FAQs
 				.column.five.wide
 					table.ui.stripped.celled.compact.table.orange.unstackable.structured.small
 						thead
@@ -189,9 +189,19 @@ block free
 				br
 				br
 				h3.center.aligned.cursive  Buy players who you think are available cheap! Sell them when fairly valued. Maximize your chips. 
+				br
 			.row.ui.grid.mobile.only
 				br
-				h5.center.aligned.cursive  Buy players who you think are available cheap! Sell them when fairly valued. Maximize your chips. 
+				h5.center.aligned.cursive  Buy players who you think are available cheap! Sell them when fairly valued. Maximize your chips.
+				br
+			.row
+				.column.eight.wide
+					form.ui.form(action='/game/feedback', method='post')
+						h3.ui.dividing.header Feedback
+						.field
+							textarea(name='feed', rows='2')
+						.field
+							button.ui.button(tabindex='0',type='submit') Submit
 	.ui.odi.modal
 		i.close.icon
 		.header ODI Points System

@@ -7,7 +7,7 @@ var SchemaTypes = mongoose.Schema.Types;
 // Match Schema
 var MatchSchema = mongoose.Schema({
 	matchId: { type: String},
-	totalOver:{ type: Number},
+	totalOver:{ type: Number, default: 50},
 	team1:{ name:{type: String}, wickets:{type: Number}, over:{type: SchemaTypes.Double}, actualScore:{type: Number}, predScore:{type: Number}, winProb:{type: Number}, odds:{type: Number} },
 	team2:{ name:{type: String}, wickets:{type: Number}, over:{type: SchemaTypes.Double}, actualScore:{type: Number}, predScore:{type: Number}, winProb:{type: Number}, odds:{type: Number} },
 	prob1:{ value:{type: Number}, percentage:{type: Number} },
@@ -22,6 +22,7 @@ var MatchSchema = mongoose.Schema({
 
 var PlayerSchema = mongoose.Schema({
 	matchId: { type: String},
+	start:{ type: Date, default: Date.now},
 	date:{ type: Date, default: Date.now },
 	team1:{
 		name:{type: String},

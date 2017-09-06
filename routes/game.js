@@ -6,6 +6,17 @@ var User = require('../models/user');
 var jsonfile = require('jsonfile')
 var file = '../cricbuzz/data.json'
 var _ = require('lodash');
+var nodemailer = require('nodemailer'); 
+
+//nodemailer transporter
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.USERMAIL,
+    pass: process.env.USERPASS
+  }
+});
+
 
 router.get('/',isAuthenticated, function(req, res){
 	Match.getMatchLatestData(function(err, match){
@@ -142,6 +153,25 @@ router.post('/user', function(req, res, next){
 		var obj = { "name":true};
 		res.send(obj);
 	}
+});
+
+router.post('/feedback',isAuthenticated,function(req, res, next){
+	var mailOptions = {
+	  from: req.user.email,
+	  to: 'vanshajbehl96@gmail.com',
+	  subject: 'Pro Sports League Feedback',
+	  text: req.body.feed
+	};
+
+	transporter.sendMail(mailOptions, function(error, info){
+	  if (error) {
+	    console.log(error);
+		res.redirect('/game');
+	  } else {
+		res.redirect('/game');
+	    console.log('Email sent: ' + info.response);
+	  }
+	});
 });
 
 
