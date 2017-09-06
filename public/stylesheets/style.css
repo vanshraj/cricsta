@@ -439,6 +439,12 @@ opacity: 0.2;
 
 /*css for tablets*/
 @media (max-width: 767px) {
+	.ui.tiny.button, .ui.tiny.buttons .button, .ui.tiny.buttons .or {
+    	font-size: 0.65rem;
+	}
+	.ui.button, .ui.buttons .button, .ui.buttons .or{
+		font-size: 0.75rem;	
+	}
 	.intro img{
 		margin-left: 1%;
 		max-width: 98%;	

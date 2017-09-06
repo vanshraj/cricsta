@@ -12,7 +12,7 @@ block free
 			.row.ui.grid.mobile.only
 				h3.center.aligned.hovertext PRO SPORTS LEAGUE
 			.row
-				.column.fourteen.wide
+				.column.fourteen.wide.ui.grid.computer.only
 					table.ui.very.basic.table.small.stackable.chipBoard
 						tbody
 							- var stocks=0
@@ -40,15 +40,49 @@ block free
 										.detail(style="margin-left:.5em; margin-right:.5em;") V/S 
 										|	#{data.team2.name}
 										img(style="margin:-.5833em -.5em -.5833em .5em",src="/images/#{data.team2.name}.png")
+				.column.fourteen.wide.ui.grid.mobile.tablet.only
+					table.ui.very.basic.table.small.stackable.chipBoard
+						tbody
+							tr.center.aligned
+								td
+									a.ui.basic.large.image.label
+										img(src="/images/#{data.team1.name}.png")
+										|	#{data.team1.name}
+										.detail(style="margin-left:.5em; margin-right:.5em;") V/S 
+										|	#{data.team2.name}
+										img(style="margin:-.5833em -.5em -.5833em .5em",src="/images/#{data.team2.name}.png")
+					.ui.card.orange(style="width:100%")
+						.content
+							.left.floated.header Game-Board
+							.right.floated.author
+								a(href='/users/account')
+									img.ui.avatar.image(src='/images/matt.jpg')
+									|  #{user.name}
+							.description
+								table.ui.very.basic.table.unstackable
+									tbody
+										- var stocks=0
+										tr
+											td Chips In Hand  
+												i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="Total Chips remaining for this match.",data-position="top center")
+											td.right.aligned.UserBalance(colspan="2") #{Math.round((user_data.balance))} Chips
+										tr
+											td Player Holdings 
+												i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="Money that is active supporting your holdings.",data-position="top center")
+											td.right.aligned.UserStock(colspan="2") #{Math.round(stocks*100)} Chips
+										tr
+											td Profit/Loss 
+												i.info.circle.icon(style="font-size:0.7em", data-variation="wide inverted",data-content="This is the net amount of profit/loss you have made in this match.",data-position="top center")
+											td.right.aligned.UserProfit(colspan="2")(class= ( user_data.profit > 0 ? 'positive': ( user_data.profit < 0 ? 'negative': '') )) #{Math.round(user_data.profit)} Chips
 		.ui.equal.width.grid.stackable
 			.row
 				.column.six.wide
-					.ui.top.attached.pointing.small.menu.stackable
+					.ui.top.attached.pointing.small.menu
 						a.item.menuTabs.active(data-tab='first') Holdings
 						a.item.menuTabs(data-tab='second') Closed Positions
 						a.item.menuTabs(data-tab='third') Leadership Board
-					.ui.bottom.attached.tab.segment.active(data-tab='first',style="max-height:400px; overflow-y:auto")
-						table.ui.very.basic.compact.table.small.BuyPositionTable(style="display:none;")
+					.ui.bottom.attached.tab.segment.active(data-tab='first',style="max-height:470px; overflow-y:auto")
+						table.ui.very.basic.unstackable.table.small.BuyPositionTable(style="display:none;")
 							thead
 								tr
 									th(colspan="2") Players
@@ -67,8 +101,8 @@ block free
 						.NoBuyPosition
 							br
 							p No Open Positions.
-					.ui.bottom.attached.tab.segment(data-tab='second',style="max-height:400px; overflow-y:auto")
-						table.ui.very.basic.compact.table.small.SellPositionTable(style="display:none;")
+					.ui.bottom.attached.tab.segment(data-tab='second',style="max-height:470px; overflow-y:auto")
+						table.ui.very.basic.unstackable.table.small.SellPositionTable(style="display:none;")
 							thead
 								tr
 									th Players
@@ -87,7 +121,7 @@ block free
 						.NoSellPosition
 							br
 							p No Closed Positions.
-					.ui.bottom.attached.tab.segment(data-tab='third',style="max-height:400px; overflow-y:auto")
+					.ui.bottom.attached.tab.segment(data-tab='third',style="max-height:470px; overflow-y:auto")
 						table.ui.very.basic.table.small.orange.unstackable.structured
 							thead
 								tr
@@ -109,7 +143,7 @@ block free
 					.ui.button.orange.tiny.inverted.howtoplaybtn(style="float:right") How to play
 					.ui.button.orange.tiny.inverted.faqbtn(style="float:right") FAQs
 				.column.five.wide
-					table.ui.stripped.celled.compact.table.orange.unstackable.structured.small
+					table.ui.stripped.celled.table.orange.unstackable.structured.small
 						thead
 							tr
 								th #{data.team1.name} Players
@@ -147,7 +181,7 @@ block free
 											td 
 												.ui.button.green.mini.inverted.right.floated.buyButton.disabled Buy
 				.column.five.wide
-					table.ui.stripped.celled.compact.table.orange.unstackable.structured.small
+					table.ui.stripped.celled.table.orange.unstackable.structured.small
 						thead
 							tr
 								th #{data.team2.name} Players
