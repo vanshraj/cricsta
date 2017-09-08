@@ -76,6 +76,7 @@ function updatePlayers(data){
     if (distance < 0) {
       //disable buttons
       $('.buyButton').each(function(){
+        $(this).parent().attr('data-tooltip','Transfer window will open after the over for 1 minute.').attr('data-position','left center');
         $(this).addClass('disabled');
       });
       $('.sellButton').each(function(){
@@ -94,6 +95,7 @@ function updatePlayers(data){
     }else{
 
       $('.buyButton').each(function(){
+        $(this).parent().removeAttr('data-tooltip');
         $(this).removeClass('disabled');
       });
       $('.sellButton').each(function(){
@@ -112,6 +114,7 @@ function updatePlayers(data){
   else{
     //disable buttons
     $('.buyButton').each(function(){
+        $(this).parent().attr('data-tooltip','Transfer window will open after the over for 1 minute.').attr('data-position','left center');
       $(this).addClass('disabled');
     });
     $('.sellButton').each(function(){
@@ -135,6 +138,14 @@ function updatePlayers(data){
     var pname = player.name;
     var querystring ='tr[p-name="'+pname+'"] .currentPoints p';
     var points = (Math.round(player.points));
+    var prev = parseInt($(querystring).text().slice(0, -7));
+    if(prev<points){
+      $(querystring).parent().addClass('positive');  
+      $(querystring).parent().removeClass('negative');  
+    }else if(prev>points){
+      $(querystring).parent().removeClass('positive');  
+      $(querystring).parent().addClass('negative');  
+    }
     $(querystring).text(points+' Points');
   });
 
@@ -142,6 +153,14 @@ function updatePlayers(data){
     var pname = player.name;
     var querystring ='tr[p-name="'+pname+'"] .currentPoints p';
     var points = (Math.round(player.points));
+    var prev = parseInt($(querystring).text().slice(0, -7));
+    if(prev<points){
+      $(querystring).parent().addClass('positive');  
+      $(querystring).parent().removeClass('negative');  
+    }else if(prev>points){
+      $(querystring).parent().removeClass('positive');  
+      $(querystring).parent().addClass('negative');  
+    }
     $(querystring).text(points+ ' Points');
   });
 
