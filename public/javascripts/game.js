@@ -76,7 +76,7 @@ function updatePlayers(data){
     if (distance < 0) {
       //disable buttons
       $('.buyButton').each(function(){
-        $(this).parent().attr('data-tooltip','Transfer window will open after the over for 1 minute.').attr('data-position','left center');
+        $(this).parent().attr('data-tooltip','You can buy when the transfer window opens, at the end of the over.').attr('data-position','left center');
         $(this).addClass('disabled');
       });
       $('.sellButton').each(function(){
@@ -114,7 +114,7 @@ function updatePlayers(data){
   else{
     //disable buttons
     $('.buyButton').each(function(){
-        $(this).parent().attr('data-tooltip','Transfer window will open after the over for 1 minute.').attr('data-position','left center');
+        $(this).parent().attr('data-tooltip','You can buy when the transfer window opens, at the end of the over.').attr('data-position','left center');
       $(this).addClass('disabled');
     });
     $('.sellButton').each(function(){
@@ -203,7 +203,14 @@ function updatePlayers(data){
 
     currentVal =currentVal.slice(0, -7);
     // console.log(currentVal);
-
+    var prev = parseInt($(this).children('.currentPosition').text());
+    if(prev<currentVal){
+      $(this).children('.currentPosition').addClass('positive');  
+      $(this).children('.currentPosition').removeClass('negative');  
+    }else if(prev>currentVal){
+      $(this).children('.currentPosition').removeClass('positive');  
+      $(this).children('.currentPosition').addClass('negative');  
+    }
     $(this).children('.currentPosition').text(currentVal);
 
     var boughtPrice=$(this).children('.boughtPrice').text();

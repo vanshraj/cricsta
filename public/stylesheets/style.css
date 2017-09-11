@@ -325,13 +325,13 @@ opacity: 0.2;
 .ui.grid + .grid {
     margin-top: 0rem;
 }
-.detail.negative{
-	color:rgb(240,40,30);
-	background-color: rgba(240,40,30,0.1);
+.detail.negative, .ui.table td.negative, .ui.table tr.negative{
+	color:rgb(100,9,9) !important;
+	background-color: rgba(240,40,30,0.25) !important;
 }
-.detail.positive{
-	color:rgb(40,240,30);
-	background-color: rgba(40,240,30,0.1);
+.detail.positive, .ui.table td.positive, .ui.table tr.positive{
+	color:rgb(9,100,9) !important;
+	background-color: rgba(40,240,30,0.25) !important;
 }
 
 .remainWidget{
