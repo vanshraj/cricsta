@@ -58,6 +58,15 @@ router.get('/account',isAuthenticated, function(req, res){
 		});
     });
 });
+router.post('/account',isAuthenticated, function(req, res){
+	Match.getMatchLatestData(function(err, match){
+		if(err) throw err;
+		Player.getPlayerData(match, function(err, data){
+			if(err) throw err;
+			res.send(data.start);
+		});
+    });
+});
 
 router.post('/',isAuthenticated, function(req, res){
 	Match.getMatchLatestData(function(err, match){
